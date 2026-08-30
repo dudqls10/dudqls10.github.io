@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 900" role="img" aria-labelledby="title desc">
+  <title id="title">RMPflow 기반 근접 안전 제어 구조</title>
+  <desc id="desc">목표, 로봇 상태, 근접센서 입력을 여러 RMP leaf 정책으로 변환한 뒤 pullback과 resolve를 거쳐 로봇 명령을 생성하는 구조</desc>
+  <defs>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#f2f7ff"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#25313c"/>
+    </marker>
+    <style>
+      .title{font:700 44px Pretendard,'Noto Sans KR',sans-serif;fill:#101b33;letter-spacing:-1.5px}
+      .tab{font:700 20px Pretendard,'Noto Sans KR',sans-serif;fill:#fff}
+      .label{font:700 20px Pretendard,'Noto Sans KR',sans-serif;fill:#16439b}
+      .head{font:700 27px Pretendard,'Noto Sans KR',sans-serif;fill:#15213a}
+      .body{font:500 18px Pretendard,'Noto Sans KR',sans-serif;fill:#3f4b58}
+      .small{font:500 16px Pretendard,'Noto Sans KR',sans-serif;fill:#52606d}
+      .math{font:italic 21px Georgia,serif;fill:#26323e}
+      .box{fill:url(#panel);stroke:#205bb5;stroke-width:2.2}
+      .line{fill:none;stroke:#25313c;stroke-width:3;marker-end:url(#arrow)}
+      .thin{fill:none;stroke:#4d6275;stroke-width:2.2;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1500" height="900" fill="#fbfcfe"/>
+  <text x="750" y="62" text-anchor="middle" class="title">RMPflow 기반 근접 안전 제어 구조</text>
+
+  <rect x="28" y="96" width="300" height="47" rx="9" fill="#113d80"/>
+  <text x="48" y="128" class="tab">시스템 입력</text>
+  <rect x="45" y="176" width="285" height="105" rx="16" class="box"/>
+  <text x="75" y="220" class="head">목표 자세</text>
+  <text x="75" y="252" class="body">위치 · 방향 명령</text>
+  <rect x="45" y="325" width="285" height="105" rx="16" class="box"/>
+  <text x="75" y="369" class="head">로봇 상태</text>
+  <text x="75" y="402" class="math">q, q̇</text>
+  <rect x="45" y="474" width="285" height="105" rx="16" class="box"/>
+  <text x="75" y="518" class="head">근접센서</text>
+  <text x="75" y="550" class="body">20채널 거리 rᵢ</text>
+
+  <rect x="398" y="96" width="482" height="47" rx="9" fill="#113d80"/>
+  <text x="418" y="128" class="tab">RMP 말단 정책</text>
+  <rect x="408" y="176" width="220" height="105" rx="16" fill="#edf5ff" stroke="#2c6bc2" stroke-width="2.2"/>
+  <text x="432" y="219" class="head">목표 RMP</text>
+  <text x="432" y="251" class="body">목표 추종</text>
+  <rect x="648" y="176" width="220" height="105" rx="16" fill="#eafaf8" stroke="#158b83" stroke-width="2.2"/>
+  <text x="672" y="219" class="head">충돌 RMP</text>
+  <text x="672" y="251" class="body">링크별 장애물 회피</text>
+  <rect x="408" y="305" width="220" height="105" rx="16" fill="#f6f1ff" stroke="#7a5bc4" stroke-width="2.2"/>
+  <text x="432" y="348" class="head">감쇠 RMP</text>
+  <text x="432" y="380" class="body">동작 안정화</text>
+  <rect x="648" y="305" width="220" height="105" rx="16" fill="#fff7e8" stroke="#cf8a18" stroke-width="2.2"/>
+  <text x="672" y="348" class="head">관절 제한 RMP</text>
+  <text x="672" y="380" class="body">관절 범위 보호</text>
+  <rect x="408" y="434" width="220" height="105" rx="16" fill="#eef8f1" stroke="#3c945d" stroke-width="2.2"/>
+  <text x="432" y="477" class="head">속도 제한 RMP</text>
+  <text x="432" y="509" class="body">관절 속도 보호</text>
+  <rect x="648" y="434" width="220" height="105" rx="16" fill="#f0f5ff" stroke="#4a70b5" stroke-width="2.2"/>
+  <text x="672" y="477" class="head">축 타겟 RMP</text>
+  <text x="672" y="509" class="body">축별 자세 추종</text>
+
+  <path d="M330 228 H393" class="line"/>
+  <path d="M330 377 H365 V358 H393" class="line"/>
+  <path d="M330 526 H365 V228 H633" class="line"/>
+
+  <rect x="930" y="152" width="300" height="405" rx="22" fill="url(#panel)" stroke="#164f9e" stroke-width="2.5"/>
+  <text x="1080" y="217" text-anchor="middle" class="head" style="font-size:38px">RMPflow</text>
+  <text x="1080" y="260" text-anchor="middle" class="body">다중 목적 동작 정책 합성</text>
+  <line x1="972" y1="300" x2="1188" y2="300" stroke="#9aacc0" stroke-width="2"/>
+  <text x="1080" y="343" text-anchor="middle" class="label">1. 전방 전달</text>
+  <text x="1080" y="382" text-anchor="middle" class="small">상태를 각 태스크 공간으로 변환</text>
+  <text x="1080" y="431" text-anchor="middle" class="label">2. 역전파</text>
+  <text x="1080" y="470" text-anchor="middle" class="small">말단 정책을 구성공간에서 합성</text>
+  <text x="1080" y="519" text-anchor="middle" class="label">3. 명령 계산</text>
+
+  <path d="M868 228 H915" class="line"/>
+  <path d="M868 358 H915" class="line"/>
+  <path d="M868 487 H915" class="line"/>
+
+  <rect x="975" y="625" width="210" height="88" rx="15" fill="#edf8ee" stroke="#4f8d5b" stroke-width="2.2"/>
+  <text x="1080" y="663" text-anchor="middle" class="head">구성공간 명령</text>
+  <text x="1080" y="696" text-anchor="middle" class="math">q̈*</text>
+  <path d="M1080 557 V610" class="line"/>
+
+  <rect x="1270" y="615" width="190" height="108" rx="18" fill="#f5f8fb" stroke="#264d77" stroke-width="2.2"/>
+  <text x="1365" y="658" text-anchor="middle" class="head">로봇 제어</text>
+  <text x="1365" y="692" text-anchor="middle" class="body">적분 및 명령 전송</text>
+  <path d="M1185 669 H1255" class="line"/>
+
+  <path d="M1365 723 V790 H190 V594" class="thin"/>
+  <text x="760" y="828" text-anchor="middle" class="small">로봇 상태 피드백을 다음 제어 주기에 반영</text>
+</svg>

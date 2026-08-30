@@ -1,0 +1,663 @@
+/* ===========================================================================
+   SONG YOUNGBIN PORTFOLIO — V2 SHARED DESIGN SYSTEM
+   index2의 밝은 editorial 방향을 메인·연구 상세·학부 상세에 공통 적용한다.
+   ========================================================================== */
+
+@font-face {
+  font-family: "Geist";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2") format("woff2");
+}
+
+html { scroll-padding-top: 88px; }
+
+.portfolio-v2 {
+  --ink: #111418;
+  --ink-soft: #343a40;
+  --muted: #677078;
+  --line: #d9dddf;
+  --paper: #f4f5f2;
+  --white: #fff;
+  --blue: #315cff;
+  --blue-dark: #1e43dc;
+  --blue-soft: #e8edff;
+  --lime: #c9ff4a;
+  --surface: rgba(255, 255, 255, .78);
+  --surface-solid: #fff;
+  --radius-sm: 10px;
+  --radius: 16px;
+  --radius-lg: 22px;
+  --font-display: "Geist", "Pretendard Variable", Arial, sans-serif;
+  --font-body: "Pretendard Variable", Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  margin: 0;
+  background:
+    radial-gradient(900px 480px at 82% 0%, rgba(49, 92, 255, .055), transparent 64%),
+    var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.68;
+  letter-spacing: -.012em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.portfolio-v2 *,
+.portfolio-v2 *::before,
+.portfolio-v2 *::after { box-sizing: border-box; }
+
+.portfolio-v2 h1,
+.portfolio-v2 h2,
+.portfolio-v2 h3,
+.portfolio-v2 h4,
+.portfolio-v2 strong,
+.portfolio-v2 .wordmark,
+.portfolio-v2 .project-quick-nav,
+.portfolio-v2 .header-contact,
+.portfolio-v2 .detail-link,
+.portfolio-v2 .next-project,
+.portfolio-v2 .ug-back-home {
+  font-family: var(--font-display);
+}
+
+.portfolio-v2 p { word-break: keep-all; }
+.portfolio-v2 img,
+.portfolio-v2 video { max-width: 100%; }
+.portfolio-v2 ::selection { background: var(--blue); color: #fff; }
+
+.portfolio-v2 :focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   Shared header
+   -------------------------------------------------------------------------- */
+
+.portfolio-v2 .site-header {
+  position: sticky;
+  z-index: 80;
+  top: 0;
+  height: 76px;
+  border-bottom: 1px solid rgba(17, 20, 24, .12);
+  background: rgba(244, 245, 242, .9);
+  backdrop-filter: blur(18px) saturate(150%);
+}
+
+.portfolio-v2 .wordmark {
+  display: inline-flex;
+  gap: 11px;
+  align-items: center;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 680;
+  letter-spacing: .055em;
+  text-transform: uppercase;
+}
+
+.portfolio-v2.project-v2 .wordmark::before {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 9px;
+  background: var(--blue);
+  color: #fff;
+  content: "SYB";
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: -.02em;
+}
+
+.portfolio-v2 .project-quick-nav {
+  gap: clamp(16px, 2.2vw, 30px);
+  font-size: 10px;
+  font-weight: 620;
+  letter-spacing: .055em;
+}
+
+.portfolio-v2 .project-quick-nav a { color: var(--muted); }
+.portfolio-v2 .project-quick-nav a:hover { color: var(--blue); text-decoration: none; }
+
+/* --------------------------------------------------------------------------
+   Home
+   -------------------------------------------------------------------------- */
+
+.portfolio-v2.home-page .hero {
+  min-height: 620px;
+  padding-block: 70px 76px;
+}
+
+.portfolio-v2.home-page .hero-copy h1 {
+  font-family: var(--font-display);
+  font-weight: 620;
+  letter-spacing: -.055em;
+}
+
+.portfolio-v2.home-page .hero-role { color: var(--ink-soft); }
+.portfolio-v2.home-page .hero-line { max-width: 670px; color: #485057; }
+
+.portfolio-v2.home-page .hero-stage {
+  min-height: 480px;
+  border: 1px solid rgba(17, 20, 24, .1);
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(rgba(49, 92, 255, .08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(49, 92, 255, .08) 1px, transparent 1px),
+    #e9ebe7;
+  background-size: 38px 38px;
+  box-shadow: 0 22px 54px rgba(17, 20, 24, .08);
+}
+
+.portfolio-v2.home-page .hero-stage > img {
+  right: 4%;
+  width: 92%;
+  height: 94%;
+}
+
+.portfolio-v2 .hero-profile-links a,
+.portfolio-v2 .hero-profile-links button,
+.portfolio-v2 .header-contact {
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, .7);
+}
+
+.portfolio-v2.home-page .section { padding-block: 100px; }
+
+.portfolio-v2.home-page .section-heading-simple {
+  grid-template-columns: 64px minmax(0, 1fr);
+  margin-bottom: 50px;
+  padding-bottom: 22px;
+}
+
+.portfolio-v2.home-page .section-heading-simple h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -.05em;
+}
+
+.portfolio-v2.home-page .pipeline {
+  margin: 0 0 74px;
+  padding: 15px 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.portfolio-v2.home-page .case-list { gap: 90px; }
+
+.portfolio-v2.home-page .case {
+  gap: clamp(40px, 6vw, 76px);
+}
+
+.portfolio-v2.home-page .case-image {
+  min-height: 340px;
+  border-radius: var(--radius-lg);
+  background: #e8eae6;
+  box-shadow: 0 18px 48px rgba(17, 20, 24, .07);
+}
+
+.portfolio-v2.home-page .case-image::before {
+  border-color: rgba(17, 20, 24, .09);
+  border-radius: inherit;
+}
+
+.portfolio-v2.home-page .case-copy h3 {
+  font-weight: 590;
+  letter-spacing: -.04em;
+}
+
+.portfolio-v2.home-page .case-facts {
+  border-top-color: var(--line);
+}
+
+.portfolio-v2.home-page .detail-link {
+  gap: 18px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .72);
+  font-size: 12px;
+  font-weight: 560;
+  transition: border-color .2s ease, color .2s ease, transform .2s ease;
+}
+
+.portfolio-v2.home-page .detail-link:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+  transform: translateY(-2px);
+}
+
+.portfolio-v2.home-page .undergrad-card,
+.portfolio-v2.home-page .expertise-grid article {
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.portfolio-v2.home-page .contact {
+  border: 0;
+  background:
+    radial-gradient(700px 300px at 16% 0%, rgba(49, 92, 255, .24), transparent 70%),
+    #111418;
+  color: #fff;
+}
+
+.portfolio-v2.home-page .contact p { color: rgba(255, 255, 255, .66); }
+.portfolio-v2.home-page .contact .eyebrow { color: #9eb0ff; }
+.portfolio-v2.home-page .contact-email-button {
+  border-color: rgba(255, 255, 255, .28);
+  background: var(--blue);
+  color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   Shared project frame
+   -------------------------------------------------------------------------- */
+
+.portfolio-v2.project-v2 .project-page,
+.portfolio-v2.project-v2 .undergrad-portfolio-page {
+  width: min(1280px, calc(100% - 72px));
+  margin-inline: auto;
+}
+
+.portfolio-v2.project-v2 .sensor-hero,
+.portfolio-v2.project-v2 .project-hero,
+.portfolio-v2.project-v2 .ug-hero {
+  display: grid;
+  min-height: 0;
+  grid-template-columns: minmax(0, 1.12fr) minmax(300px, .88fr);
+  gap: clamp(50px, 7vw, 94px);
+  align-items: end;
+  padding-block: 78px 68px;
+  border-bottom: 1px solid var(--line);
+}
+
+.portfolio-v2.project-v2 .back-link {
+  display: inline-flex;
+  width: fit-content;
+  margin-bottom: 42px;
+  padding: 8px 13px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .68);
+  color: var(--muted);
+  font-family: var(--font-display);
+  font-size: 11px;
+  transition: border-color .2s ease, color .2s ease, transform .2s ease;
+}
+
+.portfolio-v2.project-v2 .back-link:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+  text-decoration: none;
+  transform: translateX(-2px);
+}
+
+.portfolio-v2.project-v2 .eyebrow {
+  margin-bottom: 21px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .13em;
+}
+
+.portfolio-v2.project-v2 .sensor-hero h1,
+.portfolio-v2.project-v2 .project-hero h1,
+.portfolio-v2.project-v2 .ug-hero h1 {
+  max-width: 860px;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(50px, 6.4vw, 86px);
+  font-weight: 590;
+  letter-spacing: -.055em;
+  line-height: .98;
+}
+
+.portfolio-v2.project-v2 .sensor-hero-tagline {
+  margin-top: 25px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .06em;
+}
+
+.portfolio-v2.project-v2 .project-lead,
+.portfolio-v2.project-v2 .ug-hero > p {
+  max-width: 700px;
+  color: #424a51;
+  font-size: 16px;
+  line-height: 1.82;
+}
+
+.portfolio-v2.project-v2 .sensor-hero-overview,
+.portfolio-v2.project-v2 .project-overview {
+  align-self: end;
+  padding: 22px 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.portfolio-v2.project-v2 .sensor-hero-overview .project-overview {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.portfolio-v2.project-v2 .sensor-hero .project-overview div,
+.portfolio-v2.project-v2 .project-hero .project-overview div {
+  padding: 13px 0;
+}
+
+.portfolio-v2.project-v2 .project-overview dt,
+.portfolio-v2.project-v2 .overview-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: .1em;
+}
+
+.portfolio-v2.project-v2 .project-overview dd { font-size: 12px; }
+
+.portfolio-v2.project-v2 .project-repo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--blue);
+  font-family: var(--font-display);
+  font-weight: 620;
+}
+
+.portfolio-v2.project-v2 .project-repo-link:hover { text-decoration: underline; }
+
+.portfolio-v2.project-v2 .sensor-hero-visual,
+.portfolio-v2.project-v2 .project-cover,
+.portfolio-v2.project-v2 .self-demo-grid {
+  margin-top: 30px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface-solid);
+  box-shadow: 0 22px 54px rgba(17, 20, 24, .07);
+  overflow: hidden;
+}
+
+.portfolio-v2.project-v2 .project-cover { min-height: 0; }
+.portfolio-v2.project-v2 .project-cover video { min-height: 0; }
+
+.portfolio-v2.project-v2 .sensor-section,
+.portfolio-v2.project-v2 .idp-section {
+  padding-block: 92px;
+  border-top: 1px solid var(--line);
+}
+
+.portfolio-v2.project-v2 .sensor-section-head,
+.portfolio-v2.project-v2 .idp-section-heading {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 28px;
+  margin-bottom: 48px;
+}
+
+.portfolio-v2.project-v2 .sensor-section-head h2,
+.portfolio-v2.project-v2 .idp-section-heading h2 {
+  max-width: 880px;
+  font-family: var(--font-display);
+  font-size: clamp(38px, 4.6vw, 58px);
+  font-weight: 580;
+  letter-spacing: -.05em;
+  line-height: 1.08;
+}
+
+.portfolio-v2.project-v2 .section-index,
+.portfolio-v2.project-v2 .idp-section-heading > p {
+  color: var(--blue);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .1em;
+}
+
+.portfolio-v2.project-v2 .section-intro,
+.portfolio-v2.project-v2 .idp-body {
+  color: #4b545b;
+  font-size: 15px;
+  line-height: 1.82;
+}
+
+/* 공통 도판과 카드 표면 */
+.portfolio-v2.project-v2 .figure-panel,
+.portfolio-v2.project-v2 .rmp-realtime-panel,
+.portfolio-v2.project-v2 .rmp-outcome,
+.portfolio-v2.project-v2 .idp-architecture,
+.portfolio-v2.project-v2 .idp-summary,
+.portfolio-v2.project-v2 .idp-qualitative-card,
+.portfolio-v2.project-v2 .idp-validation-status article,
+.portfolio-v2.project-v2 .ug-panel,
+.portfolio-v2.project-v2 .pcb-document-gallery,
+.portfolio-v2.project-v2 .ema-comparison-card,
+.portfolio-v2.project-v2 .fusion-results-panel,
+.portfolio-v2.project-v2 .self-control-objective {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-solid);
+  overflow: hidden;
+}
+
+.portfolio-v2.project-v2 figure,
+.portfolio-v2.project-v2 video,
+.portfolio-v2.project-v2 img { border-radius: 12px; }
+
+.portfolio-v2.project-v2 figcaption { font-family: var(--font-display); }
+
+/* Undergraduate pages use the same section rhythm as research pages. */
+.portfolio-v2.project-v2 .ug-project {
+  margin: 30px 0;
+  padding: clamp(30px, 4vw, 50px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, .82);
+  box-shadow: 0 18px 48px rgba(17, 20, 24, .055);
+}
+
+.portfolio-v2.project-v2 .ug-project-head {
+  grid-template-columns: 54px minmax(0, 1fr) minmax(280px, .72fr);
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+}
+
+.portfolio-v2.project-v2 .ug-project-head > span {
+  border-radius: 10px;
+  background: var(--blue);
+}
+
+.portfolio-v2.project-v2 .ug-project-head h2 {
+  font-family: var(--font-display);
+  font-weight: 580;
+  letter-spacing: -.045em;
+}
+
+.portfolio-v2.project-v2 .ug-intro,
+.portfolio-v2.project-v2 .ug-result-grid { border-radius: var(--radius); overflow: hidden; }
+
+/* Unified next-project and footer */
+.portfolio-v2.project-v2 .next-project,
+.portfolio-v2.project-v2 .ug-back-home {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 28px;
+  align-items: center;
+  margin-top: 42px;
+  padding: 34px 38px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-solid);
+  transition: border-color .2s ease, color .2s ease, transform .2s ease;
+}
+
+.portfolio-v2.project-v2 .next-project:hover,
+.portfolio-v2.project-v2 .ug-back-home:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+.portfolio-v2.project-v2 .next-project span,
+.portfolio-v2.project-v2 .ug-back-home span {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.portfolio-v2.project-v2 .next-project strong,
+.portfolio-v2.project-v2 .ug-back-home strong {
+  margin: 0;
+  font-size: clamp(24px, 3vw, 40px);
+  font-weight: 560;
+  letter-spacing: -.035em;
+  text-align: right;
+}
+
+.portfolio-v2.project-v2 .project-footer,
+.portfolio-v2.project-v2 main > footer {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 28px 42px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .08em;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .portfolio-v2.project-v2 .sensor-hero,
+  .portfolio-v2.project-v2 .project-hero,
+  .portfolio-v2.project-v2 .ug-hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 34px;
+    padding-block: 56px;
+  }
+
+  .portfolio-v2.project-v2 .sensor-hero-overview,
+  .portfolio-v2.project-v2 .project-overview { width: 100%; }
+
+  .portfolio-v2.project-v2 .ug-project-head {
+    grid-template-columns: 48px minmax(0, 1fr);
+  }
+
+  .portfolio-v2.project-v2 .ug-project-head dl { grid-column: 2; }
+}
+
+@media (max-width: 760px) {
+  html { scroll-padding-top: 76px; }
+
+  .portfolio-v2 .shell,
+  .portfolio-v2.project-v2 .project-page,
+  .portfolio-v2.project-v2 .undergrad-portfolio-page {
+    width: min(100% - 32px, 680px);
+  }
+
+  .portfolio-v2 .site-header { height: 68px; }
+
+  .portfolio-v2.home-page .wordmark strong { display: none; }
+  .portfolio-v2.home-page .header-contact { display: none; }
+  .portfolio-v2.home-page .site-header nav {
+    position: static;
+    max-width: calc(100% - 52px);
+    gap: 14px;
+    margin-left: auto;
+    transform: none;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .portfolio-v2.home-page .site-header nav::-webkit-scrollbar { display: none; }
+  .portfolio-v2.home-page .site-header nav a { flex: none; }
+
+  .portfolio-v2.project-v2 .wordmark {
+    width: 34px;
+    overflow: hidden;
+    font-size: 0;
+    white-space: nowrap;
+  }
+
+  .portfolio-v2.project-v2 .project-quick-nav {
+    max-width: calc(100% - 56px);
+    gap: 18px;
+    margin-left: auto;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .portfolio-v2.home-page .hero {
+    min-height: 0;
+    padding-block: 48px 60px;
+  }
+
+  .portfolio-v2.home-page .hero-stage { min-height: 390px; }
+  .portfolio-v2.home-page .section { padding-block: 72px; }
+  .portfolio-v2.home-page .pipeline { display: none; }
+  .portfolio-v2.home-page .case-list { gap: 70px; }
+
+  .portfolio-v2.project-v2 .sensor-hero h1,
+  .portfolio-v2.project-v2 .project-hero h1,
+  .portfolio-v2.project-v2 .ug-hero h1 { font-size: clamp(44px, 13vw, 64px); }
+
+  .portfolio-v2.project-v2 .sensor-section,
+  .portfolio-v2.project-v2 .idp-section { padding-block: 70px; }
+
+  .portfolio-v2.project-v2 .sensor-section-head,
+  .portfolio-v2.project-v2 .idp-section-heading {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    margin-bottom: 36px;
+  }
+
+  .portfolio-v2.project-v2 .ug-project {
+    margin-block: 20px;
+    padding: 26px 18px;
+  }
+
+  .portfolio-v2.project-v2 .ug-project-head,
+  .portfolio-v2.project-v2 .ug-project-head dl {
+    grid-template-columns: minmax(0, 1fr);
+    grid-column: 1;
+  }
+
+  .portfolio-v2.project-v2 .ug-project-head > span { width: 42px; height: 42px; }
+
+  .portfolio-v2.project-v2 .next-project,
+  .portfolio-v2.project-v2 .ug-back-home {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+    padding: 26px 22px;
+  }
+
+  .portfolio-v2.project-v2 .next-project strong,
+  .portfolio-v2.project-v2 .ug-back-home strong { text-align: left; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-v2 *,
+  .portfolio-v2 *::before,
+  .portfolio-v2 *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .001ms !important;
+    animation-duration: .001ms !important;
+  }
+}

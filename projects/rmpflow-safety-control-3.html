@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#08090b">
+    <title>Proximity-Based Reactive Motion Control — Song Youngbin</title>
+    <meta
+      name="description"
+      content="근접센서 거리값을 RMPflow 제어기에 연결해 RB10이 사람과 장애물에 실시간으로 반응하도록 구현하고, TG-RMP 접선 정책으로 local minimum을 완화한 연구."
+    >
+    <link rel="icon" href="../favicon.svg">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+    <link rel="stylesheet" href="../assets/style3.css">
+    <link rel="stylesheet" href="../assets/style3-project.css">
+    <script src="../assets/site3.js" defer></script>
+    <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
+  </head>
+
+  <body class="p3 p3-project">
+    <a class="skip" href="#main">본문으로 건너뛰기</a>
+    <div class="progress" aria-hidden="true"><i></i></div>
+
+    <header class="topbar" id="topbar">
+      <div class="shell topbar-in">
+        <a class="back" href="../index.html#work"><span aria-hidden="true">←</span> Portfolio</a>
+        <div class="topbar-title">
+          <strong>Proximity-Based Reactive Motion Control</strong>
+          <em>Research 03 · Reactive Control</em>
+        </div>
+        <nav class="topnav" aria-label="섹션 메뉴">
+          <a href="#controller">01 Controller</a>
+          <a href="#validation">02 Validation</a>
+          <a href="#limit">03 Limit</a>
+          <a href="#tgrmp">04 TG-RMP</a>
+        </nav>
+        <a class="btn btn-solid" href="../index.html#contact">Contact</a>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ============ HERO ============ -->
+      <section class="proj-hero shell" id="top">
+        <div class="reveal">
+          <p class="proj-eyebrow">
+            <span class="dot" aria-hidden="true"></span>
+            Research 03 · Reactive Motion Control · RMPflow
+          </p>
+          <h1>Proximity-Based Reactive Motion Control</h1>
+          <p class="proj-sub">Proximity Sensing · RMPflow · Tangential Guidance</p>
+          <p class="proj-lede">
+            근접센서의 거리값을 기반으로 RB10이 주변 장애물에 <b>연속적으로 반응</b>하도록
+            RMPflow 제어기를 구성했습니다. 기본 제어기에서 나타난 local minimum을 완화하기 위해
+            장애물의 접선 방향으로 우회 동작을 생성하는 <b>TG-RMP</b>를 추가했습니다.
+          </p>
+
+          <dl class="proj-meta">
+            <div>
+              <dt>Role</dt>
+              <dd>근접센서 기반 Reactive Motion Controller 구현 · local minimum 완화를 위한 TG-RMP 개발</dd>
+            </div>
+            <div>
+              <dt>System</dt>
+              <dd>20채널 근접센서 · RB10</dd>
+            </div>
+            <div>
+              <dt>Result</dt>
+              <dd>RB10에서 연속적인 근접 장애물 회피 및 local minimum 완화</dd>
+            </div>
+            <div>
+              <dt>Stack</dt>
+              <dd>C++ · ROS 2 · PREEMPT_RT · RViz</dd>
+            </div>
+          </dl>
+        </div>
+
+        <figure class="proj-hero-media reveal" data-delay="1">
+          <video autoplay muted loop playsinline preload="metadata" poster="../media/rmpflow-avoidance-poster.jpg">
+            <source src="rmpflow-assets/total-avoidance-real.mp4" type="video/mp4">
+          </video>
+          <figcaption>
+            <span>실제 RB10에서의 근접 반응형 회피</span>
+            <span>Sensor → Controller → Joint command</span>
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- ============ 01 CONTROLLER ============ -->
+      <section class="proj-section shell" id="controller">
+        <div class="proj-sec-head reveal">
+          <span class="proj-sec-index">01<br>Controller</span>
+          <div>
+            <h2>안전한 HRI를 위한<br>근접 반응형 제어</h2>
+            <p>HRI · 근접 장애물 회피 · 목표 진행 유지</p>
+            <p class="proj-sec-body">
+              HRI 환경에서는 작업자나 주변 물체가 로봇의 동작 범위에 가까워지는 상황이 발생합니다.
+              안전성과 작업 연속성을 함께 확보하려면 로봇이 이 상황을 인지하고
+              <b>충돌을 피하는 방향으로 움직임을 조정</b>해야 합니다.
+            </p>
+          </div>
+        </div>
+
+        <div class="steps reveal">
+          <article>
+            <span>01</span>
+            <h4>HRI 근접 상황</h4>
+            <p>작업자나 주변 물체의 접근으로 로봇 주변 환경이 계속 변합니다.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h4>반응형 회피</h4>
+            <p>근접 거리에 따라 충돌을 피하는 방향으로 움직임을 연속적으로 조정합니다.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h4>목표 진행 유지</h4>
+            <p>회피 과정에서도 목표를 향한 진행이 끊기지 않도록 합니다.</p>
+          </article>
+        </div>
+
+        <div class="proj-block reveal">
+          <div class="proj-block-head">
+            <span>01—2</span>
+            <h3>RMPflow 기반 제어기 구성</h3>
+            <i aria-hidden="true"></i>
+          </div>
+          <p>
+            근접센서의 거리값을 로봇 기준좌표계의 장애물 위치로 변환하고,
+            센서가 장착된 각 링크의 충돌 회피 정책에 연결했습니다. RMPflow를 기반으로
+            <b>목표 추종 · 충돌 회피 · 감쇠 · 관절 제한</b> 정책을 결합해 동작 명령을 생성합니다.
+          </p>
+          <figure class="fig is-plate">
+            <img src="rmpflow-assets/rmpflow-framework.jpg" alt="로봇 상태의 task-space 매핑부터 Target, Collision, Joint Limit, Damping, Axis Target, Joint Velocity Limit RMP 결합과 최종 로봇 동작 생성까지의 RMPflow 제어 구조" loading="lazy" data-zoom>
+            <figcaption><b>Control framework</b>Task-space 매핑 → 정책별 RMP → 결합 → 로봇 동작 명령</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ============ 02 VALIDATION ============ -->
+      <section class="proj-section shell" id="validation">
+        <div class="proj-sec-head reveal">
+          <span class="proj-sec-index">02<br>Validation</span>
+          <div>
+            <h2>기본 제어기 검증</h2>
+            <p>RViz · 정적 장애물 · 동적 사람 접근</p>
+            <p class="proj-sec-body">
+              시뮬레이션에서 센서 매핑과 충돌 회피 정책을 먼저 검증한 뒤, 실제 RB10에서
+              중간 링크 주변의 정적 장애물과 <b>움직이는 손의 접근</b>에 대한 회피 동작을 평가했습니다.
+            </p>
+          </div>
+        </div>
+
+        <div class="proj-block reveal">
+          <div class="proj-block-head">
+            <span>02—1</span>
+            <h3>RViz 기반 선행 검증</h3>
+            <i aria-hidden="true"></i>
+          </div>
+          <figure class="fig">
+            <img src="rmp-simulation.png" alt="근접센서 감지 범위와 장애물 회피를 표시한 RViz 화면" loading="lazy" data-zoom>
+            <figcaption><b>Simulation</b>센서 감지 범위 · 로봇 기준 장애물 점 · 링크별 반응</figcaption>
+          </figure>
+        </div>
+
+        <div class="proj-block reveal">
+          <div class="proj-block-head">
+            <span>02—2</span>
+            <h3>정적 장애물 회피</h3>
+            <i aria-hidden="true"></i>
+          </div>
+          <p>중간 링크 주변에 고정된 장애물의 유무에 따라 실로봇의 회피 동작을 비교했습니다.</p>
+          <div class="compare">
+            <div class="compare-item">
+              <video autoplay muted loop playsinline preload="metadata"><source src="rmpflow-assets/link-avoidance-baseline.mp4" type="video/mp4"></video>
+              <p class="compare-tag"><span>장애물 없음</span><span>기본 동작</span></p>
+            </div>
+            <div class="compare-item is-after">
+              <video autoplay muted loop playsinline preload="metadata"><source src="rmpflow-assets/link-avoidance-obstacle.mp4" type="video/mp4"></video>
+              <p class="compare-tag"><span>장애물 있음</span><span>중간 링크 회피</span></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="proj-block reveal">
+          <div class="proj-block-head">
+            <span>02—3</span>
+            <h3>동적 장애물 회피</h3>
+            <i aria-hidden="true"></i>
+          </div>
+          <p>움직이는 손의 접근에 대해 실로봇과 RViz의 회피 동작을 나란히 비교했습니다.</p>
+          <div class="compare">
+            <div class="compare-item">
+              <video autoplay muted loop playsinline preload="metadata" poster="../media/rmpflow-avoidance-poster.jpg"><source src="rmpflow-assets/total-avoidance-real.mp4" type="video/mp4"></video>
+              <p class="compare-tag"><span>Real robot</span><span>RB10 동적 손 회피</span></p>
+            </div>
+            <div class="compare-item">
+              <video autoplay muted loop playsinline preload="metadata"><source src="rmpflow-assets/total-avoidance-rviz.mp4" type="video/mp4"></video>
+              <p class="compare-tag"><span>RViz</span><span>대응하는 시뮬레이션 반응</span></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 03 LIMIT ============ -->
+      <section class="proj-section shell" id="limit">
+        <div class="proj-sec-head reveal">
+          <span class="proj-sec-index">03<br>Limit</span>
+          <div>
+            <h2>충돌은 피했지만,<br>진행하지 못했다</h2>
+            <p>목표–충돌 정책 대립 · 제어 명령 상쇄</p>
+            <p class="proj-sec-body">
+              기본 제어기는 충돌을 피했지만, 장애물이 목표 진행 방향을 가로막는 조건에서는
+              목표 추종과 충돌 회피 정책이 <b>서로 반대 방향의 명령</b>을 만들었습니다.
+              그 결과 합성된 동작 명령이 작아지면서 로봇이 장애물 앞에 정체되는 local minimum이 나타났습니다.
+            </p>
+          </div>
+        </div>
+
+        <div class="fig-grid cols-2 reveal">
+          <figure class="fig">
+            <video autoplay muted loop playsinline preload="metadata"><source src="rmpflow-assets/escape-body-before.mp4" type="video/mp4"></video>
+            <figcaption><b>Failure case</b>충돌은 없지만 장애물 근처에서 정체되는 대표적인 국소 최소점</figcaption>
+          </figure>
+          <div class="flow" style="align-content:center">
+            <div><b>Target RMP</b><span>목표를 향해 밀어냄</span></div>
+            <i aria-hidden="true">+</i>
+            <div><b>Collision RMP</b><span>장애물에서 밀어냄</span></div>
+            <i aria-hidden="true">=</i>
+            <div><b>Resultant</b><span>합성 명령이 상쇄되어 정체</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 04 TG-RMP ============ -->
+      <section class="proj-section shell" id="tgrmp">
+        <div class="proj-sec-head reveal">
+          <span class="proj-sec-index">04<br>TG-RMP</span>
+          <div>
+            <h2>접선 방향으로<br>빠져나가게 만들기</h2>
+            <p>TG (Tangential Guidance)-RMP · 방향 선택 · Metric 설정</p>
+            <p class="proj-sec-body">
+              기존 RMPflow 트리에 <b>TG-RMP leaf를 추가</b>했습니다. TG-RMP는 장애물 주변의 접선 방향을 선택하고,
+              그 방향으로 움직이기 위한 가속도와 정책의 영향도를 정하는 Metric을 생성해 기존 정책과 함께 결합됩니다.
+            </p>
+          </div>
+        </div>
+
+        <figure class="fig is-plate reveal">
+          <img src="rmpflow-assets/tg-rmp-framework.jpg" alt="RMPflow의 기본 정책에 TG-RMP를 추가하고 접선 방향, 목표 가속도, Metric, 방향 갱신을 통해 local minimum을 완화하는 확장 제어 구조" loading="lazy" data-zoom>
+          <figcaption><b>Extended framework</b>기본 RMP 말단 정책 + 추가된 TG-RMP 접선 정책 · 클릭하면 크게 볼 수 있습니다</figcaption>
+        </figure>
+
+        <div class="proj-block reveal">
+          <div class="proj-block-head">
+            <span>Result</span>
+            <h3>local minimum 완화 — 동일 배치 전후 비교</h3>
+            <i aria-hidden="true"></i>
+          </div>
+          <p>
+            동일한 장애물 배치에서 TG-RMP 적용 전후를 비교했습니다. 적용 시 접선 방향의 우회 동작이 더해져
+            <b>정체가 완화되고 목표를 향한 진행이 이어졌습니다.</b>
+          </p>
+
+          <div class="compare-set">
+            <h4>장애물 배치 01</h4>
+            <div class="compare">
+              <div class="compare-item">
+                <video autoplay muted loop playsinline preload="metadata"><source src="rmpflow-assets/escape-body-before.mp4" type="video/mp4"></video>
+                <p class="compare-tag"><span>W/O TG-RMP</span><span>정체</span></p>
+              </div>
+              <div class="compare-item is-after">
+                <video autoplay muted loop playsinline preload="metadata"><source src="rmpflow-assets/escape-body-after.mp4" type="video/mp4"></video>
+                <p class="compare-tag"><span>W TG-RMP</span><span>접선 우회 후 진행</span></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="compare-set">
+            <h4>장애물 배치 02</h4>
+            <div class="compare">
+              <div class="compare-item">
+                <video autoplay muted loop playsinline preload="metadata"><source src="rmpflow-assets/local-s2-without-tg-rmp.mp4" type="video/mp4"></video>
+                <p class="compare-tag"><span>W/O TG-RMP</span><span>정체</span></p>
+              </div>
+              <div class="compare-item is-after">
+                <video autoplay muted loop playsinline preload="metadata"><source src="rmpflow-assets/local-s2-with-tg-rmp.mp4" type="video/mp4"></video>
+                <p class="compare-tag"><span>W TG-RMP</span><span>접선 우회 후 진행</span></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="compare-set">
+            <h4>장애물 배치 03</h4>
+            <div class="compare">
+              <div class="compare-item">
+                <video autoplay muted loop playsinline preload="metadata"><source src="rmpflow-assets/local-s1-without-tg-rmp.mp4" type="video/mp4"></video>
+                <p class="compare-tag"><span>W/O TG-RMP</span><span>정체</span></p>
+              </div>
+              <div class="compare-item is-after">
+                <video autoplay muted loop playsinline preload="metadata"><source src="rmpflow-assets/local-s1-with-tg-rmp.mp4" type="video/mp4"></video>
+                <p class="compare-tag"><span>W TG-RMP</span><span>접선 우회 후 진행</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ OUTRO ============ -->
+      <section class="proj-outro">
+        <div class="shell">
+          <div class="reveal">
+            <span class="mono">Summary</span>
+            <h2>근접센서 기반 제어기를 RB10에 올리고, <b>피하기만 하던 문제</b>를 진행까지 이어지게 만들었습니다.</h2>
+            <div class="outro-tags">
+              <span>Proximity-driven RMPflow</span>
+              <span>Per-link collision policy</span>
+              <span>TG-RMP tangential policy</span>
+              <span>RViz + RB10 validation</span>
+            </div>
+          </div>
+
+          <a class="next-project reveal" href="interactive-diffusion-policy-3.html">
+            <div>
+              <b>Next project · Research 04</b>
+              <strong>Interactive Diffusion Policy</strong>
+            </div>
+            <i aria-hidden="true">→</i>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-foot">
+      <div class="shell site-foot-in">
+        <span>© 2026 Song Youngbin</span>
+        <span>Proximity-Based Reactive Motion Control</span>
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </footer>
+  </body>
+</html>

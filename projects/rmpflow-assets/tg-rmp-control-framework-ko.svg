@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1672 941" role="img" aria-labelledby="title desc">
+  <title id="title">TG-RMP를 포함한 RMPflow 기반 반응형 동작 제어 구조</title>
+  <desc id="desc">기본 RMP leaf와 조건부 TG-RMP를 RMPflow로 합성하는 전체 구조와 TG-RMP의 정체 감지, 접선 방향 선택, 가속도 생성, metric 설계를 나타낸 도식</desc>
+  <defs>
+    <linearGradient id="bluePanel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#edf5ff"/>
+    </linearGradient>
+    <linearGradient id="orangePanel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#fff6ef"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#2c333a"/>
+    </marker>
+    <style>
+      .title{font:700 43px Pretendard,'Noto Sans KR',sans-serif;fill:#101a31;letter-spacing:-1.3px}
+      .tab{font:700 21px Pretendard,'Noto Sans KR',sans-serif;fill:#fff}
+      .head{font:700 25px Pretendard,'Noto Sans KR',sans-serif;fill:#17223a;letter-spacing:-.5px}
+      .body{font:500 18px Pretendard,'Noto Sans KR',sans-serif;fill:#3d4854}
+      .small{font:500 15px Pretendard,'Noto Sans KR',sans-serif;fill:#56616d}
+      .math{font:italic 20px Georgia,serif;fill:#26313b}
+      .line{fill:none;stroke:#2c333a;stroke-width:3;marker-end:url(#arrow)}
+      .feedback{fill:none;stroke:#34485a;stroke-width:2.5;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1672" height="941" fill="#fbfcfe"/>
+  <text x="836" y="56" text-anchor="middle" class="title">TG-RMP를 포함한 RMPflow 기반 반응형 동작 제어 구조</text>
+
+  <rect x="20" y="83" width="360" height="47" rx="8" fill="#123d7d"/>
+  <text x="42" y="115" class="tab">1부. 전체 제어 구조</text>
+  <rect x="20" y="86" width="1632" height="535" rx="24" fill="none" stroke="#2b63ae" stroke-width="2"/>
+
+  <rect x="42" y="177" width="285" height="95" rx="14" fill="url(#bluePanel)" stroke="#1e5bab" stroke-width="2.2"/>
+  <text x="66" y="218" class="head">목표 자세</text>
+  <text x="66" y="249" class="body">위치 · 방향 명령</text>
+  <rect x="42" y="313" width="285" height="95" rx="14" fill="url(#bluePanel)" stroke="#1e5bab" stroke-width="2.2"/>
+  <text x="66" y="354" class="head">로봇 상태</text>
+  <text x="66" y="385" class="math">q, q̇</text>
+  <rect x="42" y="449" width="285" height="105" rx="14" fill="url(#bluePanel)" stroke="#1e5bab" stroke-width="2.2"/>
+  <text x="66" y="490" class="head">근접센서</text>
+  <text x="66" y="522" class="body">정전용량 + ToF</text>
+
+  <rect x="420" y="112" width="390" height="472" rx="22" fill="#fff" stroke="#7594bd" stroke-width="2"/>
+  <text x="615" y="151" text-anchor="middle" class="head">RMP 말단 정책</text>
+  <rect x="440" y="171" width="350" height="72" rx="14" fill="#eaf3ff" stroke="#3972be" stroke-width="2"/>
+  <text x="465" y="202" class="head">목표 RMP</text><text x="465" y="228" class="small">카테시안 목표 추종</text>
+  <rect x="440" y="253" width="350" height="72" rx="14" fill="#eafaf8" stroke="#168b82" stroke-width="2"/>
+  <text x="465" y="284" class="head">충돌 RMP</text><text x="465" y="310" class="small">링크별 장애물 회피</text>
+  <rect x="440" y="335" width="350" height="72" rx="14" fill="#f5f0ff" stroke="#8162bf" stroke-width="2"/>
+  <text x="465" y="366" class="head">관절 제한 RMP</text><text x="465" y="392" class="small">관절 범위 제약</text>
+  <rect x="440" y="417" width="350" height="72" rx="14" fill="#fff7e8" stroke="#cf8a18" stroke-width="2"/>
+  <text x="465" y="448" class="head">감쇠 RMP</text><text x="465" y="474" class="small">동작 안정화</text>
+  <rect x="432" y="499" width="366" height="74" rx="14" fill="#fff0ec" stroke="#e0522f" stroke-width="3"/>
+  <text x="462" y="531" class="head" style="fill:#a52519">TG-RMP</text><text x="462" y="558" class="small">접선 방향 우회 정책</text>
+
+  <path d="M327 224 H405 V207 H425" class="line"/>
+  <path d="M327 360 H405 V370 H425" class="line"/>
+  <path d="M327 501 H397 V289 H425" class="line"/>
+
+  <rect x="855" y="170" width="280" height="345" rx="22" fill="url(#bluePanel)" stroke="#1d58a4" stroke-width="2.3"/>
+  <text x="995" y="254" text-anchor="middle" class="head" style="font-size:38px">RMPflow</text>
+  <text x="995" y="303" text-anchor="middle" class="body">다중 목적 동작 정책 합성</text>
+  <line x1="895" y1="338" x2="1095" y2="338" stroke="#93a6ba" stroke-width="2"/>
+  <text x="995" y="381" text-anchor="middle" class="small">(aᵢ, Mᵢ) → 역전파 → 명령 계산</text>
+  <path d="M790 207 H840" class="line"/><path d="M790 289 H840" class="line"/><path d="M790 371 H840" class="line"/><path d="M790 453 H840" class="line"/><path d="M798 536 H840" class="line"/>
+
+  <rect x="1195" y="270" width="190" height="118" rx="18" fill="#eff8ef" stroke="#4c8b57" stroke-width="2.2"/>
+  <text x="1290" y="313" text-anchor="middle" class="head">관절 동작 명령</text>
+  <text x="1290" y="352" text-anchor="middle" class="math">q̇* / q̇_cmd</text>
+  <path d="M1135 329 H1180" class="line"/>
+
+  <rect x="1440" y="220" width="175" height="210" rx="22" fill="#f5f8fb" stroke="#2b4e74" stroke-width="2.2"/>
+  <text x="1528" y="266" text-anchor="middle" class="head">6축 로봇 팔</text>
+  <g stroke="#335a80" stroke-width="12" stroke-linecap="round" fill="#dbe8f4">
+    <line x1="1480" y1="374" x2="1498" y2="336"/><line x1="1498" y1="336" x2="1536" y2="315"/><line x1="1536" y1="315" x2="1570" y2="340"/><line x1="1570" y1="340" x2="1586" y2="311"/>
+  </g>
+  <g fill="#dbe8f4" stroke="#274c70" stroke-width="4"><circle cx="1498" cy="336" r="11"/><circle cx="1536" cy="315" r="11"/><circle cx="1570" cy="340" r="10"/></g>
+  <rect x="1468" y="374" width="44" height="14" rx="4" fill="#274c70"/>
+  <path d="M1385 329 H1425" class="line"/>
+  <path d="M1528 430 V592 H360 V408" class="feedback"/>
+
+  <rect x="354" y="670" width="330" height="128" rx="18" fill="#fff" stroke="#eb5a35" stroke-width="2" stroke-dasharray="9 7"/>
+  <text x="519" y="711" text-anchor="middle" class="head" style="fill:#b63821">TG-RMP의 역할</text>
+  <text x="519" y="747" text-anchor="middle" class="body">목표–충돌 정책 대립으로 발생한</text>
+  <text x="519" y="777" text-anchor="middle" class="body">동작 정체 상태를 회복</text>
+
+  <rect x="760" y="606" width="890" height="315" rx="22" fill="url(#orangePanel)" stroke="#ed7b35" stroke-width="2"/>
+  <rect x="790" y="587" width="360" height="46" rx="8" fill="#df5832"/>
+  <text x="812" y="618" class="tab">2부. TG-RMP 내부 설계</text>
+  <path d="M650 573 L770 688" fill="none" stroke="#e75431" stroke-width="2.5" stroke-dasharray="8 7"/>
+
+  <rect x="792" y="660" width="180" height="115" rx="16" fill="#fff8f3" stroke="#ed7b4a" stroke-width="2"/>
+  <text x="882" y="701" text-anchor="middle" class="head">정체 감지</text><text x="882" y="735" text-anchor="middle" class="small">근접 · 저속 · 진행 부족</text>
+  <rect x="1002" y="660" width="180" height="115" rx="16" fill="#fff9eb" stroke="#d6a12b" stroke-width="2"/>
+  <text x="1092" y="701" text-anchor="middle" class="head">방향 선택</text><text x="1092" y="735" text-anchor="middle" class="small">접선 방향 t* 평가</text>
+  <rect x="1212" y="660" width="180" height="115" rx="16" fill="#f1f6ff" stroke="#5682bd" stroke-width="2"/>
+  <text x="1302" y="701" text-anchor="middle" class="head">가속도 생성</text><text x="1302" y="735" text-anchor="middle" class="small">접선 회피 동작</text>
+  <rect x="1422" y="660" width="180" height="115" rx="16" fill="#f7f2ff" stroke="#8060bc" stroke-width="2"/>
+  <text x="1512" y="701" text-anchor="middle" class="head">메트릭 설정</text><text x="1512" y="735" text-anchor="middle" class="small">TG-RMP 정책 중요도</text>
+  <path d="M972 718 H987" class="line"/><path d="M1182 718 H1197" class="line"/><path d="M1392 718 H1407" class="line"/>
+  <rect x="1090" y="835" width="285" height="60" rx="14" fill="#fff0ec" stroke="#e75431" stroke-width="2"/>
+  <text x="1232" y="873" text-anchor="middle" class="head">출력: (a_TG, M_TG)</text>
+  <path d="M882 775 V812 H1232 V820" class="feedback"/><path d="M1092 775 V812" class="feedback"/><path d="M1302 775 V812" class="feedback"/><path d="M1512 775 V812 H1232" class="feedback"/>
+</svg>

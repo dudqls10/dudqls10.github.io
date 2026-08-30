@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#08090b">
+    <title>Song Youngbin — Robot Sensing &amp; Safe Control</title>
+    <meta
+      name="description"
+      content="송영빈 포트폴리오. 근접센서 하드웨어 설계부터 신호 융합, RMPflow 기반 반응형 모션 제어, Diffusion Policy 통합까지 실제 로봇 위에서 검증한 연구를 정리했습니다."
+    >
+    <meta property="og:title" content="Song Youngbin — Robot Sensing &amp; Safe Control">
+    <meta property="og:description" content="센서 PCB에서 조작 정책까지, 하나의 스택으로 이어지는 로봇 안전 연구.">
+    <meta property="og:image" content="media/interactive-safety-poster.jpg">
+    <meta property="og:type" content="website">
+
+    <link rel="icon" href="favicon.svg">
+    <link rel="preload" href="youngbin-profile.png" as="image">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+    >
+    <link rel="stylesheet" href="assets/style3.css">
+    <script src="assets/site3.js" defer></script>
+    <noscript>
+      <style>.reveal { opacity: 1 !important; transform: none !important; }</style>
+    </noscript>
+  </head>
+
+  <body class="p3">
+    <a class="skip" href="#main">본문으로 건너뛰기</a>
+    <div class="progress" aria-hidden="true"><i></i></div>
+
+    <!-- ===================== HEADER ===================== -->
+    <header class="topbar" id="topbar">
+      <div class="shell topbar-in">
+        <a class="mark" href="#top" aria-label="맨 위로">
+          <span class="mark-badge" aria-hidden="true">SYB</span>
+          <span class="mark-text">
+            <strong>Song Youngbin</strong>
+            <em>Robot Sensing &amp; Safe Control</em>
+          </span>
+        </a>
+
+        <nav class="topnav" aria-label="주요 메뉴">
+          <a href="#approach">Approach</a>
+          <a href="#work">Research</a>
+          <a href="#undergraduate">Undergraduate</a>
+          <a href="#experience">Experience</a>
+          <a href="#toolbox">Toolbox</a>
+        </nav>
+
+        <div class="topbar-actions">
+          <a class="btn btn-ghost" href="https://github.com/dudqls10" target="_blank" rel="noopener">
+            GitHub <span aria-hidden="true">↗</span>
+          </a>
+          <a class="btn btn-ghost" href="Young_Bin_Song_CV.pdf" target="_blank" rel="noopener">
+            CV <span aria-hidden="true">↗</span>
+          </a>
+          <a class="btn btn-solid" href="#contact">Contact</a>
+          <button class="menu-toggle" type="button" aria-expanded="false" aria-label="메뉴 열기">
+            <i aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <nav class="mobile-menu shell" aria-label="모바일 메뉴">
+      <a href="#approach">Approach <span>01</span></a>
+      <a href="#work">Research Projects <span>02</span></a>
+      <a href="#undergraduate">Undergraduate <span>03</span></a>
+      <a href="#experience">Experience <span>04</span></a>
+      <a href="#toolbox">Toolbox <span>05</span></a>
+      <a href="https://github.com/dudqls10" target="_blank" rel="noopener">GitHub <span>↗</span></a>
+      <a href="Young_Bin_Song_CV.pdf" target="_blank" rel="noopener">Curriculum Vitae <span>PDF</span></a>
+    </nav>
+
+    <main id="main">
+      <!-- ===================== HERO ===================== -->
+      <section class="hero" id="top">
+        <div class="shell hero-grid">
+          <div class="hero-copy reveal">
+            <p class="hero-kicker">
+              <span class="dot is-live" aria-hidden="true"></span>
+              Robotory Lab · Sungkyunkwan University
+            </p>
+
+            <h1 class="hero-name">
+              <span>Young Bin</span>
+              <span>Song <em class="kr">송영빈</em></span>
+            </h1>
+
+            <p class="hero-role">
+              M.S. Candidate, Mechanical Engineering — <b>Proximity Sensing · Reactive Control · Learning-Based Manipulation</b>
+            </p>
+
+            <p class="hero-lede">
+              사람 곁에서 일하는 로봇이 <b>스스로 거리를 느끼고, 스스로 물러서게</b> 만듭니다.
+              센서 PCB와 기구 설계에서 시작해 신호 처리·거리 융합, 반응형 모션 제어,
+              그리고 학습 기반 조작 정책까지 <b>하나의 스택으로 직접 구현하고 실제 로봇에서 검증</b>합니다.
+            </p>
+
+            <div class="hero-cta">
+              <a class="btn btn-solid btn-lg" href="#work">연구 프로젝트 보기 <span aria-hidden="true">→</span></a>
+              <a class="btn btn-ghost btn-lg" href="Young_Bin_Song_CV.pdf" target="_blank" rel="noopener">
+                CV 내려받기 <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+
+            <dl class="hero-stats">
+              <div>
+                <dt>3<em> platforms</em></dt>
+                <dd>Indy7 · UR10 · RB10<br>동일 센서 모듈을 세 로봇에 적용</dd>
+              </div>
+              <div>
+                <dt>20–300<em> mm</em></dt>
+                <dd>정전용량 + ToF 융합으로<br>평가한 근접 거리 구간</dd>
+              </div>
+              <div>
+                <dt>96.1<em> % ↓</em></dt>
+                <dd>자체 감지 보상 후<br>채널 RMSE 감소폭</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="hero-visual reveal" data-delay="1">
+            <figure class="hero-portrait">
+              <img src="youngbin-profile.png" alt="로봇 센싱·안전 제어를 연구하는 송영빈" width="399" height="500">
+              <figcaption class="hero-portrait-tag">
+                <span>Song Youngbin</span>
+                <span>M.S. · SKKU</span>
+              </figcaption>
+            </figure>
+
+            <div class="hero-note">
+              <span class="dot" aria-hidden="true"></span>
+              <div>
+                <b>Currently</b>
+                <p>
+                  산업통상자원부 과제 &lt;실시간 로봇 충돌 감지·회피 지능 통합 SoC 플랫폼&gt;에서
+                  근접센서 모듈과 충돌 대응 알고리즘을 맡고 있습니다.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="ticker">
+        <div class="shell ticker-in" aria-label="주요 기술">
+          <span>Stack</span>
+          <span>Altium</span>
+          <span>STM32</span>
+          <span>Embedded C</span>
+          <span>ROS 2</span>
+          <span>C++</span>
+          <span>RMPflow</span>
+          <span>PyTorch</span>
+          <span>Diffusion Policy</span>
+          <span>CATIA V5</span>
+        </div>
+      </div>
+
+      <!-- ===================== APPROACH ===================== -->
+      <section class="section shell" id="approach">
+        <div class="sec-head reveal">
+          <span class="sec-index">01 / Approach</span>
+          <div>
+            <h2>One stack,<br>four layers.</h2>
+            <p>센서에서 정책까지 — 끊기지 않는 하나의 파이프라인</p>
+          </div>
+          <p class="sec-aside">
+            <span class="mono">Why it matters</span>
+            층마다 담당이 나뉘면 문제가 경계에서 사라집니다. 저는 네 층을 모두 직접 만들어,
+            센서의 잡음이 제어의 실패로 이어지는 지점까지 추적합니다.
+          </p>
+        </div>
+
+        <div class="stack reveal">
+          <article class="stack-layer">
+            <span class="stack-num">Layer 01</span>
+            <h3>Sensor Hardware</h3>
+            <p>정전용량 센서와 ToF 센서를 하나의 모듈로 통합하고, 로봇별 지지부만 교체해 이식합니다.</p>
+            <p class="stack-io">Out → <b>Raw capacitance / ToF</b></p>
+          </article>
+          <article class="stack-layer">
+            <span class="stack-num">Layer 02</span>
+            <h3>Signal Processing</h3>
+            <p>온도 보상, Adaptive EMA, 자체 감지 제거, 불확실성 기반 융합으로 신뢰할 수 있는 거리값을 만듭니다.</p>
+            <p class="stack-io">Out → <b>Fused distance</b></p>
+          </article>
+          <article class="stack-layer">
+            <span class="stack-num">Layer 03</span>
+            <h3>Reactive Motion Control</h3>
+            <p>거리값을 RMPflow 제어기에 직접 연결해, 로봇이 주변 물체와 사람에게 실시간으로 반응합니다.</p>
+            <p class="stack-io">Out → <b>Safe joint command</b></p>
+          </article>
+          <article class="stack-layer">
+            <span class="stack-num">Layer 04</span>
+            <h3>Learning-Based Manipulation</h3>
+            <p>Diffusion Policy가 작업을 생성하고, 안전 실행 계층이 회피와 작업 복귀를 조율합니다.</p>
+            <p class="stack-io">Out → <b>Task + safety</b></p>
+          </article>
+        </div>
+
+        <p class="stack-note reveal">
+          <span class="dot" aria-hidden="true"></span>
+          <span>
+            각 층의 출력은 다음 층의 입력이 됩니다. 시뮬레이션에서 멈추지 않고
+            <strong>같은 로봇 위에서 네 층을 이어 붙여</strong> 동작을 확인했습니다.
+          </span>
+        </p>
+      </section>
+
+      <!-- ===================== RESEARCH ===================== -->
+      <section class="section shell" id="work">
+        <div class="sec-head reveal">
+          <span class="sec-index">02 / Research</span>
+          <div>
+            <h2>Research<br>Projects</h2>
+            <p>2024—2026 · Robotory Lab, Sungkyunkwan University</p>
+          </div>
+          <p class="sec-aside">
+            <span class="mono">Four projects</span>
+            아래 네 프로젝트는 독립된 결과물이 아니라, 위 파이프라인의 각 층을
+            순서대로 완성해 온 기록입니다.
+          </p>
+        </div>
+
+        <div class="work-list">
+          <!-- 01 -->
+          <article class="work reveal">
+            <a
+              class="work-media is-plate"
+              href="projects/proximity-sensor-platform-3.html"
+              aria-label="Robot-Mounted Proximity Sensing System 자세히 보기"
+            >
+              <img
+                src="projects/module-design.png"
+                alt="센서 모듈과 로봇별 교체형 지지부로 구성된 모듈형 근접센서 시스템 분해도"
+                loading="lazy"
+              >
+              <span class="work-arrow" aria-hidden="true">↗</span>
+            </a>
+            <div class="work-copy">
+              <p class="work-eyebrow"><b>01</b> Sensor Hardware <i aria-hidden="true"></i> Distance Fusion</p>
+              <h3>
+                <a href="projects/proximity-sensor-platform-3.html">
+                  Robot-Mounted<br>Proximity Sensing System
+                </a>
+              </h3>
+              <p>
+                정전용량 센서와 ToF 센서를 한 모듈에 담고, 로봇별 지지부만 교체하는 구조로 설계했습니다.
+                덕분에 같은 센서 스택을 Indy7·UR10·RB10에 그대로 옮길 수 있었습니다.
+                온도 드리프트 보상과 Adaptive EMA, 불확실성 기반 융합을 거쳐 최종 근접 거리를 추정합니다.
+              </p>
+              <dl class="work-metrics">
+                <div><dt>3 robots</dt><dd>Indy7 · UR10 · RB10 적용</dd></div>
+                <div><dt>20–300 mm</dt><dd>융합 거리 평가 구간</dd></div>
+                <div><dt>2 modalities</dt><dd>Capacitive + ToF</dd></div>
+              </dl>
+              <p class="work-role">
+                <b>Built</b>센서·MCU·전원 PCB 설계, 모듈형 장착 구조, 신호 처리 및 거리 융합 파이프라인
+              </p>
+              <div class="work-foot">
+                <div class="work-tech"><span>Altium</span><span>STM32</span><span>Inventor</span><span>Embedded C</span></div>
+                <div class="work-actions">
+                  <a class="work-link work-link-muted" href="https://github.com/dudqls10/calibration_dist" target="_blank" rel="noopener">
+                    Related code <span aria-hidden="true">↗</span>
+                  </a>
+                  <a class="work-link" href="projects/proximity-sensor-platform-3.html">
+                    시스템 구성과 결과 <span aria-hidden="true">→</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 02 -->
+          <article class="work is-flip reveal">
+            <a
+              class="work-media"
+              href="projects/self-detection-compensation-3.html"
+              aria-label="Self-Detection Compensation 자세히 보기"
+            >
+              <span class="work-media-grid" aria-hidden="true">
+                <video autoplay muted loop playsinline preload="metadata">
+                  <source src="projects/self-detection-assets/demo-1.mp4" type="video/mp4">
+                </video>
+                <video autoplay muted loop playsinline preload="metadata">
+                  <source src="projects/self-detection-assets/demo-2.mp4" type="video/mp4">
+                </video>
+                <video autoplay muted loop playsinline preload="metadata">
+                  <source src="projects/self-detection-assets/demo-3.mp4" type="video/mp4">
+                </video>
+              </span>
+              <span class="work-badge"><i class="dot is-live" aria-hidden="true"></i> 8-channel live</span>
+              <span class="work-arrow" aria-hidden="true">↗</span>
+            </a>
+            <div class="work-copy">
+              <p class="work-eyebrow"><b>02</b> Signal Processing <i aria-hidden="true"></i> MLP Compensation</p>
+              <h3>
+                <a href="projects/self-detection-compensation-3.html">
+                  Self-Detection<br>Compensation
+                </a>
+              </h3>
+              <p>
+                로봇이 자기 자신의 자세 때문에 만들어내는 정전용량 응답은 외부 물체 신호를 덮어버립니다.
+                관절 위치·속도를 입력으로 채널별 자체 감지 응답을 예측하고 측정값에서 제거해,
+                <b>외부 물체에 의한 잔차만 남기도록</b> 신호를 분리했습니다.
+              </p>
+              <dl class="work-metrics">
+                <div><dt>−96.12 %</dt><dd>채널 RMSE 감소</dd></div>
+                <div><dt>−99.85 %</dt><dd>신호 분산 감소</dd></div>
+                <div><dt>8 ch</dt><dd>채널별 개별 보상</dd></div>
+              </dl>
+              <p class="work-role">
+                <b>Built</b>관절 상태·센서 동기 수집 파이프라인, 채널별 MLP 예측 모델, 실시간 잔차 보정
+              </p>
+              <div class="work-foot">
+                <div class="work-tech"><span>Python</span><span>TensorFlow</span><span>ROS 2</span></div>
+                <div class="work-actions">
+                  <a class="work-link work-link-muted" href="https://github.com/dudqls10/self_detection_raw" target="_blank" rel="noopener">
+                    GitHub <span aria-hidden="true">↗</span>
+                  </a>
+                  <a class="work-link" href="projects/self-detection-compensation-3.html">
+                    보상 모델과 결과 <span aria-hidden="true">→</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 03 -->
+          <article class="work reveal">
+            <a
+              class="work-media"
+              href="projects/rmpflow-safety-control-3.html"
+              aria-label="Proximity-Based Reactive Motion Control 자세히 보기"
+            >
+              <video
+                autoplay muted loop playsinline preload="metadata"
+                poster="media/rmpflow-avoidance-poster.jpg" aria-hidden="true"
+              >
+                <source src="projects/rmpflow-assets/total-avoidance-real.mp4" type="video/mp4">
+              </video>
+              <span class="work-badge"><i class="dot is-live" aria-hidden="true"></i> RB10 · real robot</span>
+              <span class="work-arrow" aria-hidden="true">↗</span>
+            </a>
+            <div class="work-copy">
+              <p class="work-eyebrow"><b>03</b> Reactive Motion Control <i aria-hidden="true"></i> RMPflow</p>
+              <h3>
+                <a href="projects/rmpflow-safety-control-3.html">
+                  Proximity-Based<br>Reactive Motion Control
+                </a>
+              </h3>
+              <p>
+                근접센서가 만든 거리값을 RMPflow 제어기에 직접 연결해, RB10이 다가오는 사람과 장애물에
+                실시간으로 반응하도록 구현했습니다. 기본 제어기에서 로봇이 갇히던 local minimum은
+                <b>TG-RMP 접선 정책</b>을 추가해 빠져나오도록 했습니다.
+              </p>
+              <dl class="work-metrics">
+                <div><dt>Real robot</dt><dd>RB10 실기 검증</dd></div>
+                <div><dt>TG-RMP</dt><dd>Local minimum 완화</dd></div>
+                <div><dt>ROS 2 · C++</dt><dd>실시간 제어 스택</dd></div>
+              </dl>
+              <p class="work-role">
+                <b>Built</b>근접센서 기반 Reactive Motion Controller, 접선 정책 설계, RViz 시각화 및 실기 튜닝
+              </p>
+              <div class="work-foot">
+                <div class="work-tech"><span>C++</span><span>ROS 2</span><span>RViz</span><span>PREEMPT_RT</span></div>
+                <div class="work-actions">
+                  <a class="work-link work-link-muted" href="https://github.com/dudqls10/RMP_prox" target="_blank" rel="noopener">
+                    GitHub <span aria-hidden="true">↗</span>
+                  </a>
+                  <a class="work-link" href="projects/rmpflow-safety-control-3.html">
+                    제어 구조와 적용 결과 <span aria-hidden="true">→</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 04 -->
+          <article class="work is-flip reveal">
+            <a
+              class="work-media"
+              href="projects/interactive-diffusion-policy-3.html"
+              aria-label="Interactive Diffusion Policy 자세히 보기"
+            >
+              <video
+                autoplay muted loop playsinline preload="metadata"
+                poster="media/interactive-safety-poster.jpg" aria-hidden="true"
+              >
+                <source src="media/interactive-safety.mp4" type="video/mp4">
+              </video>
+              <span class="work-badge"><i class="dot is-live" aria-hidden="true"></i> Running on real hardware</span>
+              <span class="work-arrow" aria-hidden="true">↗</span>
+            </a>
+            <div class="work-copy">
+              <p class="work-eyebrow"><b>04</b> Learning-Based Manipulation <i aria-hidden="true"></i> Safe Execution</p>
+              <h3>
+                <a href="projects/interactive-diffusion-policy-3.html">
+                  Interactive<br>Diffusion Policy
+                </a>
+              </h3>
+              <p>
+                Diffusion Policy가 작업 행동을 생성하는 동안, 근접센서 기반 RMPflow가 사람의 접근에 반응합니다.
+                회피 때문에 로봇이 학습 분포를 벗어나면 <b>LPB guidance</b>가 다시 작업 궤적으로 끌어당깁니다.
+                작업과 안전을 하나의 실행 루프 안에서 조율하는 구조입니다.
+              </p>
+              <dl class="work-metrics">
+                <div><dt>Base vs Guided</dt><dd>동일 조건 비교 실험</dd></div>
+                <div><dt>LPB</dt><dd>OOD 상태에서 작업 복귀</dd></div>
+                <div><dt>RB10</dt><dd>실제 하드웨어 통합</dd></div>
+              </dl>
+              <p class="work-role">
+                <b>Built</b>RB10 통합, RMPflow 실행 계층, LPB/OOD 추론 및 비교 실험 설계
+              </p>
+              <div class="work-foot">
+                <div class="work-tech"><span>Python</span><span>PyTorch</span><span>ROS 2</span></div>
+                <a class="work-link" href="projects/interactive-diffusion-policy-3.html">
+                  프로젝트와 영상 <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ===================== UNDERGRADUATE ===================== -->
+      <section class="section shell" id="undergraduate">
+        <div class="sec-head reveal">
+          <span class="sec-index">03 / Undergraduate</span>
+          <div>
+            <h2>Undergraduate<br>Projects</h2>
+            <p>2023—2024 · Sejong University</p>
+          </div>
+          <p class="sec-aside">
+            <span class="mono">Before the lab</span>
+            기구 설계와 임베디드, 비전 인식을 직접 만들어 본 시작점.
+            세 프로젝트 모두 시작품 제작까지 마쳤습니다.
+          </p>
+        </div>
+
+        <div class="ug-grid">
+          <article class="ug-card reveal">
+            <div class="ug-cover is-cover">
+              <img src="media/undergraduate/ai-farm-system.jpg" alt="야생동물 퇴치용 AI 농가 보호 시스템 시작품" loading="lazy">
+              <span class="ug-num">01</span>
+            </div>
+            <div class="ug-body">
+              <p class="ug-meta"><span>2023.03—09</span><span>Team Lead · HW</span></p>
+              <h3>
+                <a href="projects/undergraduate-projects-3.html#ai-farm">
+                  AI Farm Protecting <span aria-hidden="true">↗</span>
+                </a>
+              </h3>
+              <p>야생동물을 인식해 물 분사로 퇴치하는 농가 보호 시스템. 구조 설계와 FEM 검증, 구동부 제작까지 담당했습니다.</p>
+              <ul class="ug-tags"><li>Inventor</li><li>CATIA V5</li><li>Arduino</li></ul>
+            </div>
+          </article>
+
+          <article class="ug-card reveal" data-delay="1">
+            <div class="ug-cover">
+              <img src="media/undergraduate/drone-main.png" alt="창의비행체 경진대회를 위해 제작한 임무 수행용 드론" loading="lazy">
+              <span class="ug-num">02</span>
+            </div>
+            <div class="ug-body">
+              <p class="ug-meta"><span>2023.06—11</span><span>Drone HW · AI SW</span></p>
+              <h3>
+                <a href="projects/undergraduate-projects-3.html#aircraft">
+                  Creative Aircraft Competition <span aria-hidden="true">↗</span>
+                </a>
+              </h3>
+              <p>임무 수행용 드론의 기체 설계·제작과 YOLOv8 기반 실시간 숫자 인식을 함께 구현했습니다.</p>
+              <ul class="ug-tags"><li>CATIA V5</li><li>Python</li><li>YOLOv8</li></ul>
+            </div>
+          </article>
+
+          <article class="ug-card reveal" data-delay="2">
+            <div class="ug-cover">
+              <img src="media/undergraduate/handwash-system.png" alt="손 씻기와 건조 과정을 제어하는 All-in-One Hand Wash 시작품" loading="lazy">
+              <span class="ug-num">03</span>
+            </div>
+            <div class="ug-body">
+              <p class="ug-meta"><span>2024.03—09</span><span>Team Lead · AI SW</span></p>
+              <h3>
+                <a href="projects/undergraduate-projects-3.html#hand-wash">
+                  All-in-One Hand Wash <span aria-hidden="true">↗</span>
+                </a>
+              </h3>
+              <p>손 제스처만으로 물·비누·건조 단계를 넘기는 비접촉 시스템. MediaPipe 특징과 K-NN 분류로 동작을 판별합니다.</p>
+              <ul class="ug-tags"><li>Python</li><li>MediaPipe</li><li>K-NN</li></ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ===================== EXPERIENCE ===================== -->
+      <section class="section shell" id="experience">
+        <div class="sec-head reveal">
+          <span class="sec-index">04 / Experience</span>
+          <div>
+            <h2>Experience &amp;<br>Education</h2>
+            <p>2019—현재</p>
+          </div>
+          <p class="sec-aside">
+            <span class="mono">Contact</span>
+            dudqls1028@naver.com · 010-4006-9259
+          </p>
+        </div>
+
+        <div class="exp-grid">
+          <div class="reveal">
+            <div class="exp-col-head">
+              <b>Research &amp; Project</b>
+              <i aria-hidden="true"></i>
+              <em>01</em>
+            </div>
+
+            <article class="exp-item is-now">
+              <time datetime="2025-03">2025.03 — Present</time>
+              <div>
+                <p class="exp-role">Graduate Researcher</p>
+                <h3>Robotory Lab<small>Sungkyunkwan University</small></h3>
+                <p>
+                  로봇 장착형 근접센서 하드웨어부터 신호 처리, reactive motion control,
+                  learning-based manipulation까지 실제 로봇 시스템 위에서 구현하고 검증하고 있습니다.
+                </p>
+                <div class="exp-facts"><span>Sensor HW</span><span>Signal</span><span>Control</span><span>Policy</span></div>
+              </div>
+            </article>
+
+            <article class="exp-item is-now">
+              <time datetime="2025-03">2025.03 — 2026.12</time>
+              <div>
+                <p class="exp-role">Government R&amp;D · Project Contributor</p>
+                <h3>실시간 로봇 충돌 감지·회피 지능 통합 SoC 플랫폼<small>산업통상자원부 과제</small></h3>
+                <p>
+                  근접센서 모듈과 임베디드 하드웨어, 충돌 대응 알고리즘을 개발하고
+                  로봇 시스템 수준의 적용·검증을 수행하고 있습니다.
+                </p>
+                <div class="exp-facts"><span>Embedded HW</span><span>Collision Response</span><span>System Validation</span></div>
+              </div>
+            </article>
+          </div>
+
+          <div class="reveal" data-delay="1">
+            <div class="exp-col-head">
+              <b>Education</b>
+              <i aria-hidden="true"></i>
+              <em>02</em>
+            </div>
+
+            <article class="exp-item is-now">
+              <time datetime="2025-03">2025.03 — 2027.02</time>
+              <div>
+                <p class="exp-role">M.S. in Mechanical Engineering</p>
+                <h3>Sungkyunkwan University<small>Robotory Lab · Advisor: Prof. Hyuk-Ryeol Choi</small></h3>
+                <div class="exp-facts"><span>GPA 4.00 / 4.5</span></div>
+              </div>
+            </article>
+
+            <article class="exp-item">
+              <time datetime="2019-03">2019.03 — 2025.02</time>
+              <div>
+                <p class="exp-role">B.S. in Mechanical Engineering</p>
+                <h3>Sejong University<small>기계공학 학사</small></h3>
+                <div class="exp-facts"><span>GPA 3.93 / 4.5</span><span>Major 4.05 / 4.5</span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== TOOLBOX ===================== -->
+      <section class="section shell" id="toolbox">
+        <div class="sec-head reveal">
+          <span class="sec-index">05 / Toolbox</span>
+          <div>
+            <h2>Tools &amp;<br>Technologies</h2>
+            <p>설계 · 임베디드 · 로봇 소프트웨어 · 학습</p>
+          </div>
+          <p class="sec-aside">
+            <span class="mono">How I use them</span>
+            도구 목록이 아니라, 위 네 층을 실제로 굴리기 위해 손에 익힌 것들입니다.
+          </p>
+        </div>
+
+        <div class="tool-grid reveal">
+          <article class="tool-card">
+            <span>01</span>
+            <h3>Hardware Design</h3>
+            <p>회로·PCB와 로봇 센서 모듈의 기구 구조 설계</p>
+            <ul><li>Altium Designer</li><li>CATIA V5</li><li>SOLIDWORKS</li><li>Autodesk Inventor</li></ul>
+          </article>
+          <article class="tool-card">
+            <span>02</span>
+            <h3>Embedded Systems</h3>
+            <p>센서 데이터 수집과 MCU·전원 보드, 로봇 제어기 통신</p>
+            <ul><li>STM32</li><li>Embedded C / C++</li><li>I²C</li><li>CAN</li></ul>
+          </article>
+          <article class="tool-card">
+            <span>03</span>
+            <h3>Robot Software</h3>
+            <p>제어기 구현과 시각화, 실시간 제어 환경 구성</p>
+            <ul><li>ROS 2</li><li>C++</li><li>RViz</li><li>PREEMPT_RT</li></ul>
+          </article>
+          <article class="tool-card">
+            <span>04</span>
+            <h3>Data &amp; Machine Learning</h3>
+            <p>센서 데이터 처리와 학습 모델 구현, 로봇 정책 적용</p>
+            <ul><li>Python</li><li>PyTorch</li><li>TensorFlow</li><li>MATLAB</li></ul>
+          </article>
+        </div>
+
+        <div class="platform-bar reveal">
+          <span class="mono">Robot platforms</span>
+          <strong>RB10 <i aria-hidden="true">/</i> UR10 <i aria-hidden="true">/</i> Indy7</strong>
+        </div>
+      </section>
+
+      <!-- ===================== CONTACT ===================== -->
+      <section class="contact" id="contact">
+        <div class="shell contact-grid">
+          <div class="reveal">
+            <span class="mono">Let’s build safer robots</span>
+            <h2>로봇이 사람 가까이에서<br><b>더 안전하게</b> 일하도록.</h2>
+            <p class="contact-lede">
+              로봇 센싱·제어·Physical AI 경험을 이어갈 수 있는 연구와 협업 기회를 찾고 있습니다.
+              프로젝트 이야기든 채용 문의든 편하게 연락 주세요.
+            </p>
+          </div>
+
+          <div class="contact-card reveal" data-delay="1">
+            <div class="contact-row">
+              <div>
+                <p class="contact-row-label">Email</p>
+                <p class="contact-row-value">dudqls1028@naver.com</p>
+              </div>
+              <button class="copy-btn" type="button" data-copy="dudqls1028@naver.com">Copy</button>
+            </div>
+            <div class="contact-row">
+              <div>
+                <p class="contact-row-label">Phone</p>
+                <p class="contact-row-value">010-4006-9259</p>
+              </div>
+              <button class="copy-btn" type="button" data-copy="010-4006-9259">Copy</button>
+            </div>
+            <div class="contact-row">
+              <div>
+                <p class="contact-row-label">Based in</p>
+                <p class="contact-row-value">Suwon, Republic of Korea</p>
+              </div>
+            </div>
+            <div class="contact-row">
+              <div>
+                <p class="contact-row-label">GitHub</p>
+                <p class="contact-row-value">github.com/dudqls10</p>
+              </div>
+              <a class="copy-btn" href="https://github.com/dudqls10" target="_blank" rel="noopener">Open ↗</a>
+            </div>
+
+            <div class="contact-actions">
+              <a class="btn btn-solid" href="mailto:dudqls1028@naver.com">메일 보내기 <span aria-hidden="true">↗</span></a>
+              <a class="btn btn-ghost" href="https://github.com/dudqls10" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+              <a class="btn btn-ghost" href="Young_Bin_Song_CV.pdf" target="_blank" rel="noopener">CV (PDF) <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-foot">
+      <div class="shell site-foot-in">
+        <span>© 2026 Song Youngbin</span>
+        <span>Designed around evidence, built for real robots</span>
+        <span class="site-foot-links"><a href="https://github.com/dudqls10" target="_blank" rel="noopener">GitHub ↗</a><a href="#top">Back to top ↑</a></span>
+      </div>
+    </footer>
+  </body>
+</html>

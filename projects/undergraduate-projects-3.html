@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#08090b">
+    <title>Undergraduate Projects — Song Youngbin</title>
+    <meta
+      name="description"
+      content="기구 설계와 하드웨어 제작, 컴퓨터 비전을 실제 시스템의 동작으로 연결한 학부 시절 세 개의 팀 프로젝트."
+    >
+    <link rel="icon" href="../favicon.svg">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+    <link rel="stylesheet" href="../assets/style3.css">
+    <link rel="stylesheet" href="../assets/style3-project.css">
+    <script src="../assets/site3.js" defer></script>
+    <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
+  </head>
+
+  <body class="p3 p3-project">
+    <a class="skip" href="#main">본문으로 건너뛰기</a>
+    <div class="progress" aria-hidden="true"><i></i></div>
+
+    <header class="topbar" id="topbar">
+      <div class="shell topbar-in">
+        <a class="back" href="../index.html#undergraduate"><span aria-hidden="true">←</span> Portfolio</a>
+        <div class="topbar-title">
+          <strong>Undergraduate Projects</strong>
+          <em>Earlier work · 2023—2024</em>
+        </div>
+        <nav class="topnav" aria-label="섹션 메뉴">
+          <a href="#ai-farm">01 Farm</a>
+          <a href="#aircraft">02 Drone</a>
+          <a href="#hand-wash">03 Hand Wash</a>
+        </nav>
+        <a class="btn btn-solid" href="../index.html#contact">Contact</a>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ============ HERO ============ -->
+      <section class="proj-hero shell" id="top">
+        <div class="reveal">
+          <p class="proj-eyebrow">
+            <span class="dot" aria-hidden="true"></span>
+            Earlier work · Sejong University · 2023—2024
+          </p>
+          <h1>Undergraduate Projects</h1>
+          <p class="proj-sub">Mechanical design · Embedded hardware · Computer vision</p>
+          <p class="proj-lede">
+            기구 설계와 하드웨어 제작, 컴퓨터 비전을 <b>실제 시스템의 동작</b>으로 연결한 세 개의 팀 프로젝트입니다.
+            세 프로젝트 모두 시작품 제작과 동작 확인까지 마쳤고, 두 건은 팀장으로 진행했습니다.
+          </p>
+
+          <dl class="proj-meta">
+            <div><dt>Period</dt><dd>2023.03 — 2024.09</dd></div>
+            <div><dt>Role</dt><dd>Team Leader 2건 · Hardware · AI Software</dd></div>
+            <div><dt>Tools</dt><dd>CATIA V5 · Inventor · Arduino · Python</dd></div>
+            <div><dt>Result</dt><dd>YOLOv8 약 98 % mAP · 제스처 인식 약 96.8 %</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- ============ 01 AI FARM ============ -->
+      <section class="proj-section shell" id="ai-farm">
+        <div class="proj-sec-head reveal">
+          <span class="proj-sec-index">01<br>Farm</span>
+          <div>
+            <h2>AI Farm Protecting</h2>
+            <p>2023.03—09 · Team Leader · Hardware · Inventor · CATIA V5 · Arduino</p>
+            <p class="proj-sec-body">
+              농가 피해를 줄이기 위해 카메라로 야생동물을 식별한 뒤,
+              <b>이동식 분사 장치가 대상을 따라가며 물을 분사하는</b> 시스템을 제작했습니다.
+              팀장으로서 Inventor 기반 기구 설계와 Arduino 회로 구성을 담당하고,
+              CATIA V5 FEM 해석으로 주요 부품의 구조를 검토했습니다.
+            </p>
+          </div>
+        </div>
+
+        <figure class="fig reveal">
+          <img src="../media/undergraduate/ai-farm-system.jpg" alt="제작한 AI 농가 보호 시스템 시작품" loading="lazy" data-zoom>
+          <figcaption><b>System prototype</b>기구·회로 설계와 구조 검증을 담당했습니다</figcaption>
+        </figure>
+
+        <div class="proj-block reveal">
+          <div class="proj-block-head"><span>01</span><h3>Hardware Design</h3><i aria-hidden="true"></i></div>
+          <p>구동부·카메라 하우징 모델링과 모터·펌프 제어 회로를 구성했습니다.</p>
+          <div class="fig-grid cols-2">
+            <figure class="fig">
+              <img src="../media/undergraduate/ai-farm-design.jpg" alt="AI 농가 보호 시스템의 부품과 조립 설계" loading="lazy" data-zoom>
+              <figcaption><b>CAD</b>부품 구성과 조립 설계</figcaption>
+            </figure>
+            <figure class="fig is-plate">
+              <img src="../media/undergraduate/ai-farm-arduino.png" alt="Arduino와 모터, 펌프의 회로 구성" loading="lazy" data-zoom>
+              <figcaption><b>Circuit</b>Arduino · 모터 · 펌프 제어 회로</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="proj-block reveal">
+          <div class="proj-block-head"><span>02</span><h3>FEM Analysis</h3><i aria-hidden="true"></i></div>
+          <p>응력 분포를 확인해 구조 안전성을 검토하고 과설계를 완화했습니다.</p>
+          <figure class="fig">
+            <img src="../media/undergraduate/ai-farm-fem.jpg" alt="CATIA V5 FEM 해석 결과" loading="lazy" data-zoom>
+            <figcaption><b>CATIA V5 FEM</b>주요 부품의 응력 분포 검토</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ============ 02 AIRCRAFT ============ -->
+      <section class="proj-section shell" id="aircraft">
+        <div class="proj-sec-head reveal">
+          <span class="proj-sec-index">02<br>Drone</span>
+          <div>
+            <h2>Creative Aircraft Competition</h2>
+            <p>2023.06—11 · Drone HW · AI SW · CATIA V5 · Python · YOLOv8</p>
+            <p class="proj-sec-body">
+              이륙과 투하, 장애물 통과, 실시간 숫자 인식, 착륙으로 이어지는 경진대회 임무를 수행할 수 있도록
+              드론을 설계·제작했습니다. 기체 하드웨어 제작과 함께 YOLOv8 숫자 인식을 구현하고,
+              데이터를 약 2,000장으로 확장해 <b>약 98 % mAP</b>를 확인했습니다.
+            </p>
+          </div>
+        </div>
+
+        <figure class="fig reveal">
+          <img src="../media/undergraduate/drone-map.jpg" alt="드론 비행과 숫자 인식 임무 구성" loading="lazy" data-zoom>
+          <figcaption><b>Mission scenario</b>이륙 → 투하 → 장애물 통과 → 숫자 인식 → 착륙</figcaption>
+        </figure>
+
+        <div class="proj-block reveal">
+          <div class="proj-block-head"><span>01</span><h3>Drone Hardware Design</h3><i aria-hidden="true"></i></div>
+          <p>프레임·전장 부품을 조립하고 모터 추력 조건을 검토했습니다.</p>
+          <div class="fig-grid cols-2">
+            <figure class="fig is-plate">
+              <img src="../media/undergraduate/drone-design.png" alt="드론 기체 제작 과정" loading="lazy" data-zoom>
+              <figcaption><b>Design</b>기체 설계와 제작 과정</figcaption>
+            </figure>
+            <figure class="fig is-plate">
+              <img src="../media/undergraduate/drone-main.png" alt="완성한 임무 수행용 드론" loading="lazy" data-zoom>
+              <figcaption><b>Build</b>완성한 임무 수행용 드론</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="proj-block reveal">
+          <div class="proj-block-head"><span>02</span><h3>Real-time Digit Recognition</h3><i aria-hidden="true"></i></div>
+          <p>YOLOv8 기반 실시간 인식 · 약 2,000장 학습 데이터 · 약 98 % mAP</p>
+          <div class="fig-grid cols-3">
+            <figure class="fig is-plate">
+              <img src="../media/undergraduate/drone-yolo.jpg" alt="YOLOv8 네트워크 구조" loading="lazy" data-zoom>
+              <figcaption><b>Model</b>YOLOv8 네트워크 구조</figcaption>
+            </figure>
+            <figure class="fig is-plate">
+              <img src="../media/undergraduate/drone-data-change.jpg" alt="숫자 데이터 증강 예시" loading="lazy" data-zoom>
+              <figcaption><b>Data</b>숫자 데이터 증강</figcaption>
+            </figure>
+            <figure class="fig">
+              <img src="../media/undergraduate/drone-result.jpg" alt="숫자 3 실시간 인식 결과" loading="lazy" data-zoom>
+              <figcaption><b>Result</b>실시간 인식 결과</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 03 HAND WASH ============ -->
+      <section class="proj-section shell" id="hand-wash">
+        <div class="proj-sec-head reveal">
+          <span class="proj-sec-index">03<br>Hand Wash</span>
+          <div>
+            <h2>All-in-One Hand Wash</h2>
+            <p>2024.03—09 · Team Leader · AI SW · Python · MediaPipe · K-NN</p>
+            <p class="proj-sec-body">
+              공공 화장실의 위생 관리를 위해 <b>손 제스처만으로</b> 물 공급부터 비누, 건조까지 제어할 수 있는
+              통합 시스템을 제작했습니다. 팀장으로서 MediaPipe와 K-NN 기반 실시간 제스처 인식과
+              전체 시스템 알고리즘을 담당했고, 약 96.8 %의 인식 정확도를 확인했습니다.
+            </p>
+          </div>
+        </div>
+
+        <figure class="fig is-plate reveal">
+          <img src="../media/undergraduate/handwash-system.png" alt="제작한 All-in-One Hand Wash 시스템" loading="lazy" data-zoom>
+          <figcaption><b>System prototype</b>제스처 인식과 전체 시스템 동작 설계를 담당했습니다</figcaption>
+        </figure>
+
+        <div class="proj-block reveal">
+          <div class="proj-block-head"><span>01</span><h3>Gesture Recognition</h3><i aria-hidden="true"></i></div>
+          <p>WATER · SOAP · WIND 제스처 분류 · 약 96.8 % 인식 정확도</p>
+          <div class="fig-grid cols-2">
+            <figure class="fig is-plate">
+              <img src="../media/undergraduate/handwash-mediapipe.png" alt="MediaPipe 기반 손 랜드마크 인식" loading="lazy" data-zoom>
+              <figcaption><b>MediaPipe</b>손 랜드마크 인식</figcaption>
+            </figure>
+            <figure class="fig is-plate">
+              <img src="../media/undergraduate/handwash-result.png" alt="물, 비누, 건조 제스처 분류 결과" loading="lazy" data-zoom>
+              <figcaption><b>K-NN</b>물 · 비누 · 건조 제스처 분류 결과</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="proj-block reveal">
+          <div class="proj-block-head"><span>02</span><h3>System Algorithm</h3><i aria-hidden="true"></i></div>
+          <p>손 존재 여부와 분류 결과에 따라 물·비누·건조 상태를 전환합니다.</p>
+          <figure class="fig is-plate">
+            <img src="../media/undergraduate/handwash-algorithm.png" alt="손 인식과 장치 상태 전환 알고리즘" loading="lazy" data-zoom>
+            <figcaption><b>Algorithm</b>손 인식 → 제스처 분류 → 장치 상태 전환</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ============ OUTRO ============ -->
+      <section class="proj-outro">
+        <div class="shell">
+          <div class="reveal">
+            <span class="mono">Summary</span>
+            <h2>설계에서 회로, 인식 모델까지 <b>직접 만들어 동작시켜 본</b> 시작점입니다.</h2>
+            <div class="outro-tags">
+              <span>Mechanical design</span>
+              <span>FEM verification</span>
+              <span>Embedded circuit</span>
+              <span>YOLOv8 · MediaPipe</span>
+              <span>Team leadership</span>
+            </div>
+          </div>
+
+          <a class="next-project reveal" href="../index.html#work">
+            <div>
+              <b>Back to portfolio</b>
+              <strong>Research Projects</strong>
+            </div>
+            <i aria-hidden="true">→</i>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-foot">
+      <div class="shell site-foot-in">
+        <span>© 2026 Song Youngbin</span>
+        <span>Undergraduate Projects</span>
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </footer>
+  </body>
+</html>

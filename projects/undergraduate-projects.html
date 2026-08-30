@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="기구 설계, 드론 제작, 컴퓨터 비전을 실제 시스템으로 연결한 송영빈의 학부 프로젝트 모음입니다.">
+    <link rel="stylesheet" href="../assets/style.css">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+    <link rel="stylesheet" href="../assets/style2-hybrid.css">
+    <script src="../assets/site.js" defer></script>
+    <link rel="icon" href="../favicon.svg">
+    <title>Undergraduate Projects | 송영빈</title>
+  </head>
+  <body class="undergrad-portfolio-detail index2-preview portfolio-v2 project-v2">
+    <a class="skip-link" href="#content">본문으로 건너뛰기</a>
+    <main class="undergrad-portfolio-page" id="content">
+      <header class="site-header">
+        <a class="wordmark" href="../index.html">SONG YOUNGBIN</a>
+        <nav class="project-quick-nav" aria-label="학부 프로젝트 메뉴">
+          <a href="#ai-farm">01 Farm</a>
+          <a href="#aircraft">02 Drone</a>
+          <a href="#hand-wash">03 Hand Wash</a>
+        </nav>
+      </header>
+
+      <section class="ug-hero">
+        <div>
+          <a class="back-link" href="../index.html#undergraduate">← Portfolio Home</a>
+          <p class="eyebrow">Earlier Work · 2023—2024</p>
+          <h1>Undergraduate<br>Projects</h1>
+        </div>
+        <p>
+          기구 설계와 하드웨어 제작, 컴퓨터 비전을 실제 시스템의 동작으로
+          연결한 세 개의 팀 프로젝트입니다.
+        </p>
+      </section>
+
+      <article class="ug-project" id="ai-farm">
+        <header class="ug-project-head">
+          <span>01</span>
+          <div>
+            <p>Hardware Design · System Integration</p>
+            <h2>AI Farm Protecting</h2>
+          </div>
+          <dl>
+            <div><dt>기간</dt><dd>2023.03—09</dd></div>
+            <div><dt>역할</dt><dd>Team Leader · Hardware</dd></div>
+            <div><dt>도구</dt><dd>Inventor · CATIA V5 · Arduino</dd></div>
+          </dl>
+        </header>
+
+        <div class="ug-intro">
+          <div class="ug-copy">
+            <h3>야생동물을 식별하고<br>물 분사로 퇴치하는 시스템</h3>
+            <p>
+              농가 피해를 줄이기 위해 카메라로 야생동물을 식별한 뒤, 이동식
+              분사 장치가 대상을 따라가 물을 분사하는 시스템을 제작했습니다.
+            </p>
+            <p>
+              팀장으로서 Inventor 기반 기구 설계와 Arduino 회로 구성을 담당하고,
+              CATIA V5 FEM 해석으로 주요 부품의 구조를 검토했습니다.
+            </p>
+          </div>
+          <figure class="ug-system-visual">
+            <img src="../media/undergraduate/ai-farm-system.jpg" alt="제작한 AI 농가 보호 시스템">
+            <figcaption>System Prototype</figcaption>
+          </figure>
+        </div>
+
+        <div class="ug-result-label"><span>Contribution</span><p>기구·회로 설계와 구조 검증</p></div>
+        <div class="ug-result-grid ug-farm-results">
+          <section class="ug-panel">
+            <header><span>01</span><h3>Hardware Design</h3></header>
+            <div class="ug-panel-media ug-panel-media-split">
+              <img src="../media/undergraduate/ai-farm-design.jpg" alt="AI 농가 보호 시스템의 부품과 조립 설계">
+              <img src="../media/undergraduate/ai-farm-arduino.png" alt="Arduino와 모터, 펌프의 회로 구성">
+            </div>
+            <p>구동부·카메라 하우징 모델링과 모터·펌프 제어 회로 구성</p>
+          </section>
+          <section class="ug-panel">
+            <header><span>02</span><h3>FEM Analysis</h3></header>
+            <div class="ug-panel-media"><img src="../media/undergraduate/ai-farm-fem.jpg" alt="CATIA V5 FEM 해석 결과"></div>
+            <p>응력 분포를 확인해 구조 안전성을 검토하고 과설계를 완화</p>
+          </section>
+        </div>
+      </article>
+
+      <article class="ug-project" id="aircraft">
+        <header class="ug-project-head">
+          <span>02</span>
+          <div>
+            <p>Drone Hardware · AI Software</p>
+            <h2>Creative Aircraft Competition</h2>
+          </div>
+          <dl>
+            <div><dt>기간</dt><dd>2023.06—11</dd></div>
+            <div><dt>역할</dt><dd>Drone HW · AI SW</dd></div>
+            <div><dt>도구</dt><dd>CATIA V5 · Python · YOLOv8</dd></div>
+          </dl>
+        </header>
+
+        <div class="ug-intro">
+          <div class="ug-copy">
+            <h3>직접 제작한 드론으로<br>비행·인식 임무 수행</h3>
+            <p>
+              기체 이륙과 투하, 장애물 통과, 실시간 숫자 인식, 착륙으로 이어지는
+              경진대회 임무를 수행할 수 있도록 드론을 설계·제작했습니다.
+            </p>
+            <p>
+              기체 하드웨어 제작과 함께 YOLOv8 숫자 인식을 구현하고, 데이터를
+              약 2,000장으로 확장해 약 98% mAP를 확인했습니다.
+            </p>
+          </div>
+          <figure class="ug-system-visual is-contain">
+            <img src="../media/undergraduate/drone-map.jpg" alt="드론 비행과 숫자 인식 임무 구성">
+            <figcaption>Mission Scenario</figcaption>
+          </figure>
+        </div>
+
+        <div class="ug-result-label"><span>Contribution</span><p>기체 제작과 실시간 숫자 인식</p></div>
+        <div class="ug-result-grid">
+          <section class="ug-panel">
+            <header><span>01</span><h3>Drone Hardware Design</h3></header>
+            <div class="ug-panel-media ug-panel-media-drone">
+              <img src="../media/undergraduate/drone-design.png" alt="드론 기체 제작 과정">
+              <img src="../media/undergraduate/drone-main.png" alt="완성한 임무 수행용 드론">
+            </div>
+            <p>프레임·전장 부품 조립과 모터 추력 조건 검토</p>
+          </section>
+          <section class="ug-panel">
+            <header><span>02</span><h3>Real-time Digit Recognition</h3></header>
+            <div class="ug-panel-media ug-vision-media">
+              <img src="../media/undergraduate/drone-yolo.jpg" alt="YOLOv8 네트워크 구조">
+              <img src="../media/undergraduate/drone-data-change.jpg" alt="숫자 데이터 증강 예시">
+              <img src="../media/undergraduate/drone-result.jpg" alt="숫자 3 실시간 인식 결과">
+            </div>
+            <p>YOLOv8 기반 실시간 인식 · 약 2,000장 학습 데이터 · 약 98% mAP</p>
+          </section>
+        </div>
+      </article>
+
+      <article class="ug-project" id="hand-wash">
+        <header class="ug-project-head">
+          <span>03</span>
+          <div>
+            <p>Gesture Recognition · System Algorithm</p>
+            <h2>All-in-One Hand Wash</h2>
+          </div>
+          <dl>
+            <div><dt>기간</dt><dd>2024.03—09</dd></div>
+            <div><dt>역할</dt><dd>Team Leader · AI SW</dd></div>
+            <div><dt>도구</dt><dd>Python · MediaPipe · K-NN</dd></div>
+          </dl>
+        </header>
+
+        <div class="ug-intro">
+          <div class="ug-copy">
+            <h3>손 제스처로 제어하는<br>비접촉 세정 시스템</h3>
+            <p>
+              공공 화장실의 위생 관리를 위해 손 제스처만으로 물 공급부터 비누,
+              건조까지 제어할 수 있는 통합 시스템을 제작했습니다.
+            </p>
+            <p>
+              팀장으로서 MediaPipe와 K-NN 기반 실시간 제스처 인식 및 전체 시스템
+              알고리즘을 담당했으며, 약 96.8%의 인식 정확도를 확인했습니다.
+            </p>
+          </div>
+          <figure class="ug-system-visual is-contain">
+            <img src="../media/undergraduate/handwash-system.png" alt="제작한 All-in-One Hand Wash 시스템">
+            <figcaption>System Prototype</figcaption>
+          </figure>
+        </div>
+
+        <div class="ug-result-label"><span>Contribution</span><p>제스처 인식과 전체 시스템 동작 설계</p></div>
+        <div class="ug-result-grid">
+          <section class="ug-panel">
+            <header><span>01</span><h3>Gesture Recognition</h3></header>
+            <div class="ug-panel-media ug-gesture-media">
+              <img src="../media/undergraduate/handwash-mediapipe.png" alt="MediaPipe 기반 손 랜드마크 인식">
+              <img src="../media/undergraduate/handwash-result.png" alt="물, 비누, 건조 제스처 분류 결과">
+            </div>
+            <p>WATER · SOAP · WIND 제스처 분류 · 약 96.8% 인식 정확도</p>
+          </section>
+          <section class="ug-panel">
+            <header><span>02</span><h3>System Algorithm</h3></header>
+            <div class="ug-panel-media"><img src="../media/undergraduate/handwash-algorithm.png" alt="손 인식과 장치 상태 전환 알고리즘"></div>
+            <p>손 존재 여부와 분류 결과에 따른 물·비누·건조 상태 전환</p>
+          </section>
+        </div>
+      </article>
+
+      <a class="ug-back-home" href="../index.html#undergraduate"><span>Back to Portfolio</span><strong>Undergraduate Projects ←</strong></a>
+      <footer class="project-footer"><span>© 2026 Song Youngbin</span><span>Undergraduate Projects</span><a href="../index.html">Home ↑</a></footer>
+    </main>
+  </body>
+</html>

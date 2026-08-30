@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="../assets/style2-hybrid.css">
+  <script src="../assets/site.js" defer></script>
+  <title>Self-Detection Compensation | 송영빈</title>
+  <meta
+    name="description"
+    content="관절 상태를 기반으로 로봇 동작에 의한 자체 감지 응답을 예측하고, 8개 정전용량 센서 채널의 신호를 보상한 프로젝트입니다."
+  >
+  <link rel="shortcut icon" href="../favicon.svg">
+  <link rel="icon" href="../favicon.svg">
+</head>
+<body class="sensor-detail index2-preview portfolio-v2 project-v2">
+  <a class="skip-link" href="#main-content">본문으로 바로가기</a>
+
+  <main id="main-content" class="project-page sensor-page self-detection-page">
+    <header class="site-header">
+      <a class="wordmark" href="../index.html">SONG YOUNGBIN</a>
+      <nav class="project-quick-nav" aria-label="페이지 빠른 이동">
+        <a href="#problem-title">01 Problem</a>
+        <a href="#collection-title">02 Data</a>
+        <a href="#model-title">03 Model</a>
+        <a href="#result-title">04 Result</a>
+      </nav>
+    </header>
+
+    <section class="sensor-hero" aria-labelledby="project-title">
+      <div class="sensor-hero-copy">
+        <a class="back-link" href="../index.html#work">← Portfolio Home</a>
+        <p class="eyebrow">로봇 상태 기반 정전용량 센싱</p>
+        <h1 id="project-title">Self-Detection<br>Compensation</h1>
+        <p class="sensor-hero-tagline">
+          관절 상태 · 자체 감지 응답 예측 · 잔차 보상
+        </p>
+        <p class="project-lead">
+          로봇에 장착된 정전용량 센서는 외부 물체뿐 아니라 로봇 자신의 자세
+          변화에도 반응했습니다. 관절 위치와 속도로 자체 감지 응답을 예측하고,
+          이를 측정값에서 제거해 외부 물체에 의한 잔차 신호를 분리했습니다.
+        </p>
+      </div>
+
+      <aside class="sensor-hero-overview" aria-labelledby="scope-title">
+        <p id="scope-title" class="overview-eyebrow">프로젝트 범위</p>
+        <dl class="project-overview">
+          <div>
+            <dt>담당 범위</dt>
+            <dd>관절 상태 기반 자체 감지 응답 예측 및 채널별 신호 보상</dd>
+          </div>
+          <div>
+            <dt>모델</dt>
+            <dd>8개 센서 채널을 위한 MLP 기반 예측 모델</dd>
+          </div>
+          <div>
+            <dt>검증 결과</dt>
+            <dd>RMSE 96.12% 감소 · 분산 99.85% 감소</dd>
+          </div>
+          <div>
+            <dt>기술</dt>
+            <dd>Python · TensorFlow</dd>
+          </div>
+          <div>
+            <dt>GitHub</dt>
+            <dd><a class="project-repo-link" href="https://github.com/dudqls10/self_detection_raw" target="_blank" rel="noopener">self_detection_raw ↗</a></dd>
+          </div>
+        </dl>
+      </aside>
+    </section>
+
+    <section class="self-demo-grid" aria-label="정전용량 자체 감지 보상 결과 영상">
+      <figure>
+        <video class="self-sync-video" autoplay muted loop playsinline preload="none">
+          <source src="self-detection-assets/demo-1.mp4" type="video/mp4">
+        </video>
+      </figure>
+      <figure>
+        <video class="self-sync-video" autoplay muted loop playsinline preload="none">
+          <source src="self-detection-assets/demo-2.mp4" type="video/mp4">
+        </video>
+      </figure>
+      <figure>
+        <video class="self-sync-video" autoplay muted loop playsinline preload="none">
+          <source src="self-detection-assets/demo-3.mp4" type="video/mp4">
+        </video>
+      </figure>
+    </section>
+
+    <section class="sensor-section self-problem-section" aria-labelledby="problem-title">
+      <header class="sensor-section-head">
+        <div class="section-index">
+          <span>01</span>
+          <p>문제 정의</p>
+        </div>
+        <div>
+          <h2 id="problem-title">로봇의 움직임도<br>근접 신호로 측정됩니다</h2>
+          <p class="section-subtitle">자세 변화 · 자체 감지 응답 · 접근 신호 혼재</p>
+          <p class="section-intro">
+            정전용량 센서는 주변 전기장 변화를 측정합니다. 센서가 로봇 표면에
+            장착되면 외부 물체가 없어도 링크 사이의 상대 위치가 변하면서
+            자세에 따른 신호 변화가 발생합니다.
+          </p>
+        </div>
+      </header>
+
+      <div class="self-problem-layout">
+        <figure class="self-problem-visual">
+          <img
+            src="self-detection-assets/self-detection-problem.png"
+            alt="로봇 자세 변화에 따라 장착형 정전용량 센서에 자체 감지 응답이 발생하는 문제"
+            loading="eager"
+          >
+        </figure>
+
+        <div class="self-problem-flow" aria-label="자체 감지 문제 발생 과정">
+          <article>
+            <span>01</span>
+            <div>
+              <strong>로봇 자세 변화</strong>
+              <p>관절 동작으로 센서와 로봇 링크 사이의 상대 형상이 변합니다.</p>
+            </div>
+          </article>
+          <article>
+            <span>02</span>
+            <div>
+              <strong>자체 감지 응답 발생</strong>
+              <p>로봇 본체가 만든 정전용량 변화가 측정 신호에 포함됩니다.</p>
+            </div>
+          </article>
+          <article>
+            <span>03</span>
+            <div>
+              <strong>접근 신호와 혼재</strong>
+              <p>외부 물체의 접근과 로봇 자체 응답을 하나의 측정값에서 구분해야 합니다.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="self-control-objective">
+        <span>CONTROL OBJECTIVE</span>
+        <strong>
+          관절 상태로 자체 감지 응답을 예측한 뒤 측정값에서 제거해,
+          외부 물체에 의한 잔차 신호를 분리합니다.
+        </strong>
+      </div>
+    </section>
+
+    <section class="sensor-section" aria-labelledby="collection-title">
+      <header class="sensor-section-head">
+        <div class="section-index">
+          <span>02</span>
+          <p>데이터 수집</p>
+        </div>
+        <div>
+          <h2 id="collection-title">로봇 동작 기반<br>데이터 수집</h2>
+          <p class="section-subtitle">관절 상태 (q, q̇) · 정전용량 응답</p>
+          <p class="section-intro">
+            자세에 따라 달라지는 자체 감지 응답을 수집하기 위해 두 가지 반복
+            동작을 구성했습니다. 관절 위치와 속도, 8개 정전용량 센서 채널을
+            동기화해 기록했습니다.
+          </p>
+        </div>
+      </header>
+
+      <div class="self-motion-grid">
+        <figure>
+          <video muted loop playsinline controls preload="none">
+            <source src="self-detection-assets/data-motion-1.mp4" type="video/mp4">
+          </video>
+          <figcaption>
+            <span>동작 01</span>
+            <strong>데이터 수집 동작</strong>
+          </figcaption>
+        </figure>
+        <figure>
+          <video muted loop playsinline controls preload="none">
+            <source src="self-detection-assets/data-motion-2.mp4" type="video/mp4">
+          </video>
+          <figcaption>
+            <span>동작 02</span>
+            <strong>데이터 수집 동작</strong>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="sensor-section" aria-labelledby="model-title">
+      <header class="sensor-section-head">
+        <div class="section-index">
+          <span>03</span>
+          <p>보상 모델</p>
+        </div>
+        <div>
+          <h2 id="model-title">관절 상태 기반<br>신호 보상</h2>
+          <p class="section-subtitle">MLP · 채널별 예측 · 잔차 보정</p>
+          <p class="section-intro">
+            관절 위치와 속도를 공유 특징 추출부와 채널별 출력부에 입력해 자세에
+            따라 달라지는 정전용량 자체 감지 응답을 예측했습니다. 이후 보정
+            분기가 기본 예측값을 보완하고, 채널별 측정값에서 이를 제거했습니다.
+          </p>
+        </div>
+      </header>
+
+      <figure class="figure-panel self-framework-figure">
+        <img
+          src="self-detection-assets/capacitive-compensation-framework.png"
+          alt="관절 위치와 속도, 공유 MLP, 채널별 출력부, 보정 네트워크로 구성된 정전용량 자체 감지 보상 구조"
+          loading="lazy"
+        >
+        <figcaption>
+          관절 상태 → 기본 자체 감지 응답 예측 → 잔차 보정 → 정전용량 신호 보상
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="sensor-section" aria-labelledby="result-title">
+      <header class="sensor-section-head">
+        <div class="section-index">
+          <span>04</span>
+          <p>보상 결과</p>
+        </div>
+        <div>
+          <h2 id="result-title">정전용량<br>신호 보상 결과</h2>
+          <p class="section-subtitle">RMSE 감소 · 분산 감소 · 8채널 보상</p>
+          <p class="section-intro">
+            예측 신호가 원신호에 포함된 자세 의존적 자체 감지 응답을 추종하는지
+            확인했습니다. 이를 채널별 측정값에서 제거해 8개 정전용량 센서에서
+            로봇 동작에 따른 신호 변동을 줄였습니다.
+          </p>
+        </div>
+      </header>
+
+      <figure class="figure-panel self-result-figure">
+        <div class="technical-image-scroll">
+          <img
+            src="self-detection-assets/capacitive-compensation-result.png"
+            alt="8개 정전용량 센서 채널의 원신호, 예측 신호, 보상 신호 비교"
+            loading="lazy"
+          >
+        </div>
+        <figcaption>
+          8개 채널의 원신호 · 예측 신호 · 보상 신호 비교
+        </figcaption>
+      </figure>
+
+      <div class="result-strip self-results">
+        <article>
+          <span>최대 RMSE 감소율</span>
+          <strong>96.12%</strong>
+          <p>로봇 자체 감지 응답의 예측 오차 감소</p>
+        </article>
+        <article>
+          <span>최대 분산 감소율</span>
+          <strong>99.85%</strong>
+          <p>보상 후 자세 의존적인 신호 변동 감소</p>
+        </article>
+        <article>
+          <span>검증 채널</span>
+          <strong>8</strong>
+          <p>하나의 공유 모델을 통한 채널별 신호 보상</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="project-summary" id="project-summary" aria-label="프로젝트 결론">
+      <p>Project takeaway</p>
+      <h2>로봇 자세로 인한 자체 감지 응답을 예측해, 외부 물체 반응에 집중할 수 있는 잔차 신호로 분리했습니다.</h2>
+      <div><span>RMSE 96.12% ↓</span><span>Variance 99.85% ↓</span><span>8 Sensor Channels</span></div>
+    </section>
+
+    <a class="next-project" href="rmpflow-safety-control.html">
+      <span>Next project</span>
+      <strong>Proximity-Based Reactive Motion Control →</strong>
+    </a>
+
+    <footer class="project-footer">
+      <span>© 2026 Song Youngbin</span>
+      <a href="../index.html">Home ↑</a>
+    </footer>
+  </main>
+
+</body>
+</html>

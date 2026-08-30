@@ -1,0 +1,891 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preload" href="module-design.png" as="image">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="../assets/style2-hybrid.css">
+  <script src="../assets/site.js" defer></script>
+  <title>Robot-Mounted Proximity Sensing System | 송영빈</title>
+  <meta
+    name="description"
+    content="모듈형 하드웨어, 안정화된 거리 추정, 불확실성 기반 센서 융합을 하나로 구성하고 세 종류의 로봇에 적용한 근접센서 시스템입니다."
+  >
+  <link rel="shortcut icon" href="../favicon.svg">
+  <link rel="icon" href="../favicon.svg">
+</head>
+<body class="sensor-detail sensor-detail-index2 sensor-layout-compact index2-preview portfolio-v2 project-v2">
+  <a class="skip-link" href="#main-content">본문으로 바로가기</a>
+
+  <main id="main-content" class="project-page sensor-page">
+    <header class="site-header">
+      <a class="wordmark" href="../index.html">SONG YOUNGBIN</a>
+      <nav class="project-quick-nav" aria-label="페이지 빠른 이동">
+        <a href="#hardware-title">01 Hardware</a>
+        <a href="#fusion-title">02 Processing</a>
+      </nav>
+    </header>
+
+    <section class="sensor-hero" aria-labelledby="project-title">
+      <div class="sensor-hero-copy">
+        <a class="back-link" href="../index.html#work">← Portfolio Home</a>
+        <p class="eyebrow">로봇 장착형 근접센서 시스템</p>
+        <h1 id="project-title">Robot-Mounted<br>Proximity Sensing<br>System</h1>
+        <p class="sensor-hero-tagline">
+          모듈형 하드웨어 · 신호 처리 · 거리 융합
+        </p>
+        <p class="project-lead">
+          정전용량 센서와 ToF 센서를 하나의 센서 모듈에 통합했습니다.
+          로봇별 지지부만 교체해 동일한 센서 구조를 Indy7, UR10, RB10에 적용하고,
+          모듈형 하드웨어부터 신호 안정화, 비선형 거리 보정, 불확실성 기반 센서
+          융합까지 하나의 로봇 장착형 센서 시스템으로 구성했습니다.
+        </p>
+      </div>
+
+      <aside class="sensor-hero-overview" aria-labelledby="scope-title">
+        <p id="scope-title" class="overview-eyebrow">프로젝트 범위</p>
+        <dl class="project-overview">
+          <div>
+            <dt>담당 범위</dt>
+            <dd>
+              센서 PCB 및 임베디드 전자회로 · 모듈형 센서 구조 · 신호 처리 프레임워크
+            </dd>
+          </div>
+          <div>
+            <dt>시스템</dt>
+            <dd>FDC2214 · ToF · STM32F722RET · I2C · CAN</dd>
+          </div>
+          <div>
+            <dt>적용 및 검증</dt>
+            <dd>Indy7 · UR10 · RB10 적용 · 20–300 mm 거리 평가</dd>
+          </div>
+          <div>
+            <dt>기술</dt>
+            <dd>Altium Designer · Autodesk Inventor · Embedded C/C++ · Python</dd>
+          </div>
+          <div>
+            <dt>GitHub</dt>
+            <dd><a class="project-repo-link" href="https://github.com/dudqls10/calibration_dist" target="_blank" rel="noopener">calibration_dist ↗</a></dd>
+          </div>
+        </dl>
+      </aside>
+    </section>
+
+    <figure class="sensor-hero-visual architecture-hero">
+      <div class="hero-visual-index" aria-hidden="true">SYSTEM</div>
+      <img
+        src="module-design.png"
+        alt="센서 모듈, 커넥터 조립체, 로봇별 지지부로 구성된 근접센서 시스템의 분해도"
+      >
+      <figcaption>
+        <span>분리형 센서·커넥터 모듈</span>
+        <span>교체 가능한 로봇별 지지부</span>
+      </figcaption>
+    </figure>
+
+    <section class="sensor-section hardware-section" aria-labelledby="hardware-title">
+      <header class="sensor-section-head">
+        <div class="section-index">
+          <span>01</span>
+          <p>모듈형 하드웨어</p>
+        </div>
+        <div>
+          <h2 id="hardware-title">모듈형 하드웨어 설계</h2>
+          <p class="section-subtitle">PCB · 센싱 구조 · 장착 구조</p>
+          <p class="section-intro">
+            정전용량 센서, ToF, MCU, 전원 및 장착 기능을 유지보수 가능한 모듈로
+            분리했습니다. 이를 통해 전체 센서 시스템을 다시 설계하지 않고도 개별
+            구성요소를 조립·교체하거나 다른 로봇에 맞게 변경할 수 있도록 했습니다.
+          </p>
+        </div>
+      </header>
+
+      <article class="tech-chapter pcb-chapter" aria-labelledby="pcb-title">
+        <header class="chapter-head">
+          <span>01—1</span>
+          <div>
+            <p>전기적 구성</p>
+            <h3 id="pcb-title">PCB 및 임베디드 전자회로</h3>
+          </div>
+          <p>
+            정전용량 측정, 중앙 ToF 인터페이스, MCU 기반 데이터 수집, 전원 변환,
+            CAN 통신을 각각의 기능 블록으로 구성했습니다.
+          </p>
+        </header>
+
+        <div class="pcb-document-gallery" aria-label="센서 시스템 회로도와 PCB artwork">
+          <header class="pcb-gallery-head">
+            <div>
+              <p>Implementation Evidence</p>
+              <h4>보드 구현 상세</h4>
+            </div>
+            <span>썸네일을 누르면 원본 PDF가 열립니다</span>
+          </header>
+          <article class="pcb-document-set">
+            <header>
+              <span>01</span>
+              <div>
+                <p>Capacitive sensing</p>
+                <h4>ADC 센싱 회로</h4>
+              </div>
+              <p>FDC2214 정전용량 측정 · 전원 · Active Shield</p>
+            </header>
+            <div class="pcb-document-grid">
+              <figure class="pcb-document-card">
+                <a class="pcb-document-media" href="pcb-assets/adc-schematic.pdf" target="_blank" rel="noopener" aria-label="ADC 회로도 원본 PDF 열기">
+                  <img src="pcb-assets/adc-schematic.png" alt="FDC2214 정전용량 측정과 Active Shield를 포함한 ADC 회로도" loading="lazy">
+                  <span>원본 PDF ↗</span>
+                </a>
+                <figcaption><span>Schematic</span><strong>센싱 및 신호 조절 회로</strong></figcaption>
+              </figure>
+              <figure class="pcb-document-card pcb-artwork-card">
+                <a class="pcb-document-media" href="pcb-assets/adc-artwork.pdf" target="_blank" rel="noopener" aria-label="ADC PCB artwork 원본 PDF 열기">
+                  <img src="pcb-assets/adc-artwork.png" alt="센싱 전극과 회로부가 배치된 ADC PCB artwork" loading="lazy">
+                  <span>원본 PDF ↗</span>
+                </a>
+                <figcaption><span>PCB Artwork</span><strong>센싱 전극과 회로부 배치</strong></figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <article class="pcb-document-set pcb-document-set-balanced">
+            <header>
+              <span>02</span>
+              <div>
+                <p>Direct ranging</p>
+                <h4>ToF 인터페이스</h4>
+              </div>
+              <p>VL53L1CX 거리 측정 · I2C 인터페이스</p>
+            </header>
+            <div class="pcb-document-grid">
+              <figure class="pcb-document-card">
+                <a class="pcb-document-media" href="pcb-assets/tof-schematic.pdf" target="_blank" rel="noopener" aria-label="ToF 회로도 원본 PDF 열기">
+                  <img src="pcb-assets/tof-schematic.png" alt="VL53L1CX ToF 센서와 I2C 연결을 나타낸 회로도" loading="lazy">
+                  <span>원본 PDF ↗</span>
+                </a>
+                <figcaption><span>Schematic</span><strong>ToF 거리 입력 회로</strong></figcaption>
+              </figure>
+              <figure class="pcb-document-card pcb-artwork-card">
+                <a class="pcb-document-media" href="pcb-assets/tof-artwork.pdf" target="_blank" rel="noopener" aria-label="ToF PCB artwork 원본 PDF 열기">
+                  <img src="pcb-assets/tof-artwork.png" alt="ToF 센서와 I2C 배선이 배치된 PCB artwork" loading="lazy">
+                  <span>원본 PDF ↗</span>
+                </a>
+                <figcaption><span>PCB Artwork</span><strong>ToF 센서 및 배선 배치</strong></figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <article class="pcb-document-set">
+            <header>
+              <span>03</span>
+              <div>
+                <p>Embedded control</p>
+                <h4>MCU 및 전원 회로</h4>
+              </div>
+              <p>데이터 수집 · 전원 변환 · CAN 통신</p>
+            </header>
+            <div class="pcb-document-grid">
+              <figure class="pcb-document-card">
+                <a class="pcb-document-media" href="pcb-assets/mcu-schematic.pdf" target="_blank" rel="noopener" aria-label="MCU 및 전원 회로도 원본 PDF 열기">
+                  <img src="pcb-assets/mcu-schematic.png" alt="MCU, 전원 변환, CAN 통신과 인터페이스를 포함한 회로도" loading="lazy">
+                  <span>원본 PDF ↗</span>
+                </a>
+                <figcaption><span>Schematic</span><strong>제어·전원·통신 회로</strong></figcaption>
+              </figure>
+              <figure class="pcb-document-card pcb-artwork-card">
+                <a class="pcb-document-media" href="pcb-assets/mcu-artwork.pdf" target="_blank" rel="noopener" aria-label="MCU 및 전원 PCB artwork 원본 PDF 열기">
+                  <img src="pcb-assets/mcu-artwork.png" alt="MCU, 전원 및 통신 회로가 배치된 PCB artwork" loading="lazy">
+                  <span>원본 PDF ↗</span>
+                </a>
+                <figcaption><span>PCB Artwork</span><strong>제어·전원·통신 보드 배치</strong></figcaption>
+              </figure>
+            </div>
+          </article>
+        </div>
+
+        <section class="pcb-specifications" aria-labelledby="pcb-spec-title">
+          <header class="pcb-spec-head">
+            <div>
+              <p>Board Specifications</p>
+              <h4 id="pcb-spec-title">보드별 핵심 사양</h4>
+            </div>
+            <span>Implemented Hardware</span>
+          </header>
+          <div class="pcb-spec-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Board</th>
+                  <th scope="col">Main IC</th>
+                  <th scope="col">PCB</th>
+                  <th scope="col">Interface</th>
+                  <th scope="col">Implementation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Capacitive Sensor</th>
+                  <td>FDC2214</td>
+                  <td>2 Layer</td>
+                  <td>I²C</td>
+                  <td>Single-ended electrode · Active Shield</td>
+                </tr>
+                <tr>
+                  <th scope="row">ToF Sensor</th>
+                  <td>VL53L1CX</td>
+                  <td>2 Layer</td>
+                  <td>I²C</td>
+                  <td>중앙 센서 배치 · 직접 거리 입력</td>
+                </tr>
+                <tr>
+                  <th scope="row">MCU / Power</th>
+                  <td>STM32F722RET</td>
+                  <td>4 Layer</td>
+                  <td>I²C · CAN</td>
+                  <td>100 Hz · 12 V → 5 V → 3.3 V</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="pcb-system-architecture" aria-labelledby="pcb-architecture-title">
+          <header class="pcb-architecture-head">
+            <div>
+              <p>System Architecture</p>
+              <h4 id="pcb-architecture-title">센서 보드 연결 구조</h4>
+            </div>
+            <span>2 Sensor Inputs</span>
+          </header>
+
+          <div class="pcb-architecture-canvas" role="img" aria-label="Robot Controller와 MCU 및 Power PCB, 정전용량 및 ToF PCB를 각각 포함한 두 개의 센서 모듈 간 전원 및 양방향 통신 연결 구조">
+            <svg viewBox="0 0 1200 590" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <marker id="arch-arrow-dark" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto-start-reverse">
+                  <path d="M0,0 L9,4.5 L0,9 Z" fill="#27313b"/>
+                </marker>
+                <marker id="arch-arrow-blue" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+                  <path d="M0,0 L9,4.5 L0,9 Z" fill="#315cff"/>
+                </marker>
+                <marker id="arch-arrow-red" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+                  <path d="M0,0 L9,4.5 L0,9 Z" fill="#e34242"/>
+                </marker>
+                <filter id="arch-shadow" x="-20%" y="-20%" width="140%" height="150%">
+                  <feDropShadow dx="0" dy="7" stdDeviation="8" flood-color="#111820" flood-opacity=".11"/>
+                </filter>
+              </defs>
+
+              <rect x="455" y="28" width="290" height="82" rx="8" fill="#273544" filter="url(#arch-shadow)"/>
+              <text x="600" y="61" text-anchor="middle" class="arch-box-title arch-text-light">Robot Controller / PC</text>
+              <text x="600" y="87" text-anchor="middle" class="arch-box-sub arch-text-light">Robot Control Application</text>
+
+              <path d="M600 110 V208" class="arch-line arch-line-can" marker-start="url(#arch-arrow-dark)" marker-end="url(#arch-arrow-dark)"/>
+              <rect x="626" y="137" width="154" height="48" rx="6" class="arch-label-bg"/>
+              <text x="703" y="157" text-anchor="middle" class="arch-line-label arch-label-dark">CAN · Bidirectional</text>
+              <text x="703" y="174" text-anchor="middle" class="arch-line-note">100 Hz</text>
+
+              <rect x="395" y="208" width="410" height="116" rx="10" class="arch-board arch-board-main" filter="url(#arch-shadow)"/>
+              <text x="600" y="247" text-anchor="middle" class="arch-box-title">MCU &amp; Power PCB</text>
+              <text x="600" y="276" text-anchor="middle" class="arch-box-sub">STM32F722RET</text>
+              <text x="600" y="300" text-anchor="middle" class="arch-box-note">12 V → 5 V → 3.3 V</text>
+
+              <path d="M1098 266 H806" class="arch-line arch-line-power" marker-end="url(#arch-arrow-red)"/>
+              <text x="1038" y="247" text-anchor="middle" class="arch-line-label arch-label-red">12 V DC Input</text>
+
+              <!-- I²C: symmetric sensor-to-MCU paths; label is kept outside the wiring. -->
+              <path d="M220 430 V352 H520 V324" class="arch-line arch-line-data" marker-end="url(#arch-arrow-blue)"/>
+              <path d="M980 430 V352 H680 V324" class="arch-line arch-line-data" marker-end="url(#arch-arrow-blue)"/>
+              <rect x="42" y="334" width="154" height="36" rx="6" class="arch-label-bg"/>
+              <text x="119" y="357" text-anchor="middle" class="arch-line-label arch-label-blue">I²C Sensor Data</text>
+
+              <!-- Power: symmetric MCU-to-sensor paths; label is kept outside the wiring. -->
+              <path d="M560 324 V394 H392 V430" class="arch-line arch-line-power" marker-end="url(#arch-arrow-red)"/>
+              <path d="M640 324 V394 H808 V430" class="arch-line arch-line-power" marker-end="url(#arch-arrow-red)"/>
+              <rect x="820" y="376" width="158" height="36" rx="6" class="arch-label-bg"/>
+              <text x="899" y="399" text-anchor="middle" class="arch-line-label arch-label-red">5 V / 3.3 V Power</text>
+
+              <rect x="76" y="430" width="460" height="126" rx="10" class="arch-board arch-board-sensor" filter="url(#arch-shadow)"/>
+              <rect x="94" y="447" width="78" height="24" rx="12" class="arch-sensor-tag"/>
+              <text x="133" y="463" text-anchor="middle" class="arch-tag-text">SENSOR 01</text>
+              <rect x="96" y="483" width="198" height="54" rx="7" class="arch-sensor-unit arch-sensor-unit-cap"/>
+              <text x="195" y="505" text-anchor="middle" class="arch-sensor-unit-title">Capacitive Sensor PCB</text>
+              <text x="195" y="525" text-anchor="middle" class="arch-sensor-unit-note">FDC2214</text>
+              <rect x="310" y="483" width="206" height="54" rx="7" class="arch-sensor-unit arch-sensor-unit-tof"/>
+              <text x="413" y="505" text-anchor="middle" class="arch-sensor-unit-title">ToF Sensor PCB</text>
+              <text x="413" y="525" text-anchor="middle" class="arch-sensor-unit-note">VL53L1CX</text>
+
+              <rect x="664" y="430" width="460" height="126" rx="10" class="arch-board arch-board-sensor" filter="url(#arch-shadow)"/>
+              <rect x="682" y="447" width="78" height="24" rx="12" class="arch-sensor-tag"/>
+              <text x="721" y="463" text-anchor="middle" class="arch-tag-text">SENSOR 02</text>
+              <rect x="684" y="483" width="198" height="54" rx="7" class="arch-sensor-unit arch-sensor-unit-cap"/>
+              <text x="783" y="505" text-anchor="middle" class="arch-sensor-unit-title">Capacitive Sensor PCB</text>
+              <text x="783" y="525" text-anchor="middle" class="arch-sensor-unit-note">FDC2214</text>
+              <rect x="898" y="483" width="206" height="54" rx="7" class="arch-sensor-unit arch-sensor-unit-tof"/>
+              <text x="1001" y="505" text-anchor="middle" class="arch-sensor-unit-title">ToF Sensor PCB</text>
+              <text x="1001" y="525" text-anchor="middle" class="arch-sensor-unit-note">VL53L1CX</text>
+
+              <g transform="translate(38 42)">
+                <rect width="178" height="126" rx="8" class="arch-legend-bg"/>
+                <line x1="18" y1="31" x2="58" y2="31" class="arch-line arch-line-power"/>
+                <text x="72" y="35" class="arch-legend-text">Power</text>
+                <line x1="18" y1="64" x2="58" y2="64" class="arch-line arch-line-data"/>
+                <text x="72" y="68" class="arch-legend-text">Sensor Data</text>
+                <line x1="18" y1="97" x2="58" y2="97" class="arch-line arch-line-can"/>
+                <text x="72" y="101" class="arch-legend-text">Robot Comm.</text>
+              </g>
+            </svg>
+          </div>
+        </section>
+      </article>
+
+      <div class="hardware-integration-grid">
+      <article class="tech-chapter stack-chapter" aria-labelledby="stack-title">
+        <header class="chapter-head">
+          <span>01—2</span>
+          <div>
+            <p>센싱 구성</p>
+            <h3 id="stack-title">근접센서 구조</h3>
+          </div>
+          <p>
+            적층 구조를 통해 정전용량 센싱 영역을 전방으로 형성하면서, 동일한 센싱
+            면의 ToF 센서가 명확한 시야각을 확보하도록 구성했습니다.
+          </p>
+        </header>
+
+        <figure class="figure-panel configuration-figure">
+          <div class="configuration-window">
+            <img
+              src="sensor-assets/proximity-sensor-configuration.png"
+              alt="전방 지향 정전용량 전기장과 중앙 ToF 시야각을 보여주는 센서 단면"
+              loading="lazy"
+            >
+          </div>
+          <figcaption>
+            전방 지향 정전용량 전기장 · 중앙 ToF 시야각 · 센서 적층 구조
+          </figcaption>
+        </figure>
+      </article>
+
+      <article class="tech-chapter mounting-chapter" aria-labelledby="mounting-title">
+        <header class="chapter-head">
+          <span>01—3</span>
+          <div>
+            <p>기구 인터페이스</p>
+            <h3 id="mounting-title">모듈형 장착 구조</h3>
+          </div>
+          <p>
+            센서 조립체와 커넥터·장착 조립체를 분리했습니다. 센서 모듈은 그대로
+            유지하고, 교체 가능한 지지부만 각 로봇 링크 형상에 맞게 변경했습니다.
+          </p>
+        </header>
+
+        <figure class="figure-panel mounting-figure">
+          <img
+            src="module-design.png"
+            alt="센서 모듈과 교체 가능한 커넥터 조립체의 분해도"
+            loading="lazy"
+          >
+          <div class="module-breakdown">
+            <div class="design-decisions">
+              <p>핵심 설계 기준</p>
+              <ul class="keyword-list">
+                <li>유지보수성</li>
+                <li>다종 로봇 적용성</li>
+                <li>조립·배선 용이성</li>
+              </ul>
+            </div>
+          </div>
+          <figcaption>모듈형 센서–커넥터 구조</figcaption>
+        </figure>
+
+      </article>
+      </div>
+
+      <div class="deployment-validation">
+          <header class="validation-head">
+            <p>다종 로봇 적용</p>
+            <div>
+              <h4>하나의 센서 구조,<br>세 종류의 로봇</h4>
+              <p>
+                Indy7, UR10, RB10에 동일한 센서 모듈을 사용하고, 서로 다른 링크
+                형상과 치수에 맞춰 로봇별 지지부와 체결 구조만 변경했습니다.
+              </p>
+            </div>
+          </header>
+
+          <div class="deployment-grid">
+            <figure>
+              <div class="robot-image">
+                <img
+                  src="sensor-assets/robot-indy7.png"
+                  alt="Indy7에 장착된 공통 센서 모듈"
+                  loading="lazy"
+                >
+              </div>
+              <figcaption>
+                <span>01</span>
+                <div>
+                  <strong>Indy7</strong>
+                </div>
+              </figcaption>
+            </figure>
+            <figure>
+              <div class="robot-image">
+                <img
+                  src="sensor-assets/robot-ur10.png"
+                  alt="UR10에 장착된 공통 센서 모듈"
+                  loading="lazy"
+                >
+              </div>
+              <figcaption>
+                <span>02</span>
+                <div>
+                  <strong>UR10</strong>
+                </div>
+              </figcaption>
+            </figure>
+            <figure>
+              <div class="robot-image">
+                <img
+                  src="sensor-assets/robot-rb10.png"
+                  alt="RB10에 장착된 공통 센서 모듈"
+                  loading="lazy"
+                >
+              </div>
+              <figcaption>
+                <span>03</span>
+                <div>
+                  <strong>RB10</strong>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+
+          <p class="chapter-conclusion deployment-conclusion">
+            세 종류의 로봇에 적용해 모듈형 구조의 목적을 확인했습니다.
+            <strong>센서 모듈은 유지하고 로봇별 장착 인터페이스만 변경했습니다.</strong>
+          </p>
+      </div>
+    </section>
+
+    <section class="sensor-section processing-section" aria-labelledby="fusion-title">
+      <header class="sensor-section-head">
+        <div class="section-index">
+          <span>02</span>
+          <p>신호 처리 및 융합</p>
+        </div>
+        <div>
+          <h2 id="fusion-title">데이터 처리<br>프레임워크</h2>
+          <p class="section-subtitle">필터링 · 거리 보정 · 센서 융합</p>
+          <p class="section-intro">
+            온도 영향 보상과 Adaptive EMA로 정전용량 응답을 안정화하고, 비선형
+            보정을 통해 거리로 변환했습니다. 이후 거리 구간에 따른 각 센서의
+            불확실성을 반영해 정전용량 거리와 ToF 측정값을 융합했습니다.
+          </p>
+        </div>
+      </header>
+
+      <div class="processing-overview" aria-label="센서 데이터 처리 단계 요약">
+        <article>
+          <span>01</span>
+          <div>
+            <strong>온도 영향 보상</strong>
+            <p>Twin circuit으로 환경 변화 성분 제거</p>
+          </div>
+          <b>변동성 98.83% 개선</b>
+        </article>
+        <article>
+          <span>02</span>
+          <div>
+            <strong>Adaptive EMA</strong>
+            <p>신호 변화량에 따른 적응형 평활</p>
+          </div>
+          <b>Noise STD 61% ↓</b>
+        </article>
+        <article>
+          <span>03</span>
+          <div>
+            <strong>불확실성 기반 융합</strong>
+            <p>정전용량–ToF 거리의 가중 결합</p>
+          </div>
+          <b>전체 구간 96.77%</b>
+        </article>
+      </div>
+
+      <article class="live-sensor-output" aria-labelledby="live-output-title">
+        <header class="live-sensor-output-head">
+          <div>
+            <span>LIVE SENSOR OUTPUT</span>
+            <h3 id="live-output-title">실시간 센서 출력 확인</h3>
+          </div>
+          <p>
+            물체 접근에 따른 정전용량 raw 응답과 변환된 거리값을
+            실시간 대시보드에서 함께 확인했습니다.
+          </p>
+        </header>
+
+        <div class="live-sensor-output-stage" data-synchronized-videos>
+          <figure class="live-output-card live-output-overview">
+            <div class="live-output-video">
+              <video class="live-output-sync" autoplay muted loop playsinline controls preload="none">
+                <source src="sensor-assets/realtime-sensor-overview.mp4" type="video/mp4">
+                브라우저에서 MP4 영상을 재생할 수 없습니다.
+              </video>
+              <span class="live-output-badge">01 · Experiment</span>
+            </div>
+            <figcaption>
+              <strong>실제 센서 실험</strong>
+              <span>센서 접근과 측정 환경</span>
+            </figcaption>
+          </figure>
+
+          <div class="live-output-zoom" aria-hidden="true">
+            <span>화면 확대</span>
+            <i>→</i>
+          </div>
+
+          <figure class="live-output-card live-output-detail">
+            <div class="live-output-video">
+              <video class="live-output-sync" autoplay muted loop playsinline controls preload="none">
+                <source src="sensor-assets/realtime-dashboard-detail.mp4" type="video/mp4">
+                브라우저에서 MP4 영상을 재생할 수 없습니다.
+              </video>
+              <span class="live-output-badge">02 · Dashboard Detail</span>
+            </div>
+            <figcaption>
+              <strong>Raw 응답 → 거리 출력</strong>
+              <span>실시간 raw 추이 · 거리 추이 · raw–거리 응답</span>
+            </figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="processing-block result-block" aria-labelledby="temperature-result-title">
+        <header class="chapter-head">
+          <span>02—1</span>
+          <div>
+            <p>온도 영향 보상 결과</p>
+            <h3 id="temperature-result-title">온도 변화에 따른 신호 보상</h3>
+          </div>
+          <p>
+            환경 변화만 감지하는 Twin LC 회로를 기준으로 센싱 신호의
+            온도 영향을 보상했습니다.
+          </p>
+        </header>
+
+        <div class="temperature-pair-grid">
+          <figure class="temperature-pair-card temperature-principle-card">
+            <header class="ema-card-head">
+              <span>01</span>
+              <strong>Twin circuit 기반 보상 원리</strong>
+            </header>
+            <div class="temperature-pair-visual">
+              <img
+                src="sensor-assets/temperature-compensation-algorithm.png"
+                alt="Twin circuit과 선형 회귀를 이용해 정전용량 신호의 온도 영향을 보상하는 과정"
+                loading="lazy"
+              >
+            </div>
+            <figcaption>
+              비접근 구간의 센싱·보상 채널 관계를 추정하고, 센싱 신호에서 환경 변화 성분을 제거했습니다.
+            </figcaption>
+          </figure>
+
+          <figure class="temperature-pair-card temperature-result-card">
+            <header class="ema-card-head">
+              <span>02</span>
+              <strong>온도 변화 구간의 보상 결과</strong>
+            </header>
+            <div class="temperature-pair-visual">
+              <img
+                src="sensor-assets/temperature-compensation-result.jpg"
+                alt="온도 변화에 따른 센싱 전극과 보상 전극의 정전용량 응답, 보상 신호 및 회귀 계수 변화"
+                loading="lazy"
+              >
+            </div>
+            <figcaption>
+              원신호는 온도에 따라 변했지만 보상 신호는 기준선 부근을 유지했으며, 하단에는 갱신된 회귀계수를 표시했습니다.
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="ema-key-result temperature-key-result">
+          <span>Key result</span>
+          <strong>Raw data 대비 변동성 98.83% 개선</strong>
+          <p>온도 변화에 따른 정전용량 신호의 변동을 억제해 기준선 부근의 안정적인 출력을 유지했습니다.</p>
+        </div>
+      </article>
+
+      <article class="processing-block result-block" aria-labelledby="calibration-result-title">
+        <header class="chapter-head">
+          <span>02—2</span>
+          <div>
+            <p>정전용량 신호 안정화</p>
+            <h3 id="calibration-result-title">Adaptive EMA Filter</h3>
+          </div>
+          <p>
+            신호 변화량에 따라 평활 계수 α를 조절해 안정 구간의 노이즈를 줄이면서,
+            물체가 접근하는 구간의 거리 변화는 빠르게 추종했습니다.
+          </p>
+        </header>
+
+        <div class="ema-dashboard">
+          <section class="ema-comparison-card" aria-labelledby="ema-comparison-title">
+            <header class="ema-card-head">
+              <span>01</span>
+              <strong id="ema-comparison-title">필터 적용 전후 비교</strong>
+            </header>
+
+            <div
+              class="calibration-comparison"
+              role="group"
+              aria-label="Adaptive EMA 적용 전후의 보정된 정전용량 거리 비교"
+            >
+              <figure class="calibration-panel calibration-panel-before">
+                <div class="calibration-plot">
+                  <img
+                    src="sensor-assets/distance-output-calibration.png"
+                    alt="필터를 적용하지 않은 정전용량 거리 출력"
+                    loading="lazy"
+                  >
+                </div>
+                <figcaption>필터 미적용</figcaption>
+              </figure>
+              <figure class="calibration-panel calibration-panel-after">
+                <div class="calibration-plot">
+                  <img
+                    src="sensor-assets/distance-output-calibration.png"
+                    alt="Adaptive EMA를 적용한 정전용량 거리 출력"
+                    loading="lazy"
+                  >
+                </div>
+                <figcaption>Adaptive EMA 적용</figcaption>
+              </figure>
+            </div>
+
+            <div class="ema-quantitative" aria-label="Adaptive EMA 정량 비교">
+              <strong>정량 성능 비교</strong>
+              <div class="ema-metric-table">
+                <div class="ema-metric-row ema-metric-head" aria-hidden="true">
+                  <span>지표</span>
+                  <span>필터 미적용</span>
+                  <span>Adaptive EMA</span>
+                  <span>개선율</span>
+                </div>
+                <div class="ema-metric-row">
+                  <strong>Noise STD</strong>
+                  <span>10.51 mm</span>
+                  <span>4.12 mm</span>
+                  <b>61% ↓</b>
+                </div>
+                <div class="ema-metric-row">
+                  <strong>RMSE</strong>
+                  <span>22.54 mm</span>
+                  <span>10.81 mm</span>
+                  <b>52% ↓</b>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <aside class="ema-method-card" aria-labelledby="ema-method-title">
+            <header class="ema-card-head">
+              <span>02</span>
+              <strong id="ema-method-title">Adaptive EMA 적용 원리</strong>
+            </header>
+
+            <div class="ema-equation-block">
+              <span>Update equation</span>
+              <p>μ<sub>k</sub> = (1 − α<sub>k</sub>) μ<sub>k−1</sub> + α<sub>k</sub> ΔC<sub>k</sub></p>
+            </div>
+
+            <div class="ema-rule-block">
+              <span>신호 변화량 기반 α 조절</span>
+              <p>Δk = |ΔC<sub>k</sub> − μ<sub>k−1</sub>|</p>
+              <div class="ema-rule-grid">
+                <article>
+                  <strong>변화량이 작을 때</strong>
+                  <b>α<sub>slow</sub></b>
+                  <p>평활 강도를 높여<br>노이즈 감소</p>
+                </article>
+                <article>
+                  <strong>변화량이 클 때</strong>
+                  <b>α<sub>fast</sub></b>
+                  <p>필터 응답을 높여<br>거리 변화 추종</p>
+                </article>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <div class="ema-key-result">
+          <span>Key result</span>
+          <strong>노이즈 61% 감소</strong>
+          <p>안정 구간의 출력 변동을 줄이면서 접근 구간의 빠른 거리 변화는 유지했습니다.</p>
+        </div>
+      </article>
+
+      <article class="processing-block result-block" aria-labelledby="fusion-result-title">
+        <header class="chapter-head">
+          <span>02—3</span>
+          <div>
+            <p>센서 융합 설계 및 결과</p>
+            <h3 id="fusion-result-title">불확실성 기반 거리 융합</h3>
+          </div>
+          <p>
+            실시간 보정된 정전용량 거리에 1차 Taylor 근사를 적용해 거리 불확실성을
+            추정하고, 두 센서의 시야가 겹치는 영역에서 ToF 측정값과 Gaussian
+            분포로 결합했습니다.
+          </p>
+        </header>
+
+        <div class="fusion-single-row">
+          <figure class="fusion-framework-panel">
+            <header class="ema-card-head">
+              <span>01</span>
+              <strong>전체 데이터 처리 및 센서 융합 프레임워크</strong>
+            </header>
+            <div class="fusion-framework-image">
+              <img
+                src="sensor-assets/data-processing-framework.png"
+                alt="온도 영향 보상과 Adaptive EMA부터 실시간 거리 보정, 불확실성 모델링, Gaussian 기반 정전용량–ToF 융합까지의 전체 프레임워크"
+                loading="lazy"
+              >
+            </div>
+            <figcaption>
+              정전용량 거리의 불확실성을 추정하고, Gaussian 기반 가중 결합으로 ToF 측정값과 하나의 거리 출력으로 통합했습니다.
+            </figcaption>
+          </figure>
+
+          <section class="fusion-results-panel" aria-labelledby="fusion-evidence-title">
+            <header class="ema-card-head">
+              <span>02</span>
+              <strong id="fusion-evidence-title">거리 구간별 융합 결과</strong>
+            </header>
+
+            <div class="fusion-result-gallery">
+              <figure class="fusion-result-overview">
+                <img
+                  src="sensor-assets/Fused_tof_cap_all.png"
+                  alt="0에서 300 mm까지의 기준 거리, 정전용량 거리, ToF 거리와 융합 거리 출력"
+                  loading="lazy"
+                >
+                <figcaption>전체 구간 · 0–300 mm</figcaption>
+              </figure>
+
+              <div class="fusion-result-details">
+                <figure>
+                  <img
+                    src="sensor-assets/Fused_tof_cap_30_20.png"
+                    alt="200에서 300 mm 원거리 구간의 센서 융합 결과"
+                    loading="lazy"
+                  >
+                  <figcaption>원거리 · 200–300 mm</figcaption>
+                </figure>
+                <figure>
+                  <img
+                    src="sensor-assets/Fused_tof_cap_20_10.png"
+                    alt="100에서 200 mm 중거리 구간의 센서 융합 결과"
+                    loading="lazy"
+                  >
+                  <figcaption>중거리 · 100–200 mm</figcaption>
+                </figure>
+                <figure>
+                  <img
+                    src="sensor-assets/Fused_tof_cap_10_0.png"
+                    alt="0에서 100 mm 근거리 구간의 센서 융합 결과"
+                    loading="lazy"
+                  >
+                  <figcaption>근거리 · 0–100 mm</figcaption>
+                </figure>
+              </div>
+            </div>
+          </section>
+
+          <section class="fusion-quantitative" aria-label="거리 구간별 센서 정확도 비교">
+            <header class="ema-card-head">
+              <span>03</span>
+              <strong>정량 성능 비교</strong>
+            </header>
+            <div class="fusion-accuracy-scroll">
+              <div class="fusion-accuracy-table">
+                <div class="fusion-accuracy-row fusion-accuracy-head" aria-hidden="true">
+                  <span>센서 출력</span>
+                  <span>원거리<br>200–300 mm</span>
+                  <span>중거리<br>100–200 mm</span>
+                  <span>근거리<br>0–100 mm</span>
+                  <span>전체<br>0–300 mm</span>
+                </div>
+                <div class="fusion-accuracy-row">
+                  <strong>정전용량 거리</strong>
+                  <span>89.96%</span>
+                  <span>96.13%</span>
+                  <span>98.82%</span>
+                  <span>95.93%</span>
+                </div>
+                <div class="fusion-accuracy-row">
+                  <strong>ToF 거리</strong>
+                  <span>98.78%</span>
+                  <span>98.22%</span>
+                  <span>89.10%</span>
+                  <span>96.63%</span>
+                </div>
+                <div class="fusion-accuracy-row fusion-output-row">
+                  <strong>융합 거리</strong>
+                  <b>98.76%</b>
+                  <b>98.87%</b>
+                  <b>96.45%</b>
+                  <b>96.77%</b>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </article>
+    </section>
+
+    <section class="project-summary" id="project-summary" aria-label="프로젝트 결론">
+      <p>Project takeaway</p>
+      <h2>로봇별 장착부는 바꾸되, 센싱 하드웨어와 거리 추정 파이프라인은 하나로 유지했습니다.</h2>
+      <div><span>3 Robot Platforms</span><span>20–300 mm Evaluation</span><span>Capacitive + ToF Fusion</span></div>
+    </section>
+
+    <a class="next-project" href="self-detection-compensation.html">
+      <span>Next project</span>
+      <strong>Self-Detection Compensation →</strong>
+    </a>
+
+    <footer class="project-footer">
+      <span>© 2026 Song Youngbin</span>
+      <a href="../index.html">Home ↑</a>
+    </footer>
+  </main>
+  <script>
+    document.querySelectorAll("[data-synchronized-videos]").forEach((group) => {
+      const videos = [...group.querySelectorAll(".live-output-sync")];
+      const [master, detail] = videos;
+      if (!master || !detail) return;
+
+      const alignDetail = () => {
+        if (!Number.isFinite(master.currentTime) || !Number.isFinite(detail.currentTime)) return;
+        if (Math.abs(master.currentTime - detail.currentTime) > 0.16) {
+          detail.currentTime = master.currentTime;
+        }
+      };
+
+      master.addEventListener("timeupdate", alignDetail);
+      master.addEventListener("seeking", alignDetail);
+      master.addEventListener("play", () => detail.play().catch(() => {}));
+      master.addEventListener("pause", () => detail.pause());
+      detail.addEventListener("play", () => master.play().catch(() => {}));
+      detail.addEventListener("pause", () => {
+        if (!master.paused) master.pause();
+      });
+    });
+  </script>
+
+</body>
+</html>
