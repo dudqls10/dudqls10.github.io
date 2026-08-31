@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#08090b">
-    <meta name="description" content="Diffusion Policy, 근접센서 기반 RMPflow, action‑conditioned latent dynamics와 LPB guidance를 연결한 송영빈의 RB10 실로봇 연구입니다.">
+    <meta name="description" content="Diffusion Policy, robot-mounted proximity sensing, RMPflow, and LPB guidance for safe task execution and recovery on RB10.">
     <link rel="preload" href="interactive-diffusion-assets/system-overview.webp" as="image" type="image/webp">
     <link rel="stylesheet" href="../assets/style.css">
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -13,17 +13,43 @@
     <link rel="icon" href="../favicon.svg">
     <script src="../assets/site.js" defer></script>
     <title>Interactive Diffusion Policy | 송영빈</title>
+    <style>
+      .idp-v3{--idp-blue:#2f5ce5;--idp-soft:rgba(47,92,229,.08);--idp-line:rgba(22,26,32,.13);--idp-muted:#69717a;--idp-panel:#f7f8fb}
+      .idp-v3 .sensor-hero-tagline{max-width:820px;font-size:clamp(19px,2vw,26px);line-height:1.45;letter-spacing:-.025em}
+      .idp-v3 .project-lead{max-width:840px}
+      .idp-v3 .idp-story-rail{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));max-width:1180px;margin:0 auto 36px;padding:0 24px}
+      .idp-v3 .idp-story-rail article{position:relative;padding:20px;min-height:128px;border-top:1px solid var(--idp-line);border-bottom:1px solid var(--idp-line);background:#fff}
+      .idp-v3 .idp-story-rail article:first-child{border-left:1px solid var(--idp-line);border-radius:18px 0 0 18px}.idp-v3 .idp-story-rail article:last-child{border-right:1px solid var(--idp-line);border-radius:0 18px 18px 0}
+      .idp-v3 .idp-story-rail article:not(:last-child)::after{content:'→';position:absolute;z-index:2;top:50%;right:-14px;display:grid;width:28px;height:28px;place-items:center;transform:translateY(-50%);border:1px solid var(--idp-line);border-radius:50%;background:#fff;color:var(--idp-blue)}
+      .idp-v3 .idp-story-rail span,.idp-v3 .idp-kicker,.idp-v3 .idp-step span{font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--idp-blue);font-size:10px}
+      .idp-v3 .idp-story-rail span{display:block;margin-bottom:16px}.idp-v3 .idp-story-rail strong{display:block;font-size:16px;line-height:1.3}.idp-v3 .idp-story-rail p{margin:7px 0 0;color:var(--idp-muted);font-size:12px;line-height:1.55}
+      .idp-v3 .idp-feature-video{margin:0;overflow:hidden;border:1px solid var(--idp-line);border-radius:24px;background:#090b10;box-shadow:0 26px 70px rgba(30,48,90,.14)}
+      .idp-v3 .idp-feature-video video{display:block;width:100%;max-height:700px;background:#0b0d12;object-fit:cover}.idp-v3 .idp-feature-video figcaption{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:20px 24px;background:#fff}.idp-v3 .idp-feature-video figcaption strong{display:block;margin-bottom:4px;font-size:17px}.idp-v3 .idp-feature-video figcaption p{margin:0;color:var(--idp-muted);font-size:13px}.idp-v3 .idp-feature-video figcaption span{padding:7px 11px;border:1px solid rgba(47,92,229,.22);border-radius:999px;background:var(--idp-soft);color:var(--idp-blue);font-family:var(--font-mono);font-size:10px}
+      .idp-v3 .idp-gap-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px}.idp-v3 .idp-gap-card{padding:24px;border:1px solid var(--idp-line);border-radius:18px;background:#fff}.idp-v3 .idp-gap-card.is-intervention{border-color:rgba(47,92,229,.22);background:linear-gradient(135deg,var(--idp-soft),#fff 55%)}.idp-v3 .idp-kicker{display:block;margin-bottom:14px}.idp-v3 .idp-gap-card h3{margin:0 0 9px;font-size:clamp(22px,2.5vw,32px);line-height:1.15;letter-spacing:-.04em}.idp-v3 .idp-gap-card p{margin:0;color:var(--idp-muted)}
+      .idp-v3 .idp-quote{margin:30px 0 0;padding:28px 30px;border-left:4px solid var(--idp-blue);background:var(--idp-panel);font-family:var(--font-display);font-size:clamp(24px,3.2vw,42px);font-weight:590;line-height:1.18;letter-spacing:-.045em}
+      .idp-v3 .idp-architecture{display:grid;grid-template-columns:minmax(180px,.85fr) 50px minmax(350px,1.55fr) 50px minmax(180px,.85fr);gap:12px;align-items:stretch}.idp-v3 .idp-arch-node{display:flex;min-height:190px;flex-direction:column;justify-content:center;padding:26px;border:1px solid var(--idp-line);border-radius:20px;background:#fff}.idp-v3 .idp-arch-node.is-rmp{border-color:rgba(47,92,229,.22);background:linear-gradient(145deg,#fff 25%,var(--idp-soft))}.idp-v3 .idp-arch-node small{margin-bottom:10px;color:var(--idp-blue);font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em}.idp-v3 .idp-arch-node strong{font-size:clamp(22px,2.2vw,31px);line-height:1.15;letter-spacing:-.035em}.idp-v3 .idp-arch-node p{margin:10px 0 0;color:var(--idp-muted);font-size:13px}.idp-v3 .idp-arch-arrow{display:grid;place-items:center;color:var(--idp-blue);font-size:26px}.idp-v3 .idp-rmp-solve{display:grid;gap:9px;margin-top:18px}.idp-v3 .idp-rmp-solve div{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 12px;border:1px solid rgba(22,26,32,.09);border-radius:12px;background:rgba(255,255,255,.78)}.idp-v3 .idp-rmp-solve span{color:var(--idp-muted);font-size:12px}.idp-v3 .idp-rmp-solve b{font-size:12px}
+      .idp-v3 .idp-principle-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}.idp-v3 .idp-principle-grid article{padding:20px;border:1px solid var(--idp-line);border-radius:16px;background:#fff}.idp-v3 .idp-principle-grid strong{display:block;margin-bottom:7px;font-size:15px}.idp-v3 .idp-principle-grid p{margin:0;color:var(--idp-muted);font-size:13px}
+      .idp-v3 .idp-detour-stage{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(300px,.75fr);gap:20px}.idp-v3 .idp-path-card{position:relative;min-height:420px;overflow:hidden;border:1px solid var(--idp-line);border-radius:22px;background:linear-gradient(rgba(47,92,229,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(47,92,229,.06) 1px,transparent 1px),#fafbfe;background-size:36px 36px}.idp-v3 .idp-path-card::before{content:'';position:absolute;left:12%;right:12%;top:50%;border-top:2px dashed rgba(22,26,32,.28)}.idp-v3 .idp-path-card::after{content:'';position:absolute;left:12%;right:12%;top:55%;height:84px;border-top:5px solid var(--idp-blue);border-radius:50% 50% 0 0;transform:translateY(-50%) rotate(-4deg)}.idp-v3 .idp-path-start,.idp-v3 .idp-path-goal,.idp-v3 .idp-path-human{position:absolute;z-index:2}.idp-v3 .idp-path-start{left:8%;top:44%}.idp-v3 .idp-path-goal{right:7%;top:44%}.idp-v3 .idp-path-human{left:48%;top:30%;display:grid;width:98px;height:98px;place-items:center;transform:translateX(-50%);border:1px solid rgba(217,71,71,.2);border-radius:50%;background:rgba(217,71,71,.08);font-size:31px}.idp-v3 .idp-path-label{padding:7px 10px;border:1px solid var(--idp-line);border-radius:999px;background:#fff;font-family:var(--font-mono);font-size:10px}.idp-v3 .idp-detour-copy{display:flex;flex-direction:column;justify-content:center;padding:28px;border:1px solid var(--idp-line);border-radius:22px;background:#fff}.idp-v3 .idp-detour-copy h3{margin:0 0 14px;font-size:30px;line-height:1.12;letter-spacing:-.04em}.idp-v3 .idp-detour-copy p{margin:0 0 16px;color:var(--idp-muted)}.idp-v3 .idp-detour-copy li{margin:6px 0;color:var(--idp-muted);font-size:13px}
+      .idp-v3 .idp-distribution{display:grid;grid-template-columns:1fr 1fr;gap:20px}.idp-v3 .idp-manifold{position:relative;min-height:350px;overflow:hidden;border:1px solid var(--idp-line);border-radius:22px;background:#fafbfe}.idp-v3 .expert-cloud{position:absolute;left:12%;top:24%;width:54%;height:47%;transform:rotate(-7deg);border:2px solid rgba(47,92,229,.34);border-radius:46% 54% 60% 40%/48% 38% 62% 52%;background:var(--idp-soft)}.idp-v3 .expert-cloud::before,.idp-v3 .expert-cloud::after{content:'••••••••';position:absolute;color:rgba(47,92,229,.65);font-size:28px;letter-spacing:7px}.idp-v3 .expert-cloud::before{left:14%;top:24%}.idp-v3 .expert-cloud::after{left:25%;top:48%}.idp-v3 .ood-point{position:absolute;right:14%;top:52%;display:grid;width:48px;height:48px;place-items:center;border:2px solid var(--idp-blue);border-radius:50%;background:#fff;color:var(--idp-blue);font-size:24px;font-weight:700}.idp-v3 .manifold-label,.idp-v3 .ood-label{position:absolute;font-family:var(--font-mono);font-size:10px}.idp-v3 .manifold-label{left:15%;top:16%;color:var(--idp-blue)}.idp-v3 .ood-label{right:8%;top:70%;color:var(--idp-muted)}.idp-v3 .idp-shift-copy{display:flex;flex-direction:column;justify-content:center;padding:30px;border:1px solid rgba(47,92,229,.22);border-radius:22px;background:linear-gradient(150deg,var(--idp-soft),#fff 58%)}.idp-v3 .idp-shift-copy h3{margin:0 0 14px;font-size:clamp(30px,3.3vw,46px);line-height:1.05;letter-spacing:-.05em}.idp-v3 .idp-shift-copy p{margin:0;color:var(--idp-muted)}
+      .idp-v3 .idp-lpb-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.idp-v3 .idp-lpb-card{position:relative;padding:22px;border:1px solid var(--idp-line);border-radius:18px;background:#fff}.idp-v3 .idp-lpb-card:not(:last-child)::after{content:'→';position:absolute;right:-13px;top:29px;z-index:2;display:grid;width:25px;height:25px;place-items:center;border:1px solid var(--idp-line);border-radius:50%;background:#fff;color:var(--idp-blue)}.idp-v3 .idp-lpb-card.is-guide{border-color:rgba(47,92,229,.22);background:var(--idp-soft)}.idp-v3 .idp-lpb-card span{display:block;margin-bottom:18px;color:var(--idp-blue);font-family:var(--font-mono);font-size:10px}.idp-v3 .idp-lpb-card h3{margin:0 0 8px;font-size:21px}.idp-v3 .idp-lpb-card p{margin:0;color:var(--idp-muted);font-size:13px}.idp-v3 .idp-system-figure{margin-top:22px}.idp-v3 .idp-guidance-note{margin-top:18px;padding:20px 22px;border:1px solid var(--idp-line);border-radius:16px;background:#fff}.idp-v3 .idp-guidance-note strong{display:block;margin-bottom:6px}.idp-v3 .idp-guidance-note p{margin:0;color:var(--idp-muted);font-size:13px}
+      .idp-v3 .idp-scenario{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.idp-v3 .idp-scenario-card{min-height:220px;padding:22px;border:1px solid var(--idp-line);border-radius:18px;background:#fff}.idp-v3 .idp-scenario-card:nth-child(3),.idp-v3 .idp-scenario-card:nth-child(5){border-color:rgba(47,92,229,.22);background:var(--idp-soft)}.idp-v3 .idp-step{display:flex;align-items:center;justify-content:space-between;margin-bottom:36px}.idp-v3 .idp-step b{display:grid;width:26px;height:26px;place-items:center;border-radius:50%;background:var(--idp-blue);color:#fff;font-size:10px}.idp-v3 .idp-scenario-card h3{margin:0 0 8px;font-size:22px}.idp-v3 .idp-scenario-card p{margin:0;color:var(--idp-muted);font-size:13px}
+      .idp-v3 .idp-validation-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.idp-v3 .idp-compare-card{overflow:hidden;border:1px solid var(--idp-line);border-radius:18px;background:#fff}.idp-v3 .idp-compare-card video{display:block;width:100%;aspect-ratio:16/10;background:#0b0d12;object-fit:cover}.idp-v3 .idp-compare-copy{padding:20px}.idp-v3 .idp-compare-copy>span{color:var(--idp-blue);font-family:var(--font-mono);font-size:10px}.idp-v3 .idp-compare-copy h3{margin:10px 0 8px;font-size:20px;line-height:1.2}.idp-v3 .idp-compare-copy p{margin:0;color:var(--idp-muted);font-size:13px}
+      .idp-v3 .idp-implementation{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}.idp-v3 .idp-implementation-card{padding:24px;border:1px solid var(--idp-line);border-radius:18px;background:#fff}.idp-v3 .idp-implementation-card h3{margin:0 0 15px;font-size:23px}.idp-v3 .idp-implementation-card li{margin:7px 0;color:var(--idp-muted);font-size:13px}.idp-v3 .idp-repo-stack{display:grid;gap:10px}.idp-v3 .idp-repo-stack a{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:15px 16px;border:1px solid var(--idp-line);border-radius:13px;color:inherit;text-decoration:none}.idp-v3 .idp-repo-stack a:hover{border-color:var(--idp-blue);color:var(--idp-blue)}
+      @media(max-width:980px){.idp-v3 .idp-story-rail{grid-template-columns:1fr;gap:10px}.idp-v3 .idp-story-rail article,.idp-v3 .idp-story-rail article:first-child,.idp-v3 .idp-story-rail article:last-child{min-height:auto;border:1px solid var(--idp-line);border-radius:14px}.idp-v3 .idp-story-rail article:not(:last-child)::after{display:none}.idp-v3 .idp-story-rail span{margin-bottom:8px}.idp-v3 .idp-architecture{grid-template-columns:1fr}.idp-v3 .idp-arch-arrow{min-height:34px;transform:rotate(90deg)}.idp-v3 .idp-principle-grid,.idp-v3 .idp-lpb-flow,.idp-v3 .idp-scenario,.idp-v3 .idp-validation-grid{grid-template-columns:1fr 1fr}.idp-v3 .idp-lpb-card::after{display:none}.idp-v3 .idp-detour-stage,.idp-v3 .idp-distribution,.idp-v3 .idp-implementation{grid-template-columns:1fr}}
+      @media(max-width:680px){.idp-v3 .idp-gap-grid,.idp-v3 .idp-principle-grid,.idp-v3 .idp-lpb-flow,.idp-v3 .idp-scenario,.idp-v3 .idp-validation-grid{grid-template-columns:1fr}.idp-v3 .idp-feature-video figcaption{grid-template-columns:1fr}.idp-v3 .idp-feature-video figcaption span{width:fit-content}.idp-v3 .idp-path-card{min-height:320px}.idp-v3 .idp-path-human{width:72px;height:72px;font-size:24px}}
+    </style>
   </head>
-  <body class="idp-page sensor-detail index2-preview portfolio-v2 project-v2">
+  <body class="idp-page idp-v3 sensor-detail index2-preview portfolio-v2 project-v2">
     <a class="skip-link" href="#content">본문으로 건너뛰기</a>
     <main class="project-page sensor-page" id="content">
       <header class="site-header">
         <a class="wordmark" href="../index.html">SONG YOUNGBIN</a>
         <nav class="project-quick-nav" aria-label="페이지 빠른 이동">
-          <a href="#idp-problem-title">01 Problem</a>
-          <a href="#idp-system-title">02 System</a>
-          <a href="#idp-lpb-title">03 Recovery</a>
-          <a href="#idp-demos-title">04 Demos</a>
+          <a href="#idp-gap-title">01 Gap</a>
+          <a href="#idp-rmp-title">02 Safety</a>
+          <a href="#idp-shift-title">03 OOD</a>
+          <a href="#idp-lpb-title">04 Recovery</a>
+          <a href="#idp-demos-title">05 Validation</a>
         </nav>
       </header>
 
@@ -32,262 +58,176 @@
           <a class="back-link" href="../index.html#work">← Portfolio Home</a>
           <p class="eyebrow">Task policy × proximity safety × latent recovery</p>
           <h1 id="project-title">Interactive<br>Diffusion Policy</h1>
-          <p class="sensor-hero-tagline">Learn the task · React to people · Resume after avoidance</p>
+          <p class="sensor-hero-tagline">Task execution that remains safe under human intervention</p>
           <p class="project-lead">
-            Task‑oriented Physical AI가 시연에서 task를 배우는 데 초점을 둔다면,
-            이 연구는 사람의 개입 이후에도 그 task를 끝까지 이어가는 문제를 다룹니다.
-            Diffusion Policy의 작업 생성, 근접센서·RMPflow의 즉각적인 회피, LPB의 회피 후 복귀를 하나의
-            closed loop로 연결해, 사람 곁에서도 작업 맥락을 유지하도록 설계했습니다.
+            Diffusion Policy가 task의 목적 행동을 생성하고, robot-mounted proximity sensing과 RMPflow가
+            사람의 갑작스러운 접근에 실시간으로 반응합니다. 회피로 인해 demonstration distribution에서
+            벗어난 상태에서는 LPB guidance가 다음 action generation을 expert latent 방향으로 유도해,
+            안전을 확보한 뒤에도 task를 이어갈 수 있는 closed loop를 구성했습니다.
           </p>
         </div>
         <aside class="sensor-hero-overview" aria-labelledby="scope-title">
-          <p id="scope-title" class="overview-eyebrow">프로젝트 범위</p>
+          <p id="scope-title" class="overview-eyebrow">Project scope</p>
           <dl class="project-overview">
-            <div><dt>연구 질문</dt><dd>사람을 피한 뒤에도 task를 잃지 않게 하려면?</dd></div>
-            <div><dt>담당 범위</dt><dd>RB10 closed‑loop 통합 · RMPflow 실행 계층 · LPB/OOD runtime 분석</dd></div>
-            <div><dt>검증 결과</dt><dd>사람 접근 시 실시간 국소 회피 · 회피 후 LPB 기반 task 재개</dd></div>
-            <div>
-              <dt>GitHub</dt>
-              <dd><a class="project-repo-link" href="https://github.com/Bookjean/Diffusion_policy_for_youngbin" target="_blank" rel="noopener">Diffusion_policy_for_youngbin ↗</a></dd>
-            </div>
+            <div><dt>Research question</dt><dd>사람을 안전하게 피한 뒤에도 learned task를 계속 수행할 수 있는가?</dd></div>
+            <div><dt>Robot</dt><dd>RB10 · RealSense · robot-mounted proximity sensors</dd></div>
+            <div><dt>Framework</dt><dd>Diffusion Policy · RMPflow · LPB/OOD guidance</dd></div>
+            <div><dt>Role</dt><dd>실로봇 closed-loop 통합 · proximity/RMP execution · LPB runtime 검증</dd></div>
           </dl>
         </aside>
       </section>
 
-      <section class="idp-principles" aria-label="프레임워크 핵심 역할">
-        <article><span>01</span><div><strong>Generate</strong><p>시각·로봇 상태에서 작업 행동 생성</p></div></article>
-        <article><span>02</span><div><strong>React</strong><p>근접센서 기반 실시간 국소 회피</p></div></article>
-        <article><span>03</span><div><strong>Recover</strong><p>회피 이후 latent 분포로 작업 복귀</p></div></article>
+      <section class="idp-story-rail" aria-label="전체 연구 흐름">
+        <article><span>01 · Task</span><strong>Diffusion Policy</strong><p>시연에서 learned task action을 생성</p></article>
+        <article><span>02 · Intervention</span><strong>Human approach</strong><p>학습 데이터에 없던 사람의 갑작스러운 접근</p></article>
+        <article><span>03 · Detour</span><strong>Proximity + RMPflow</strong><p>target을 유지하며 국소적으로 motion을 수정</p></article>
+        <article><span>04 · Shift</span><strong>Safe but OOD</strong><p>안전한 회피가 policy distribution shift를 생성</p></article>
+        <article><span>05 · Recovery</span><strong>LPB guidance</strong><p>expert latent 쪽으로 다음 action을 유도</p></article>
       </section>
 
-      <section class="sensor-section idp-section" aria-labelledby="idp-problem-title">
+      <section class="sensor-section idp-section" aria-labelledby="idp-gap-title">
         <header class="sensor-section-head">
-          <div class="section-index">
-            <span>01</span>
-            <p>Problem</p>
-          </div>
+          <div class="section-index"><span>01</span><p>Task policy gap</p></div>
           <div>
-            <h2 id="idp-problem-title">Task는 배웠지만,<br>회피와 복귀는 배우지 않았습니다</h2>
-            <p class="section-subtitle">Task policy → fast avoidance → task recovery</p>
+            <h2 id="idp-gap-title">Task는 배웠지만,<br>사람의 개입은 배우지 않았습니다</h2>
+            <p class="section-subtitle">Demonstrated task ≠ demonstrated intervention</p>
             <p class="section-intro">
-              Diffusion Policy는 시연된 task를 수행하지만 갑작스런 사람 접근까지 배운 것은 아닙니다.
-              회피를 학습 정책에만 맡기면 안전 반응이 카메라 관측과 반복 denoising 속도에 묶입니다.
-              그래서 즉각적인 회피와 회피 후 task 복귀를 분리했습니다.
+              Imitation-learned policy의 강점은 시연된 task를 재현하는 데 있습니다. 그러나 작업 중 사람의 손이나 팔이
+              갑자기 로봇 가까이 들어오는 상황까지 demonstration이 포괄한다고 가정할 수는 없습니다.
+              따라서 task generation과 reflex-like safety response의 책임을 분리했습니다.
             </p>
           </div>
         </header>
-        <div class="idp-problem-layout">
-          <section class="idp-task-showcase" aria-labelledby="idp-task-showcase-title">
-            <header>
-              <div>
-                <p>Task competence</p>
-                <h3 id="idp-task-showcase-title">시연 정책은<br>복잡한 task를 수행합니다.</h3>
-              </div>
-              <span>Reference task videos</span>
-            </header>
-            <div class="idp-task-reel">
-              <figure>
-                <video autoplay muted loop playsinline preload="metadata" poster="interactive-diffusion-assets/task-reference-build.webp" aria-label="두 로봇 팔이 상자를 조립하는 task-oriented Physical AI 참고 영상">
-                  <source src="interactive-diffusion-assets/task-reference-build.mp4" type="video/mp4">
-                </video>
-                <figcaption><span>01</span><div><strong>Build</strong><small>Long‑horizon assembly</small></div></figcaption>
-              </figure>
-              <figure>
-                <video autoplay muted loop playsinline preload="metadata" poster="interactive-diffusion-assets/task-reference-recovery.webp" aria-label="두 로봇 팔이 옷감을 정리하는 task-oriented Physical AI 참고 영상">
-                  <source src="interactive-diffusion-assets/task-reference-fold.mp4" type="video/mp4">
-                </video>
-                <figcaption><span>02</span><div><strong>Fold</strong><small>Deformable handling</small></div></figcaption>
-              </figure>
-              <figure>
-                <video autoplay muted loop playsinline preload="metadata" poster="interactive-diffusion-assets/task-reference-bussing.webp" aria-label="로봇 팔이 테이블 위 물체를 정리하는 task-oriented Physical AI 참고 영상">
-                  <source src="interactive-diffusion-assets/task-reference-clear.mp4" type="video/mp4">
-                </video>
-                <figcaption><span>03</span><div><strong>Clear</strong><small>Table bussing</small></div></figcaption>
-              </figure>
-            </div>
-            <p class="idp-reference-note">참고 영상 · 본 프로젝트의 실험 결과는 04 Demos에 구분해 제시했습니다.</p>
-          </section>
 
-          <section class="idp-gap-stage" aria-labelledby="idp-gap-title">
-            <header class="idp-gap-copy">
-              <p>Separated response loop</p>
-              <h3 id="idp-gap-title">빠르게 피하고,<br>task로 돌아옵니다</h3>
-              <p>
-                근접센서와 RMPflow가 사람 접근에 반응하고,
-                LPB가 회피로 달라진 상태에서 task 복귀 방향을 찾습니다.
-              </p>
-            </header>
-            <div class="idp-gap-diagram">
-              <ol class="idp-closed-loop-flow" aria-label="task 수행, 빠른 회피, task 복귀로 이어지는 반응 구조">
-                <li><span>01 · Generate</span><strong>Task execution</strong><small>Diffusion Policy</small></li>
-                <li class="is-avoidance"><span>02 · React</span><strong>Fast avoidance</strong><small>Proximity + RMPflow</small></li>
-                <li class="is-recovery"><span>03 · Recover</span><strong>Task recovery</strong><small>LPB guidance</small></li>
-              </ol>
-              <div class="idp-why-lpb">
-                <span>Why LPB</span>
-                <div>
-                  <strong>회피 후에는 policy가 보지 못한 상태가 남습니다.</strong>
-                  <p>LPB는 미래 latent를 expert reference와 비교해 task로 돌아갈 action을 guide합니다.</p>
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
-      </section>
-
-      <section class="sensor-section idp-section idp-framework-section" aria-labelledby="idp-system-title">
-        <header class="sensor-section-head">
-          <div class="section-index">
-            <span>02</span>
-            <p>System</p>
-          </div>
-          <div>
-            <h2 id="idp-system-title">생성·회피·복귀의<br>역할을 분리했습니다</h2>
-            <p class="section-subtitle">Diffusion Policy · Proximity/RMPflow · LPB guidance</p>
-            <p class="section-intro">
-              Policy가 task action을 생성하고, RMPflow가 실행 시점의 근접 위험을 회피하며,
-              LPB가 다음 계획을 expert 분포 쪽으로 유도합니다. 세 역할을 하나의 closed loop로 연결했습니다.
-            </p>
-          </div>
-        </header>
-        <figure class="idp-system-figure is-section-figure">
-          <a href="interactive-diffusion-assets/system-overview.webp" target="_blank" rel="noopener" aria-label="Interactive Diffusion Policy 전체 시스템 도식 크게 보기">
-            <img src="interactive-diffusion-assets/system-overview.webp" width="2400" height="1315" alt="전문가 시연으로 Diffusion Policy와 latent bank를 구성하고, action‑conditioned latent dynamics, LPB guidance, 근접센서 기반 RMPflow를 연결한 학습 및 closed‑loop 배포 구조">
-          </a>
+        <figure class="idp-feature-video">
+          <video autoplay muted loop playsinline controls preload="metadata" poster="interactive-diffusion-assets/task-avoidance-poster.jpg" aria-label="RB10 imitation learning 실험 영상">
+            <source src="interactive-diffusion-assets/imitation-learning.mp4" type="video/mp4">
+            <source src="interactive-diffusion-assets/task-avoidance.mp4" type="video/mp4">
+            브라우저에서 MP4 영상을 재생할 수 없습니다.
+          </video>
           <figcaption>
-            <span><b>System overview</b> Training pipeline and closed‑loop deployment</span>
-            <a href="interactive-diffusion-assets/system-overview.webp" target="_blank" rel="noopener">도식 크게 보기 ↗</a>
+            <div><strong>RB10 task execution with imitation learning</strong><p>본 프로젝트의 실제 RB10 실험 장면을 첫 화면에서 바로 보여줍니다.</p></div>
+            <span>Real robot experiment</span>
           </figcaption>
         </figure>
-        <div class="idp-system-grid">
-          <article>
-            <p>Training</p>
-            <h3>작업 정책과 복귀 dynamics를<br>서로 다른 데이터 역할로 학습</h3>
-            <ul>
-              <li><b>Expert demonstrations E</b><span>기본 Diffusion Policy와 expert latent bank의 기준 분포</span></li>
-              <li><b>Original rollouts R</b><span>정책 실행 중 관측된 실제 상태 전이</span></li>
-              <li><b>RMP recovery transitions T</b><span>회피 이후 작업으로 돌아가는 복귀 상태 전이</span></li>
-              <li><b>Action‑conditioned dynamics</b><span>현재 latent와 후보 action으로 미래 latent를 예측</span></li>
-            </ul>
-          </article>
-          <article>
-            <p>Closed‑loop deployment</p>
-            <h3>후보 행동을 먼저 평가하고<br>실행 단계에서 근접 안전을 보장</h3>
-            <ul>
-              <li><b>Observe</b><span>Workspace/Wrist RGB와 proprioception을 condition token으로 변환</span></li>
-              <li><b>Denoise</b><span>Diffusion decoder가 horizon action 후보를 반복적으로 정제</span></li>
-              <li><b>Guide</b><span>예측 미래 latent의 expert‑bank 거리를 action gradient로 반영</span></li>
-              <li><b>Execute</b><span>근접센서와 RMPflow가 최종 action을 안전하게 실행</span></li>
-            </ul>
-          </article>
+
+        <div class="idp-gap-grid">
+          <article class="idp-gap-card"><span class="idp-kicker">What the policy learned</span><h3>Task execution</h3><p>시각 관측과 robot state에서 task 목적에 맞는 action horizon을 생성합니다.</p></article>
+          <article class="idp-gap-card is-intervention"><span class="idp-kicker">What was not demonstrated</span><h3>Unexpected human intervention</h3><p>사람의 접근은 task demonstration의 본질적인 coverage 밖에 있으며 즉각적인 반응이 필요합니다.</p></article>
         </div>
-        <div class="idp-role-grid">
-          <article><span>Policy</span><h3>Task generation</h3><p>시각 관측과 로봇 상태에서 작업 목적을 담은 action chunk를 생성합니다.</p></article>
-          <article><span>RMPflow</span><h3>Local safety</h3><p>로봇 표면의 근접센서로 카메라 가림과 무관하게 가까운 접근에 반응합니다.</p></article>
-          <article><span>LPB</span><h3>Latent recovery</h3><p>후보 행동 이후의 latent를 예측하고 expert 분포에 가까워지는 방향을 계산합니다.</p></article>
-        </div>
+        <div class="idp-quote">The task was demonstrated.<br>The intervention was not.</div>
       </section>
 
-      <section class="sensor-section idp-section idp-recovery-section" aria-labelledby="idp-lpb-title">
+      <section class="sensor-section idp-section" aria-labelledby="idp-rmp-title">
         <header class="sensor-section-head">
-          <div class="section-index">
-            <span>03</span>
-            <p>LPB Recovery</p>
-          </div>
+          <div class="section-index"><span>02</span><p>Reactive safety</p></div>
           <div>
-            <h2 id="idp-lpb-title">미래 상태를 예측해<br>복귀 방향을 만듭니다</h2>
-            <p class="section-subtitle">Latent prediction · OOD cost · Guided denoising</p>
+            <h2 id="idp-rmp-title">Policy는 어디로 갈지 정하고,<br>RMPflow는 지금 어떻게 갈지 정합니다</h2>
+            <p class="section-subtitle">High-level task intent × low-level reactive execution</p>
             <p class="section-intro">
-              현재 latent와 후보 action chunk로 미래 latent를 예측하고 expert bank와의 거리를
-              계산합니다. 그 거리의 gradient를 denoising에 반영해, 회피 이후에도 정책이
-              전문가 시연 분포 가까이에서 다시 작업을 이어가도록 유도합니다.
+              사람 회피를 generative policy 내부에 다시 학습시키지 않고 execution layer로 분리했습니다.
+              Diffusion Policy의 TCP target과 robot-mounted proximity sensor의 거리 정보가 같은 RMPflow solve에 들어가며,
+              target attraction과 collision avoidance가 동시에 반영된 joint command를 생성합니다.
             </p>
           </div>
         </header>
 
-        <ol class="idp-recovery-pipeline" aria-label="LPB 복귀 추론 과정">
-          <li><span>01</span><h3>Encode</h3><p>RGB와 proprioception을 현재 상태 latent로 변환합니다.</p></li>
-          <li><span>02</span><h3>Predict</h3><p>후보 action chunk가 만들 미래 latent를 예측합니다.</p></li>
-          <li><span>03</span><h3>Measure</h3><p>Expert latent bank와의 거리를 OOD cost로 환산합니다.</p></li>
-          <li class="is-guided"><span>04</span><h3>Guide</h3><p>Action gradient를 적용해 마지막 denoising 구간을 보정합니다.</p></li>
-        </ol>
-
-        <div class="idp-guidance-bar">
-          <div>
-            <span>Guided denoising</span>
-            <strong>기본 정책은 고정하고,<br>필요한 순간의 action sampling만 보정</strong>
-          </div>
-          <p>작업 생성 능력을 보존하면서 회피로 만들어진 분포 밖 상태를 전문가 시연의 latent 분포 쪽으로 유도합니다.</p>
+        <div class="idp-architecture" aria-label="Diffusion Policy와 RMPflow 역할 분리">
+          <article class="idp-arch-node"><small>High-level policy</small><strong>Diffusion Policy</strong><p>Where should the robot go?</p></article>
+          <div class="idp-arch-arrow">→</div>
+          <article class="idp-arch-node is-rmp"><small>Low-level reactive controller</small><strong>RMPflow</strong><p>How can the robot move toward that target safely right now?</p><div class="idp-rmp-solve"><div><b>Target RMP</b><span>task progress</span></div><div><b>Collision RMP</b><span>proximity avoidance</span></div><div><b>Constraints</b><span>joint / velocity envelope</span></div></div></article>
+          <div class="idp-arch-arrow">→</div>
+          <article class="idp-arch-node"><small>Physical execution</small><strong>RB10 motion</strong><p>RMP-modified measured state becomes the next policy observation.</p></article>
         </div>
 
-        <div class="idp-design-strip" aria-label="LPB 설계 특성">
-          <article><strong>Frozen base policy</strong><p>재학습 없이 sampling 단계에서만 개입</p></article>
-          <article><strong>Action‑conditioned</strong><p>후보 행동이 만든 미래 상태를 평가</p></article>
-          <article><strong>Receding horizon</strong><p>일부 action을 실행한 뒤 새 관측으로 재계획</p></article>
+        <div class="idp-principle-grid">
+          <article><strong>Target stays active</strong><p>회피 중에도 task target을 버리는 mode switch가 아니라, collision metric과 함께 같은 solve에서 반영합니다.</p></article>
+          <article><strong>Local proximity response</strong><p>robot-mounted sensor가 로봇 표면 근처의 접근을 직접 감지해 외부 camera line-of-sight에 덜 의존합니다.</p></article>
+          <article><strong>Independent reaction rate</strong><p>policy inference 사이에서도 lower-level controller가 계속 근접 위험에 반응할 수 있도록 역할을 분리합니다.</p></article>
+        </div>
+      </section>
+
+      <section class="sensor-section idp-section" aria-labelledby="idp-detour-title">
+        <header class="sensor-section-head">
+          <div class="section-index"><span>03</span><p>Safe detour</p></div>
+          <div>
+            <h2 id="idp-detour-title">회피는 task를 중단하는 대신,<br>실행 경로를 휘게 만듭니다</h2>
+            <p class="section-subtitle">Nominal trajectory → proximity-triggered deflection → target continuation</p>
+          </div>
+        </header>
+        <div class="idp-detour-stage">
+          <div class="idp-path-card" role="img" aria-label="사람 접근 시 nominal trajectory가 RMPflow에 의해 우회 경로로 수정되는 개념도">
+            <span class="idp-path-label idp-path-start">Robot</span><span class="idp-path-label idp-path-goal">Task target</span><span class="idp-path-human">✋</span>
+          </div>
+          <article class="idp-detour-copy"><span class="idp-kicker">Motion-level interpretation</span><h3>Safe motion is a detour, not a reset.</h3><p>사람이 가까워지면 proximity-based collision term이 커져 실제 robot path가 nominal policy path에서 벗어납니다. 사람이 멀어지면 다시 task target 쪽으로 진행합니다.</p><ul><li>Policy target 유지</li><li>근접 위험에 따라 local path 수정</li><li>실제 실행 결과를 다음 observation으로 feedback</li></ul></article>
+        </div>
+      </section>
+
+      <section class="sensor-section idp-section" aria-labelledby="idp-shift-title">
+        <header class="sensor-section-head">
+          <div class="section-index"><span>04</span><p>Distribution shift</p></div>
+          <div>
+            <h2 id="idp-shift-title">로봇은 안전해졌지만,<br>policy는 낯선 상태에 놓일 수 있습니다</h2>
+            <p class="section-subtitle">Reactive safety solves one problem and creates another</p>
+            <p class="section-intro">RMPflow가 만든 회피 trajectory는 task demonstration에서 직접 학습한 trajectory가 아닙니다. 따라서 회피 후의 visual/proprioceptive state는 expert demonstration manifold 밖으로 이동할 수 있습니다.</p>
+          </div>
+        </header>
+        <div class="idp-distribution">
+          <div class="idp-manifold" role="img" aria-label="expert demonstration manifold와 회피 후 OOD 상태 개념도"><div class="expert-cloud"></div><div class="ood-point">×</div><span class="manifold-label">Expert demonstration manifold</span><span class="ood-label">State after RMP detour</span></div>
+          <article class="idp-shift-copy"><span class="idp-kicker">Key insight</span><h3>Safe ≠ In-distribution</h3><p>RMPflow는 physical safety를 위한 실행 계층입니다. 하지만 task policy가 회피 이후의 상태에서 다시 올바른 행동을 생성할 수 있는지는 별도의 문제입니다. 이 distribution gap이 LPB를 추가한 이유입니다.</p></article>
+        </div>
+        <div class="idp-quote">RMPflow solves the safety problem.<br>The safe detour creates a distribution problem.</div>
+      </section>
+
+      <section class="sensor-section idp-section" aria-labelledby="idp-lpb-title">
+        <header class="sensor-section-head">
+          <div class="section-index"><span>05</span><p>LPB recovery</p></div>
+          <div>
+            <h2 id="idp-lpb-title">미래 latent를 예측해,<br>다음 action을 expert behavior 쪽으로 유도합니다</h2>
+            <p class="section-subtitle">Observe → detect OOD → predict future → guide denoising</p>
+            <p class="section-intro">LPB는 Diffusion Policy를 대체하지 않습니다. base policy는 유지하고, 현재 상태가 expert reference에서 벗어났을 때 candidate action이 만들 미래 latent를 평가해 selected denoising steps의 action sampling만 보정합니다.</p>
+          </div>
+        </header>
+        <div class="idp-lpb-flow">
+          <article class="idp-lpb-card"><span>01 · Observe</span><h3>Encode</h3><p>RGB와 robot proprioception에서 현재 latent를 구성합니다.</p></article>
+          <article class="idp-lpb-card"><span>02 · Detect</span><h3>OOD cost</h3><p>현재 latent와 expert latent bank의 거리를 계산합니다.</p></article>
+          <article class="idp-lpb-card"><span>03 · Predict</span><h3>Future latent</h3><p>candidate action horizon이 만들 미래 latent를 action-conditioned dynamics로 예측합니다.</p></article>
+          <article class="idp-lpb-card is-guide"><span>04 · Guide</span><h3>Guided action</h3><p>expert latent 쪽으로 가까워지는 gradient를 final denoising steps에 반영합니다.</p></article>
+        </div>
+        <div class="idp-guidance-note"><strong>Frozen base policy</strong><p>task generation 능력은 유지하고, OOD가 필요한 순간에만 sampling 과정에 선택적으로 개입하도록 구성했습니다.</p></div>
+        <figure class="idp-system-figure is-section-figure"><a href="interactive-diffusion-assets/system-overview.webp" target="_blank" rel="noopener"><img src="interactive-diffusion-assets/system-overview.webp" width="2400" height="1315" alt="Diffusion Policy, LPB guidance, RMPflow를 연결한 전체 시스템 구조"></a><figcaption><span><b>System overview</b> Training pipeline and closed-loop deployment</span><a href="interactive-diffusion-assets/system-overview.webp" target="_blank" rel="noopener">도식 크게 보기 ↗</a></figcaption></figure>
+      </section>
+
+      <section class="sensor-section idp-section" aria-labelledby="idp-loop-title">
+        <header class="sensor-section-head"><div class="section-index"><span>06</span><p>Closed-loop scenario</p></div><div><h2 id="idp-loop-title">한 번의 사람 개입이<br>전체 시스템에서 처리되는 순서</h2><p class="section-subtitle">Task → intervention → detour → OOD → recovery → continue</p></div></header>
+        <div class="idp-scenario">
+          <article class="idp-scenario-card"><div class="idp-step"><span>Task</span><b>01</b></div><h3>Generate</h3><p>Diffusion Policy가 현재 관측에서 task action horizon을 생성합니다.</p></article>
+          <article class="idp-scenario-card"><div class="idp-step"><span>Human</span><b>02</b></div><h3>Approach</h3><p>사람의 손/팔이 robot-mounted proximity sensor의 local workspace 안으로 접근합니다.</p></article>
+          <article class="idp-scenario-card"><div class="idp-step"><span>Safety</span><b>03</b></div><h3>Deflect</h3><p>RMPflow가 task target을 유지한 채 collision term을 통해 robot motion을 우회시킵니다.</p></article>
+          <article class="idp-scenario-card"><div class="idp-step"><span>Feedback</span><b>04</b></div><h3>Observe shift</h3><p>RMP로 수정된 실제 robot state가 다음 policy observation으로 들어갑니다.</p></article>
+          <article class="idp-scenario-card"><div class="idp-step"><span>Recovery</span><b>05</b></div><h3>Guide</h3><p>LPB가 OOD cost와 미래 latent를 평가해 다음 action을 expert behavior 쪽으로 유도합니다.</p></article>
+          <article class="idp-scenario-card"><div class="idp-step"><span>Task</span><b>06</b></div><h3>Continue</h3><p>새 관측을 기반으로 closed-loop inference를 반복하며 task를 계속 수행합니다.</p></article>
         </div>
       </section>
 
       <section class="sensor-section idp-section idp-demo-section" aria-labelledby="idp-demos-title">
-        <header class="sensor-section-head">
-          <div class="section-index">
-            <span>04</span>
-            <p>Validation</p>
-          </div>
-          <div>
-            <h2 id="idp-demos-title">사람 접근부터 재계획까지,<br>실로봇에서 검증했습니다</h2>
-            <p class="section-subtitle">Closed‑loop response · Local avoidance · LPB diagnostics</p>
-            <p class="section-intro">
-              작업 수행 중 사람의 접근, RMPflow의 국소 회피, LPB의 latent/OOD 판단을
-              실제 실행 타임라인으로 묶었습니다. 외부 동작과 내부 추론이 하나의 closed loop에서
-              어떻게 이어지는지 확인할 수 있습니다.
-            </p>
-          </div>
-        </header>
-        <div class="idp-demo-grid">
-          <figure class="idp-demo-card is-featured">
-            <video muted loop playsinline controls preload="metadata" poster="interactive-diffusion-assets/task-avoidance-poster.jpg">
-              <source src="interactive-diffusion-assets/task-avoidance.mp4" type="video/mp4">
-              브라우저에서 MP4 영상을 재생할 수 없습니다.
-            </video>
-            <figcaption>
-              <p>01 · Task‑level interaction</p>
-              <h3>작업 동작 중 사람 접근에 대한 closed‑loop 반응</h3>
-              <span>작업 sequence와 사람의 접근이 겹치는 조건에서 RB10의 동작 변화를 기록했습니다.</span>
-            </figcaption>
-          </figure>
-
-          <figure class="idp-demo-card">
-            <video muted loop playsinline controls preload="metadata" poster="interactive-diffusion-assets/dp-rmp-avoidance-poster.jpg">
-              <source src="interactive-diffusion-assets/dp-rmp-avoidance.mp4" type="video/mp4">
-              브라우저에서 MP4 영상을 재생할 수 없습니다.
-            </video>
-            <figcaption>
-              <p>02 · Proximity response</p>
-              <h3>Diffusion Policy 실행과 RMPflow 국소 회피</h3>
-              <span>정책이 생성한 작업 경로를 실행하면서 근접 접근에 반응하는 실로봇 장면입니다.</span>
-            </figcaption>
-          </figure>
-
-          <figure class="idp-demo-card">
-            <video muted loop playsinline controls preload="metadata" poster="interactive-diffusion-assets/lpb-runtime-diagnostics-poster.jpg">
-              <source src="interactive-diffusion-assets/lpb-runtime-diagnostics.mp4" type="video/mp4">
-              브라우저에서 MP4 영상을 재생할 수 없습니다.
-            </video>
-            <figcaption>
-              <p>03 · LPB diagnostics</p>
-              <h3>Nearest latent·trajectory·OOD cost의 동시 기록</h3>
-              <span>현재 관측과 nearest expert frame, base/guided trajectory, cost threshold를 같은 타임라인에서 확인합니다.</span>
-            </figcaption>
-          </figure>
+        <header class="sensor-section-head"><div class="section-index"><span>07</span><p>Validation</p></div><div><h2 id="idp-demos-title">외부 motion과 내부 추론을<br>실로봇에서 함께 확인했습니다</h2><p class="section-subtitle">Task execution · proximity response · LPB diagnostics</p><p class="section-intro">검증은 task 자체의 수행, proximity/RMPflow에 의한 reactive motion modification, 그리고 LPB의 nearest latent·base/guided trajectory·OOD cost를 분리해 확인할 수 있도록 구성했습니다.</p></div></header>
+        <div class="idp-validation-grid">
+          <article class="idp-compare-card"><video muted loop playsinline controls preload="metadata" poster="interactive-diffusion-assets/task-avoidance-poster.jpg"><source src="interactive-diffusion-assets/imitation-learning.mp4" type="video/mp4"><source src="interactive-diffusion-assets/task-avoidance.mp4" type="video/mp4"></video><div class="idp-compare-copy"><span>A · Task policy</span><h3>RB10 imitation-learning task execution</h3><p>Diffusion Policy 기반 task competence와 실제 robot execution을 보여줍니다.</p></div></article>
+          <article class="idp-compare-card"><video muted loop playsinline controls preload="metadata" poster="interactive-diffusion-assets/dp-rmp-avoidance-poster.jpg"><source src="interactive-diffusion-assets/dp-rmp-avoidance.mp4" type="video/mp4"></video><div class="idp-compare-copy"><span>B · Reactive safety</span><h3>Diffusion Policy + RMPflow</h3><p>정책 target을 실행하면서 proximity input에 따라 local motion이 수정되는 장면입니다.</p></div></article>
+          <article class="idp-compare-card"><video muted loop playsinline controls preload="metadata" poster="interactive-diffusion-assets/lpb-runtime-diagnostics-poster.jpg"><source src="interactive-diffusion-assets/lpb-runtime-diagnostics.mp4" type="video/mp4"></video><div class="idp-compare-copy"><span>C · Internal diagnostics</span><h3>LPB / OOD runtime</h3><p>nearest expert latent, base/guided trajectory, OOD cost와 threshold를 같은 timeline에서 기록합니다.</p></div></article>
         </div>
       </section>
 
-      <section class="idp-summary project-summary" id="project-summary" aria-label="프로젝트 결론">
-        <p>Project takeaway</p>
-        <h2>학습 정책이 작업을 만들고, RMPflow가 가까운 위험에 반응하며, LPB가 회피 이후의 낯선 상태를 작업 복귀 문제로 연결합니다.</h2>
-        <div><span>Task generation</span><span>Reactive avoidance</span><span>Latent OOD recovery</span><span>Closed‑loop execution</span></div>
+      <section class="sensor-section idp-section" aria-labelledby="idp-implementation-title">
+        <header class="sensor-section-head"><div class="section-index"><span>08</span><p>Implementation</p></div><div><h2 id="idp-implementation-title">실제 로봇에서 연결한<br>소프트웨어·제어 구성</h2></div></header>
+        <div class="idp-implementation">
+          <article class="idp-implementation-card"><h3>Real-robot stack</h3><ul><li>RB10 manipulator</li><li>RealSense visual observations + measured robot state</li><li>Diffusion Policy action horizon inference</li><li>ROS 2 proximity/RMPflow execution layer</li><li>LPB dynamics + expert latent reference</li><li>Measured execution feedback for receding-horizon inference</li></ul></article>
+          <article class="idp-implementation-card"><h3>Repositories</h3><div class="idp-repo-stack"><a href="https://github.com/Bookjean/Diffusion_policy_for_youngbin" target="_blank" rel="noopener"><span>Diffusion Policy / LPB runtime</span><b>↗</b></a><a href="https://github.com/dudqls10/RMP_prox" target="_blank" rel="noopener"><span>Proximity / RMPflow controller</span><b>↗</b></a></div></article>
+        </div>
       </section>
 
+      <section class="idp-summary project-summary" id="project-summary" aria-label="프로젝트 결론"><p>Project takeaway</p><h2>Diffusion Policy가 task를 생성하고, proximity-based RMPflow가 순간적인 위험에서 motion을 안전하게 수정하며, LPB가 그 detour로 생긴 distribution shift를 task recovery 문제로 연결합니다.</h2><div><span>Task generation</span><span>Reactive safety</span><span>Safe detour</span><span>OOD detection</span><span>Latent recovery</span></div></section>
       <a class="next-project" href="undergraduate-projects.html"><span>Next project</span><strong>Undergraduate Projects →</strong></a>
       <footer class="project-footer"><span>© 2026 Song Youngbin</span><a href="../index.html">Home ↑</a></footer>
     </main>
