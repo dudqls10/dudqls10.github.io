@@ -770,7 +770,8 @@ html { scroll-padding-top: 88px; }
   pointer-events: none;
 }
 
-.portfolio-v2.project-v2.idp-page .idp-task-reel img {
+.portfolio-v2.project-v2.idp-page .idp-task-reel img,
+.portfolio-v2.project-v2.idp-page .idp-task-reel video {
   display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -779,7 +780,8 @@ html { scroll-padding-top: 88px; }
   transition: filter .3s ease, transform .45s ease;
 }
 
-.portfolio-v2.project-v2.idp-page .idp-task-reel figure:hover img {
+.portfolio-v2.project-v2.idp-page .idp-task-reel figure:hover img,
+.portfolio-v2.project-v2.idp-page .idp-task-reel figure:hover video {
   filter: saturate(1) contrast(1.02);
   transform: scale(1.025);
 }
