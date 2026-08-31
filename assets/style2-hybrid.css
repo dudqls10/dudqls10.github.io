@@ -78,6 +78,7 @@ html { scroll-padding-top: 88px; }
 }
 
 .portfolio-v2 p { word-break: keep-all; }
+.portfolio-v2 .nowrap { white-space: nowrap; }
 .portfolio-v2 ::selection { background: var(--blue); color: #fff; }
 .portfolio-v2 :focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
 
@@ -182,10 +183,173 @@ html { scroll-padding-top: 88px; }
   object-position: center;
 }
 
+.portfolio-v2.home-page .hero-subrole {
+  max-width: 720px;
+  margin: 9px 0 0;
+  color: var(--muted);
+  font-family: var(--font-display);
+  font-size: clamp(12px, 1vw, 14px);
+  font-weight: 520;
+  letter-spacing: -.012em;
+  line-height: 1.65;
+}
+
+.portfolio-v2.home-page .hero-subrole + .hero-line {
+  margin-top: 22px;
+}
+
+/* Research focus: a compact visual bridge from sensing to learned behavior. */
+.portfolio-v2.home-page .research-focus {
+  padding: 82px 0 108px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.portfolio-v2.home-page .research-focus-head {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(340px, 1.1fr);
+  gap: clamp(56px, 8vw, 120px);
+  align-items: end;
+}
+
+.portfolio-v2.home-page .research-focus-head .eyebrow {
+  margin-bottom: 20px;
+}
+
+.portfolio-v2.home-page .research-focus-head h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(40px, 4.2vw, 60px);
+  font-weight: 610;
+  letter-spacing: -.06em;
+  line-height: 1.02;
+  word-break: keep-all;
+}
+
+.portfolio-v2.home-page .research-focus-head > p {
+  max-width: 590px;
+  margin: 0 0 4px;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.85;
+  word-break: keep-all;
+}
+
+.portfolio-v2.home-page .research-focus-flow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 52px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 22px 54px rgba(30, 48, 90, .08);
+}
+
+.portfolio-v2.home-page .research-focus-flow article {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 252px;
+  flex-direction: column;
+  padding: 30px;
+  background: #fff;
+}
+
+.portfolio-v2.home-page .research-focus-flow article + article {
+  border-left: 1px solid var(--line);
+}
+
+.portfolio-v2.home-page .research-focus-flow article:nth-child(2) {
+  background: linear-gradient(145deg, rgba(47, 92, 229, .035), rgba(47, 92, 229, .1));
+}
+
+.portfolio-v2.home-page .research-focus-flow article:last-child {
+  border-radius: 0 19px 19px 0;
+  background: var(--ink);
+  color: #fff;
+}
+
+.portfolio-v2.home-page .research-focus-flow article:not(:last-child)::after {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  right: -17px;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--blue);
+  content: "→";
+  font-family: var(--font-mono);
+  font-size: 13px;
+  transform: translateY(-50%);
+}
+
+.portfolio-v2.home-page .research-focus-flow article > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: auto;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.portfolio-v2.home-page .research-focus-flow article > div span {
+  color: var(--blue);
+}
+
+.portfolio-v2.home-page .research-focus-flow article > div b {
+  color: var(--muted);
+  font-size: inherit;
+  font-weight: 650;
+}
+
+.portfolio-v2.home-page .research-focus-flow article:last-child > div span {
+  color: #84a3ff;
+}
+
+.portfolio-v2.home-page .research-focus-flow article:last-child > div b,
+.portfolio-v2.home-page .research-focus-flow article:last-child p {
+  color: rgba(255, 255, 255, .62);
+}
+
+.portfolio-v2.home-page .research-focus-flow h3 {
+  margin: 52px 0 13px;
+  font-family: var(--font-display);
+  font-size: clamp(25px, 2.25vw, 33px);
+  font-weight: 580;
+  letter-spacing: -.045em;
+  line-height: 1.08;
+  word-break: keep-all;
+}
+
+.portfolio-v2.home-page .research-focus-flow p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.65;
+  word-break: keep-all;
+}
+
 .portfolio-v2.home-page .section { border-bottom-color: var(--line); }
 .portfolio-v2.home-page .section-heading-simple { border-bottom-color: var(--line); }
 .portfolio-v2.home-page .section-heading-simple h2,
 .portfolio-v2.home-page .case-copy h3 { font-weight: 600; }
+
+.portfolio-v2.home-page .section-deck {
+  margin: 10px 0 0;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 520;
+  letter-spacing: -.01em;
+  line-height: 1.55;
+}
 
 .portfolio-v2.home-page .pipeline {
   border-color: var(--line);
@@ -613,11 +777,83 @@ html { scroll-padding-top: 88px; }
 
 @media (max-width: 760px) {
   html { scroll-padding-top: 76px; }
-  .portfolio-v2.home-page .site-header nav a { font-size: 11px; }
+  .portfolio-v2.home-page .site-header nav a { font-size: 9.5px; }
+  .portfolio-v2.home-page .hero-copy { overflow: hidden; }
+  .portfolio-v2.home-page .hero-copy > .eyebrow {
+    max-width: 100%;
+    font-size: 9px;
+    letter-spacing: .105em;
+    line-height: 1.75;
+  }
   .portfolio-v2.home-page .hero-line {
     max-width: 100%;
-    overflow-wrap: anywhere;
-    word-break: normal;
+    overflow-wrap: normal;
+    word-break: keep-all;
+  }
+  .portfolio-v2.home-page .hero-subrole {
+    max-width: 92%;
+    overflow-wrap: normal;
+    word-break: keep-all;
+  }
+  .portfolio-v2.home-page .research-focus {
+    padding: 72px 0 86px;
+  }
+  .portfolio-v2.home-page .research-focus-head {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .portfolio-v2.home-page .research-focus-head h2 {
+    font-size: clamp(36px, 9.5vw, 42px);
+  }
+  .portfolio-v2.home-page .research-focus-head > p {
+    max-width: 100%;
+    font-size: 15px;
+  }
+  .portfolio-v2.home-page .research-focus-flow {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 40px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  .portfolio-v2.home-page .research-focus-flow article {
+    min-height: 210px;
+    padding: 26px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+  }
+  .portfolio-v2.home-page .research-focus-flow article + article {
+    border-left: 1px solid var(--line);
+  }
+  .portfolio-v2.home-page .research-focus-flow article:last-child {
+    border-radius: 16px;
+  }
+  .portfolio-v2.home-page .research-focus-flow article:not(:last-child)::after {
+    top: auto;
+    right: 26px;
+    bottom: -22px;
+    content: "↓";
+    transform: none;
+  }
+  .portfolio-v2.home-page .research-focus-flow h3 {
+    margin-top: 38px;
+  }
+  .portfolio-v2.home-page .section-deck {
+    max-width: 440px;
+    font-size: 13px;
+  }
+  .portfolio-v2.home-page .pipeline {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto;
+    row-gap: 12px;
+  }
+  .portfolio-v2.home-page .pipeline span:nth-of-type(3),
+  .portfolio-v2.home-page .pipeline span:nth-of-type(4),
+  .portfolio-v2.home-page .pipeline b:nth-of-type(3),
+  .portfolio-v2.home-page .pipeline b:nth-of-type(4) {
+    display: grid;
   }
   .portfolio-v2.home-page .hero-stage {
     min-height: min(520px, 130vw);
@@ -631,12 +867,15 @@ html { scroll-padding-top: 88px; }
   .portfolio-v2.home-page .wordmark strong { display: none; }
   .portfolio-v2.home-page .header-contact { display: none; }
   .portfolio-v2.home-page .site-header nav {
-    position: static;
-    max-width: calc(100% - 52px);
-    gap: 14px;
-    margin-left: auto;
+    position: absolute;
+    right: 0;
+    left: 58px;
+    max-width: none;
+    gap: clamp(8px, 2.35vw, 11px);
+    justify-content: flex-end;
+    margin: 0;
     transform: none;
-    overflow-x: auto;
+    overflow: visible;
     scrollbar-width: none;
   }
   .portfolio-v2.home-page .site-header nav::-webkit-scrollbar,
@@ -669,6 +908,26 @@ html { scroll-padding-top: 88px; }
   .portfolio-v2.project-v2 .project-hero h1,
   .portfolio-v2.project-v2 .ug-hero h1 { font-size: clamp(46px, 12vw, 62px); }
   .portfolio-v2.project-v2 .project-summary { margin-top: 64px; padding: 28px 22px; }
+}
+
+@media (max-width: 520px) {
+  .portfolio-v2.home-page .section-heading-simple {
+    grid-template-columns: 38px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .portfolio-v2.home-page .section-heading-simple h2 {
+    font-size: clamp(34px, 9vw, 39px);
+  }
+
+  .portfolio-v2.home-page .site-header nav a {
+    font-size: 9px;
+  }
+
+  .portfolio-v2.home-page .pipeline {
+    display: grid;
+    justify-content: initial;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

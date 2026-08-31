@@ -11,7 +11,7 @@
     <meta name="author" content="Young Bin Song">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ko_KR">
-    <meta property="og:title" content="송영빈 | Robot Systems &amp; Safety Engineer">
+    <meta property="og:title" content="송영빈 | Robot Systems &amp; Safety Researcher">
     <meta
       property="og:description"
       content="Proximity sensing, reactive motion control, and learning-based robot manipulation—validated on real hardware."
@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="assets/style2-hybrid.css">
     <link rel="icon" href="favicon.svg">
     <script src="assets/site.js" defer></script>
-    <title>송영빈 | Robot Systems &amp; Safety Engineer</title>
+    <title>송영빈 | Robot Systems &amp; Safety Researcher</title>
   </head>
   <body class="home-page index2-preview portfolio-v2">
     <a class="skip-link" href="#content">본문으로 건너뛰기</a>
@@ -37,23 +37,24 @@
         <strong>Song Youngbin</strong>
       </a>
       <nav aria-label="주요 메뉴">
-        <a href="#work"><span class="nav-full">Research Projects</span><span class="nav-short">Research</span></a>
-        <a href="#undergraduate"><span class="nav-full">Undergraduate Projects</span><span class="nav-short">Undergraduate</span></a>
-        <a href="#experience"><span class="nav-full">Experience</span><span class="nav-short">Experience</span></a>
-        <a href="#skills"><span class="nav-full">Tools &amp; Technologies</span><span class="nav-short">Tools</span></a>
+        <a href="#work">Research</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Tools</a>
+        <a href="#undergraduate"><span class="nav-full">Earlier Projects</span><span class="nav-short">Earlier</span></a>
+        <a href="#contact">Contact</a>
       </nav>
-      <button class="header-contact contact-trigger" type="button">Contact ↗</button>
     </header>
 
     <main id="content">
       <section class="hero shell" id="top">
         <div class="hero-copy">
-          <p class="eyebrow">Proximity Sensing · Reactive Motion Control · Learning-Based Manipulation</p>
+          <p class="eyebrow">Proximity Sensing · Reactive Control · Physical AI</p>
           <h1>Young Bin Song</h1>
-          <h2 class="hero-role">M.S. Candidate in Mechanical Engineering</h2>
+          <h2 class="hero-role">Robot Systems &amp; Safety Researcher</h2>
+          <p class="hero-subrole">M.S. Candidate in Mechanical Engineering · Robotory Lab, Sungkyunkwan University</p>
           <p class="hero-line">
-            Researcher at Robotory Lab, Sungkyunkwan University, developing proximity sensing systems,
-            reactive motion control for safe HRI, and learning-based robot manipulation.
+            Robot-mounted sensing에서 시작해 reactive safety control과 learning-based manipulation까지 연결하고,
+            실제 로봇 시스템에서 <span class="nowrap">구현·검증합니다.</span>
           </p>
           <div class="hero-profile-links" aria-label="연락처와 이력서">
             <button class="contact-trigger" type="button">Email <span aria-hidden="true">↗</span></button>
@@ -67,11 +68,42 @@
         </div>
       </section>
 
+      <section class="research-focus shell" id="research-focus" aria-labelledby="research-focus-title">
+        <header class="research-focus-head">
+          <div>
+            <p class="eyebrow">Research Focus</p>
+            <h2 id="research-focus-title">From sensing to<br>safe robot behavior</h2>
+          </div>
+          <p>
+            로봇이 주변 환경을 감지하는 것에서 끝나지 않고, 감지한 정보를
+            실제 움직임과 task execution까지 연결하는 로봇 시스템을 개발합니다.
+          </p>
+        </header>
+        <div class="research-focus-flow" aria-label="Sense, React, Learn으로 연결되는 연구 집중 영역">
+          <article>
+            <div><span>01</span><b>Sense</b></div>
+            <h3>Robot-Mounted<br>Sensing</h3>
+            <p>근접센서 · Embedded Hardware · Signal Processing</p>
+          </article>
+          <article>
+            <div><span>02</span><b>React</b></div>
+            <h3>Reactive Motion<br>Control</h3>
+            <p>Proximity-Based Safety · RMPflow · Real-Time Control</p>
+          </article>
+          <article>
+            <div><span>03</span><b>Learn</b></div>
+            <h3>Learning-Based<br>Manipulation</h3>
+            <p>Diffusion Policy · OOD Recovery · Physical AI</p>
+          </article>
+        </div>
+      </section>
+
       <section class="section shell" id="work">
         <div class="section-heading section-heading-simple">
           <span class="section-index">01</span>
           <div>
             <h2>Research Projects</h2>
+            <p class="section-deck">From sensor hardware to learning-based robot manipulation</p>
             <p class="section-period">2024—2026</p>
           </div>
         </div>
@@ -114,7 +146,7 @@
                   <dd>센서 PCB · 모듈형 장착 구조 · 신호 처리 및 거리 융합</dd>
                 </div>
                 <div>
-                  <dt>결과</dt>
+                  <dt>적용 및 검증</dt>
                   <dd>Indy7·UR10·RB10 적용 · 20–300 mm 거리 평가</dd>
                 </div>
               </dl>
@@ -156,7 +188,7 @@
                   <dd>관절 상태 데이터 수집 · MLP 기반 채널별 예측 · 잔차 보정</dd>
                 </div>
                 <div>
-                  <dt>결과</dt>
+                  <dt>적용 및 검증</dt>
                   <dd>RMSE 96.12% 감소 · 분산 99.85% 감소 · 8채널 보상</dd>
                 </div>
               </dl>
@@ -190,7 +222,7 @@
                   <dd>근접센서 기반 Reactive Motion Controller · TG-RMP 접선 정책 추가</dd>
                 </div>
                 <div>
-                  <dt>결과</dt>
+                  <dt>적용 및 검증</dt>
                   <dd>RB10 근접 장애물 회피 · local minimum 완화</dd>
                 </div>
               </dl>
@@ -225,7 +257,7 @@
                   <dd>Diffusion Policy · RB10/RMPflow · LPB/OOD runtime</dd>
                 </div>
                 <div>
-                  <dt>결과</dt>
+                  <dt>적용 및 검증</dt>
                   <dd>사람 접근 시 RMPflow 회피 · LPB 기반 작업 복귀</dd>
                 </div>
               </dl>
@@ -237,66 +269,9 @@
         </div>
       </section>
 
-      <section class="section shell undergrad-section" id="undergraduate">
-        <div class="section-heading section-heading-simple">
-          <span class="section-index">02</span>
-          <div>
-            <h2>Undergraduate Projects</h2>
-            <p class="section-period">2023—2024</p>
-          </div>
-        </div>
-
-        <div class="undergrad-grid">
-          <article class="undergrad-card">
-            <div class="undergrad-card-link">
-              <div class="undergrad-cover">
-                <img src="media/undergraduate/ai-farm-system.jpg" alt="야생동물 퇴치용 AI 농가 보호 시스템 시작품" loading="lazy">
-                <span class="undergrad-number">01</span>
-              </div>
-              <div class="undergrad-copy">
-                <div class="undergrad-meta"><span>2023.03—09</span><span>Team Lead · Hardware</span></div>
-                <h3><a href="projects/undergraduate-projects.html#ai-farm">AI Farm Protecting <span aria-hidden="true">↗</span></a></h3>
-                <p>야생동물 인식과 물 분사 퇴치 기능을 결합한 농가 보호 시스템</p>
-                <ul><li>Inventor</li><li>CATIA V5</li><li>Arduino</li></ul>
-              </div>
-            </div>
-          </article>
-
-          <article class="undergrad-card">
-            <div class="undergrad-card-link">
-              <div class="undergrad-cover is-contain">
-                <img src="media/undergraduate/drone-main.png" alt="창의비행체 경진대회를 위해 제작한 임무 수행용 드론" loading="lazy">
-                <span class="undergrad-number">02</span>
-              </div>
-              <div class="undergrad-copy">
-                <div class="undergrad-meta"><span>2023.06—11</span><span>Drone HW · AI SW</span></div>
-                <h3><a href="projects/undergraduate-projects.html#aircraft">Creative Aircraft Competition <span aria-hidden="true">↗</span></a></h3>
-                <p>임무 수행용 드론의 하드웨어 제작과 YOLOv8 실시간 숫자 인식</p>
-                <ul><li>CATIA V5</li><li>Python</li><li>YOLOv8</li></ul>
-              </div>
-            </div>
-          </article>
-
-          <article class="undergrad-card">
-            <div class="undergrad-card-link">
-              <div class="undergrad-cover is-contain">
-                <img src="media/undergraduate/handwash-system.png" alt="손 씻기와 건조 과정을 제어하는 All-in-One Hand Wash 시작품" loading="lazy">
-                <span class="undergrad-number">03</span>
-              </div>
-              <div class="undergrad-copy">
-                <div class="undergrad-meta"><span>2024.03—09</span><span>Team Lead · AI SW</span></div>
-                <h3><a href="projects/undergraduate-projects.html#hand-wash">All-in-One Hand Wash <span aria-hidden="true">↗</span></a></h3>
-                <p>손 제스처로 물·비누·건조 단계를 제어하는 비접촉 시스템</p>
-                <ul><li>Python</li><li>MediaPipe</li><li>K-NN</li></ul>
-              </div>
-            </div>
-          </article>
-        </div>
-      </section>
-
       <section class="section shell experience-section" id="experience">
         <div class="section-heading section-heading-simple">
-          <span class="section-index">03</span>
+          <span class="section-index">02</span>
           <div>
             <h2>Experience &amp; Education</h2>
           </div>
@@ -363,7 +338,7 @@
 
       <section class="section shell" id="skills">
         <div class="section-heading section-heading-simple">
-          <span class="section-index">04</span>
+          <span class="section-index">03</span>
           <div>
             <h2>Tools &amp; Technologies</h2>
           </div>
@@ -372,33 +347,90 @@
         <div class="expertise-grid">
           <article>
             <span>01</span>
-            <h3>Hardware Design</h3>
-            <strong>Altium Designer · CATIA V5 · SOLIDWORKS · Autodesk Inventor</strong>
-            <p>회로·PCB와 로봇 센서 모듈의 기구 구조 설계</p>
+            <h3>Hardware &amp; Embedded</h3>
+            <strong>Altium Designer · STM32 · Embedded C/C++ · I²C · CAN</strong>
+            <p>센서 회로·PCB 설계와 MCU 기반 데이터 수집·통신 구현</p>
           </article>
           <article>
             <span>02</span>
-            <h3>Embedded Systems</h3>
-            <strong>STM32 · Embedded C/C++ · I²C · CAN</strong>
-            <p>센서 데이터 수집과 MCU·전원 보드, 로봇 제어기 통신 구현</p>
+            <h3>Mechanical Design</h3>
+            <strong>Autodesk Inventor · CATIA V5 · SOLIDWORKS</strong>
+            <p>로봇 장착형 센서 모듈과 플랫폼별 교체형 지지부 설계</p>
           </article>
           <article>
             <span>03</span>
-            <h3>Robot Software</h3>
-            <strong>ROS 2 · RViz · PREEMPT_RT · C++</strong>
-            <p>로봇 제어기 구현과 시각화, 실시간 제어 환경 구성</p>
+            <h3>Robot Control &amp; Software</h3>
+            <strong>ROS 2 · RMPflow · Pinocchio · C++ · PREEMPT_RT</strong>
+            <p>기구학 기반 제어와 근접 회피, 실시간 로봇 실행 환경 구성</p>
           </article>
           <article>
             <span>04</span>
-            <h3>Data &amp; Machine Learning</h3>
-            <strong>Python · MATLAB · PyTorch · TensorFlow</strong>
-            <p>센서 데이터 처리와 학습 모델 구현, 로봇 정책 적용</p>
+            <h3>Learning &amp; Data</h3>
+            <strong>Python · PyTorch · TensorFlow · MATLAB</strong>
+            <p>센서 데이터 처리와 학습 모델, Diffusion Policy 기반 로봇 정책 적용</p>
           </article>
         </div>
 
         <div class="skill-platforms">
           <span>Robot Platforms</span>
           <strong>Indy7 · UR10 · RB10</strong>
+        </div>
+      </section>
+
+      <section class="section shell undergrad-section" id="undergraduate">
+        <div class="section-heading section-heading-simple">
+          <span class="section-index">04</span>
+          <div>
+            <h2>Earlier Engineering Projects</h2>
+            <p class="section-period">2023—2024 · Hardware · AI · System Prototyping</p>
+          </div>
+        </div>
+
+        <div class="undergrad-grid">
+          <article class="undergrad-card">
+            <div class="undergrad-card-link">
+              <div class="undergrad-cover">
+                <img src="media/undergraduate/ai-farm-system.jpg" alt="야생동물 퇴치용 AI 농가 보호 시스템 시작품" loading="lazy">
+                <span class="undergrad-number">01</span>
+              </div>
+              <div class="undergrad-copy">
+                <div class="undergrad-meta"><span>2023.03—09</span><span>Team Lead · Hardware</span></div>
+                <h3><a href="projects/undergraduate-projects.html#ai-farm">AI Farm Protecting <span aria-hidden="true">↗</span></a></h3>
+                <p>야생동물 인식과 물 분사 퇴치 기능을 결합한 농가 보호 시스템</p>
+                <ul><li>Inventor</li><li>CATIA V5</li><li>Arduino</li></ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="undergrad-card">
+            <div class="undergrad-card-link">
+              <div class="undergrad-cover is-contain">
+                <img src="media/undergraduate/drone-main.png" alt="창의비행체 경진대회를 위해 제작한 임무 수행용 드론" loading="lazy">
+                <span class="undergrad-number">02</span>
+              </div>
+              <div class="undergrad-copy">
+                <div class="undergrad-meta"><span>2023.06—11</span><span>Drone HW · AI SW</span></div>
+                <h3><a href="projects/undergraduate-projects.html#aircraft">Creative Aircraft Competition <span aria-hidden="true">↗</span></a></h3>
+                <p>임무 수행용 드론의 하드웨어 제작과 YOLOv8 실시간 숫자 인식</p>
+                <ul><li>CATIA V5</li><li>Python</li><li>YOLOv8</li></ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="undergrad-card">
+            <div class="undergrad-card-link">
+              <div class="undergrad-cover is-contain">
+                <img src="media/undergraduate/handwash-system.png" alt="손 씻기와 건조 과정을 제어하는 All-in-One Hand Wash 시작품" loading="lazy">
+                <span class="undergrad-number">03</span>
+              </div>
+              <div class="undergrad-copy">
+                <div class="undergrad-meta"><span>2024.03—09</span><span>Team Lead · AI SW</span></div>
+                <h3><a href="projects/undergraduate-projects.html#hand-wash">All-in-One Hand Wash <span aria-hidden="true">↗</span></a></h3>
+                <p>손 제스처로 물·비누·건조 단계를 제어하는 비접촉 시스템</p>
+                <ul><li>Python</li><li>MediaPipe</li><li>K-NN</li></ul>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
 
@@ -409,7 +441,7 @@
             <h2>로봇이 사람 가까이에서<br>더 안전하게 일하도록.</h2>
           </div>
           <div>
-            <p>로봇 센싱·제어·Physical AI 경험을 활용할 수 있는 새로운 기회를 찾고 있습니다.</p>
+            <p>사람 곁에서 안전하게 작동하는 로봇 시스템을 함께 만들 기회를 찾고 있습니다.</p>
             <button class="contact-email-button contact-trigger" type="button">연락처 보기 <span>↗</span></button>
             <a href="https://github.com/dudqls10" target="_blank" rel="noopener">GitHub 프로젝트 보기 <span aria-hidden="true">↗</span></a>
           </div>
