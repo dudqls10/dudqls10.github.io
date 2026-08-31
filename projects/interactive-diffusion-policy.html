@@ -68,46 +68,68 @@
             <p>Problem</p>
           </div>
           <div>
-            <h2 id="idp-problem-title">작업을 잘하는 정책만으로는<br>사람 곁에서 계속 일할 수 없습니다</h2>
-            <p class="section-subtitle">Task-oriented Physical AI · Reactive safety · Post-avoidance recovery</p>
+            <h2 id="idp-problem-title">Task를 수행하는 능력과<br>사람 곁에서 일하는 능력은 다릅니다</h2>
+            <p class="section-subtitle">Task competence ≠ interaction robustness</p>
             <p class="section-intro">
-              작업 정책은 시연 분포 안의 task를 잘 수행합니다. 그러나 사람 접근으로
-              안전 제어가 궤적을 바꾸면, 로봇은 정책이 배우지 않은 새 상태에 놓입니다.
-              안전하게 피하는 것과 회피 후 task를 재개하는 것을 하나의 문제로 다뤄야 합니다.
+              시연 기반 정책은 정해진 분포 안에서 복잡한 manipulation을 수행합니다.
+              하지만 사람이 접근해 RMPflow가 경로를 바꾸는 순간, 로봇은 시연에 없던 상태로 이동합니다.
+              문제는 충돌 회피 자체보다 그 다음 action을 어떻게 task 맥락 안에서 이어갈지에 있습니다.
             </p>
           </div>
         </header>
-        <div class="idp-research-story">
-          <article class="idp-background-panel">
-            <p><b>Background</b><span>Task-oriented Physical AI</span></p>
-            <h3>배운 task를 수행하는 것을 넘어,<br>사람과 함께 계속 일해야 합니다.</h3>
-            <ul>
-              <li><span>01</span><div><strong>Task execution</strong><small>시연에서 배운 작업 행동 생성</small></div></li>
-              <li><span>02</span><div><strong>Reactive safety</strong><small>사람 접근에 즉시 반응하는 국소 회피</small></div></li>
-              <li class="is-gap"><span>03</span><div><strong>Recovery gap</strong><small>회피로 달라진 상태에서의 task 재개</small></div></li>
-            </ul>
-          </article>
-
-          <article class="idp-framework-panel">
+        <div class="idp-problem-layout">
+          <section class="idp-task-showcase" aria-labelledby="idp-task-showcase-title">
             <header>
-              <p>Proposed framework</p>
-              <h3>Safety intervention 이후의 상태까지<br>task loop 안에 포함했습니다.</h3>
-            </header>
-            <ol class="idp-closed-loop-flow" aria-label="사람 접근 반응과 LPB 복귀 흐름">
-              <li><span>01</span><strong>Task execution</strong><small>Diffusion Policy</small></li>
-              <li><span>02</span><strong>Human approach</strong><small>Proximity sensing</small></li>
-              <li><span>03</span><strong>Local avoidance</strong><small>RMPflow</small></li>
-              <li class="is-recovery"><span>04</span><strong>OOD recovery</strong><small>LPB guidance</small></li>
-              <li class="is-resume"><span>05</span><strong>Task resume</strong><small>New observation</small></li>
-            </ol>
-            <div class="idp-why-lpb">
-              <span>Why LPB?</span>
               <div>
-                <strong>RMPflow는 충돌을 피하지만,<br>회피가 만든 새 상태는 task policy가 배우지 않았습니다.</strong>
-                <p>LPB는 후보 action 이후의 latent를 예측하고 expert reference에 가까워지는 방향으로 denoising을 guide합니다.</p>
+                <p>Task competence</p>
+                <h3 id="idp-task-showcase-title">시연으로 배운 로봇은<br>이미 다양한 task를 수행합니다.</h3>
+              </div>
+              <span>Reference task examples</span>
+            </header>
+            <div class="idp-task-reel">
+              <figure>
+                <img src="interactive-diffusion-assets/task-reference-recovery.webp" width="960" height="540" loading="lazy" alt="두 로봇 팔이 옷감을 정리하는 task-oriented Physical AI 참고 사례">
+                <figcaption><span>01</span><div><strong>Fold</strong><small>Deformable handling</small></div></figcaption>
+              </figure>
+              <figure>
+                <img src="interactive-diffusion-assets/task-reference-build.webp" width="960" height="540" loading="lazy" alt="두 로봇 팔이 상자를 조립하는 task-oriented Physical AI 참고 사례">
+                <figcaption><span>02</span><div><strong>Build</strong><small>Long-horizon assembly</small></div></figcaption>
+              </figure>
+              <figure>
+                <img src="interactive-diffusion-assets/task-reference-bussing.webp" width="960" height="540" loading="lazy" alt="로봇 팔이 테이블 위 물체를 정리하는 task-oriented Physical AI 참고 사례">
+                <figcaption><span>03</span><div><strong>Clear</strong><small>Table bussing</small></div></figcaption>
+              </figure>
+            </div>
+            <p class="idp-reference-note">참고 이미지 · 본 프로젝트의 실험 결과는 04 Demos에 구분해 제시했습니다.</p>
+          </section>
+
+          <section class="idp-gap-stage" aria-labelledby="idp-gap-title">
+            <header class="idp-gap-copy">
+              <p>The missing loop</p>
+              <h3 id="idp-gap-title">사람을 피한 뒤,<br>policy는 어디서 task를 다시 시작할까?</h3>
+              <p>
+                RMPflow는 충돌을 피할 수 있지만, 회피가 만든 새 상태는 task policy의
+                학습 분포 밖일 수 있습니다. 안전한 회피와 자연스러운 작업 재개 사이에
+                recovery가 필요한 이유입니다.
+              </p>
+            </header>
+            <div class="idp-gap-diagram">
+              <ol class="idp-closed-loop-flow" aria-label="사람 접근으로 발생하는 작업 복귀 공백">
+                <li><span>01</span><strong>Learned task</strong><small>Diffusion Policy</small></li>
+                <li><span>02</span><strong>Human approach</strong><small>Proximity sensing</small></li>
+                <li><span>03</span><strong>Local avoidance</strong><small>RMPflow</small></li>
+                <li class="is-gap"><span>04</span><strong>Unseen state</strong><small>Post-avoidance OOD</small></li>
+                <li class="is-resume"><span>05</span><strong>Task resume</strong><small>Next observation</small></li>
+              </ol>
+              <div class="idp-why-lpb">
+                <span>Why LPB?</span>
+                <div>
+                  <strong>회피가 만든 새 상태를<br>expert latent와 다시 연결합니다.</strong>
+                  <p>후보 action의 미래 latent를 예측하고, expert reference에 가까워지는 방향으로 denoising을 guide합니다.</p>
+                </div>
               </div>
             </div>
-          </article>
+          </section>
         </div>
       </section>
 
