@@ -30,23 +30,23 @@
       <section class="sensor-hero idp-hero" aria-labelledby="project-title">
         <div class="sensor-hero-copy">
           <a class="back-link" href="../index.html#work">← Portfolio Home</a>
-          <p class="eyebrow">Vision policy × proximity safety × latent recovery</p>
+          <p class="eyebrow">Task-oriented Physical AI × proximity safety × latent recovery</p>
           <h1 id="project-title">Interactive<br>Diffusion Policy</h1>
-          <p class="sensor-hero-tagline">Generate the task · React to proximity · Recover the policy</p>
+          <p class="sensor-hero-tagline">Learn the task · React to people · Resume after avoidance</p>
           <p class="project-lead">
-            시각 기반 Diffusion Policy가 작업 action chunk를 생성하고, 근접센서 기반
-            RMPflow가 사람의 접근에 국소적으로 반응합니다. 회피로 학습 분포를 벗어난
-            상태에서는 action-conditioned latent dynamics와 LPB guidance로 작업 복귀
-            방향을 찾는 closed-loop 프레임워크입니다.
+            Task-oriented Physical AI가 시연에서 task를 배우는 데 초점을 둔다면,
+            이 연구는 사람의 개입 이후에도 그 task를 끝까지 이어가는 문제를 다룹니다.
+            Diffusion Policy의 작업 생성, 근접센서·RMPflow의 즉각적인 회피, LPB의 회피 후 복귀를 하나의
+            closed loop로 연결해, 사람 곁에서도 작업 맥락을 유지하도록 설계했습니다.
           </p>
         </div>
         <aside class="sensor-hero-overview" aria-labelledby="scope-title">
           <p id="scope-title" class="overview-eyebrow">프로젝트 범위</p>
           <dl class="project-overview">
-            <div><dt>기간</dt><dd>2026 · 진행 중인 연구</dd></div>
-            <div><dt>담당 범위</dt><dd>RB10 실로봇 통합 · RMPflow 실행 계층 · LPB/OOD 추론 및 실험 기록</dd></div>
-            <div><dt>관측</dt><dd>Workspace/Wrist RGB · Proprioception · Robot-mounted Proximity Sensors</dd></div>
-            <div><dt>기술</dt><dd>Python · PyTorch · ROS 2 · Diffusion Policy · LPB · RMPflow</dd></div>
+            <div><dt>연구 질문</dt><dd>사람을 피한 뒤에도 task를 잃지 않게 하려면?</dd></div>
+            <div><dt>연구 상태</dt><dd>2026 · 진행 중인 연구</dd></div>
+            <div><dt>담당 범위</dt><dd>RB10 closed-loop 통합 · RMPflow 실행 계층 · LPB/OOD runtime 분석</dd></div>
+            <div><dt>검증 결과</dt><dd>사람 접근 시 실시간 국소 회피 · 회피 후 LPB 기반 task 재개</dd></div>
             <div>
               <dt>GitHub</dt>
               <dd><a class="project-repo-link" href="https://github.com/Bookjean/Diffusion_policy_for_youngbin" target="_blank" rel="noopener">Diffusion_policy_for_youngbin ↗</a></dd>
@@ -54,16 +54,6 @@
           </dl>
         </aside>
       </section>
-
-      <figure class="idp-system-figure">
-        <a href="interactive-diffusion-assets/system-overview.webp" target="_blank" rel="noopener" aria-label="Interactive Diffusion Policy 전체 시스템 도식 크게 보기">
-          <img src="interactive-diffusion-assets/system-overview.webp" width="2400" height="1315" alt="전문가 시연으로 Diffusion Policy와 latent bank를 구성하고, action-conditioned latent dynamics, LPB guidance, 근접센서 기반 RMPflow를 연결한 학습 및 closed-loop 배포 구조">
-        </a>
-        <figcaption>
-          <span><b>System overview</b> Training pipeline and closed-loop deployment</span>
-          <a href="interactive-diffusion-assets/system-overview.webp" target="_blank" rel="noopener">도식 크게 보기 ↗</a>
-        </figcaption>
-      </figure>
 
       <section class="idp-principles" aria-label="프레임워크 핵심 역할">
         <article><span>01</span><div><strong>Generate</strong><p>시각·로봇 상태에서 작업 행동 생성</p></div></article>
@@ -78,21 +68,46 @@
             <p>Problem</p>
           </div>
           <div>
-            <h2 id="idp-problem-title">피하는 것만으로는<br>작업이 끝나지 않습니다</h2>
-            <p class="section-subtitle">Local avoidance · Distribution shift · Task recovery</p>
+            <h2 id="idp-problem-title">작업을 잘하는 정책만으로는<br>사람 곁에서 계속 일할 수 없습니다</h2>
+            <p class="section-subtitle">Task-oriented Physical AI · Reactive safety · Post-avoidance recovery</p>
             <p class="section-intro">
-              Diffusion Policy는 시연 분포 안에서 작업 행동을 생성합니다. 그러나 사람 접근을
-              회피하면 로봇이 시연 궤적 밖으로 이동합니다. 회피 전 pose를 단순히 되짚는 대신,
-              회피가 끝난 새 상태에서 자연스럽게 작업을 재개할 복귀 방향이 필요합니다.
+              작업 정책은 시연 분포 안의 task를 잘 수행합니다. 그러나 사람 접근으로
+              안전 제어가 궤적을 바꾸면, 로봇은 정책이 배우지 않은 새 상태에 놓입니다.
+              안전하게 피하는 것과 회피 후 task를 재개하는 것을 하나의 문제로 다뤄야 합니다.
             </p>
           </div>
         </header>
-        <div class="idp-situation-flow" aria-label="회피 이후 발생하는 문제">
-          <article><span>01</span><strong>Task policy</strong><p>전문가 시연 분포 안에서 action chunk 생성</p></article>
-          <i aria-hidden="true">→</i>
-          <article><span>02</span><strong>RMP avoidance</strong><p>근접 입력으로 실행 경로를 국소적으로 수정</p></article>
-          <i aria-hidden="true">→</i>
-          <article class="is-alert"><span>03</span><strong>Post-avoidance OOD</strong><p>정책이 경험하지 못한 상태에서 다시 계획</p></article>
+        <div class="idp-research-story">
+          <article class="idp-background-panel">
+            <p><b>Background</b><span>Task-oriented Physical AI</span></p>
+            <h3>배운 task를 수행하는 것을 넘어,<br>사람과 함께 계속 일해야 합니다.</h3>
+            <ul>
+              <li><span>01</span><div><strong>Task execution</strong><small>시연에서 배운 작업 행동 생성</small></div></li>
+              <li><span>02</span><div><strong>Reactive safety</strong><small>사람 접근에 즉시 반응하는 국소 회피</small></div></li>
+              <li class="is-gap"><span>03</span><div><strong>Recovery gap</strong><small>회피로 달라진 상태에서의 task 재개</small></div></li>
+            </ul>
+          </article>
+
+          <article class="idp-framework-panel">
+            <header>
+              <p>Proposed framework</p>
+              <h3>Safety intervention 이후의 상태까지<br>task loop 안에 포함했습니다.</h3>
+            </header>
+            <ol class="idp-closed-loop-flow" aria-label="사람 접근 반응과 LPB 복귀 흐름">
+              <li><span>01</span><strong>Task execution</strong><small>Diffusion Policy</small></li>
+              <li><span>02</span><strong>Human approach</strong><small>Proximity sensing</small></li>
+              <li><span>03</span><strong>Local avoidance</strong><small>RMPflow</small></li>
+              <li class="is-recovery"><span>04</span><strong>OOD recovery</strong><small>LPB guidance</small></li>
+              <li class="is-resume"><span>05</span><strong>Task resume</strong><small>New observation</small></li>
+            </ol>
+            <div class="idp-why-lpb">
+              <span>Why LPB?</span>
+              <div>
+                <strong>RMPflow는 충돌을 피하지만,<br>회피가 만든 새 상태는 task policy가 배우지 않았습니다.</strong>
+                <p>LPB는 후보 action 이후의 latent를 예측하고 expert reference에 가까워지는 방향으로 denoising을 guide합니다.</p>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
 
@@ -112,6 +127,15 @@
             </p>
           </div>
         </header>
+        <figure class="idp-system-figure is-section-figure">
+          <a href="interactive-diffusion-assets/system-overview.webp" target="_blank" rel="noopener" aria-label="Interactive Diffusion Policy 전체 시스템 도식 크게 보기">
+            <img src="interactive-diffusion-assets/system-overview.webp" width="2400" height="1315" alt="전문가 시연으로 Diffusion Policy와 latent bank를 구성하고, action-conditioned latent dynamics, LPB guidance, 근접센서 기반 RMPflow를 연결한 학습 및 closed-loop 배포 구조">
+          </a>
+          <figcaption>
+            <span><b>System overview</b> Training pipeline and closed-loop deployment</span>
+            <a href="interactive-diffusion-assets/system-overview.webp" target="_blank" rel="noopener">도식 크게 보기 ↗</a>
+          </figcaption>
+        </figure>
         <div class="idp-system-grid">
           <article>
             <p>Training</p>
@@ -178,11 +202,6 @@
           <article><strong>Action-conditioned</strong><p>후보 행동이 만든 미래 상태를 평가</p></article>
           <article><strong>Receding horizon</strong><p>일부 action을 실행한 뒤 새 관측으로 재계획</p></article>
         </div>
-        <p class="idp-source-note">
-          공개 저장소에는 original-style LPB와 explicit bank-based OOD/recovery 경로가 함께 있습니다.
-          이 페이지는 두 구현에 공통인 latent prediction, expert reference, guided denoising과
-          RB10·RMPflow 통합 구조를 중심으로 설명합니다.
-        </p>
       </section>
 
       <section class="sensor-section idp-section idp-demo-section" aria-labelledby="idp-demos-title">
