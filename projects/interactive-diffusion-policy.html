@@ -30,7 +30,7 @@
       <section class="sensor-hero idp-hero" aria-labelledby="project-title">
         <div class="sensor-hero-copy">
           <a class="back-link" href="../index.html#work">← Portfolio Home</a>
-          <p class="eyebrow">Task‑oriented Physical AI × proximity safety × latent recovery</p>
+          <p class="eyebrow">Task policy × proximity safety × latent recovery</p>
           <h1 id="project-title">Interactive<br>Diffusion Policy</h1>
           <p class="sensor-hero-tagline">Learn the task · React to people · Resume after avoidance</p>
           <p class="project-lead">
@@ -67,12 +67,12 @@
             <p>Problem</p>
           </div>
           <div>
-            <h2 id="idp-problem-title">Task를 수행하는 능력과<br>사람 곁에서 일하는 능력은 다릅니다</h2>
-            <p class="section-subtitle">Task competence ≠ interaction robustness</p>
+            <h2 id="idp-problem-title">Task는 배웠지만,<br>회피와 복귀는 배우지 않았습니다</h2>
+            <p class="section-subtitle">Task policy → fast avoidance → task recovery</p>
             <p class="section-intro">
-              시연 기반 정책은 정해진 분포 안에서 복잡한 manipulation을 수행합니다.
-              하지만 사람이 접근해 RMPflow가 경로를 바꾸는 순간, 로봇은 시연에 없던 상태로 이동합니다.
-              문제는 충돌 회피 자체보다 그 다음 action을 어떻게 task 맥락 안에서 이어갈지에 있습니다.
+              Diffusion Policy는 시연된 task를 수행하지만 갑작스런 사람 접근까지 배운 것은 아닙니다.
+              회피를 학습 정책에만 맡기면 안전 반응이 카메라 관측과 반복 denoising 속도에 묶입니다.
+              그래서 즉각적인 회피와 회피 후 task 복귀를 분리했습니다.
             </p>
           </div>
         </header>
@@ -81,7 +81,7 @@
             <header>
               <div>
                 <p>Task competence</p>
-                <h3 id="idp-task-showcase-title">시연으로 배운 로봇은<br>이미 다양한 task를 수행합니다.</h3>
+                <h3 id="idp-task-showcase-title">시연 정책은<br>복잡한 task를 수행합니다.</h3>
               </div>
               <span>Reference task videos</span>
             </header>
@@ -110,27 +110,24 @@
 
           <section class="idp-gap-stage" aria-labelledby="idp-gap-title">
             <header class="idp-gap-copy">
-              <p>The missing loop</p>
-              <h3 id="idp-gap-title">사람을 피한 뒤,<br>policy는 어디서 task를 다시 시작할까?</h3>
+              <p>Separated response loop</p>
+              <h3 id="idp-gap-title">빠르게 피하고,<br>task로 돌아옵니다</h3>
               <p>
-                RMPflow는 충돌을 피할 수 있지만, 회피가 만든 새 상태는 task policy의
-                학습 분포 밖일 수 있습니다. 안전한 회피와 자연스러운 작업 재개 사이에
-                recovery가 필요한 이유입니다.
+                근접센서와 RMPflow가 사람 접근에 반응하고,
+                LPB가 회피로 달라진 상태에서 task 복귀 방향을 찾습니다.
               </p>
             </header>
             <div class="idp-gap-diagram">
-              <ol class="idp-closed-loop-flow" aria-label="사람 접근으로 발생하는 작업 복귀 공백">
-                <li><span>01</span><strong>Learned task</strong><small>Diffusion Policy</small></li>
-                <li><span>02</span><strong>Human approach</strong><small>Proximity sensing</small></li>
-                <li><span>03</span><strong>Local avoidance</strong><small>RMPflow</small></li>
-                <li class="is-gap"><span>04</span><strong>Unseen state</strong><small>Post‑avoidance OOD</small></li>
-                <li class="is-resume"><span>05</span><strong>Task resume</strong><small>Next observation</small></li>
+              <ol class="idp-closed-loop-flow" aria-label="task 수행, 빠른 회피, task 복귀로 이어지는 반응 구조">
+                <li><span>01 · Generate</span><strong>Task execution</strong><small>Diffusion Policy</small></li>
+                <li class="is-avoidance"><span>02 · React</span><strong>Fast avoidance</strong><small>Proximity + RMPflow</small></li>
+                <li class="is-recovery"><span>03 · Recover</span><strong>Task recovery</strong><small>LPB guidance</small></li>
               </ol>
               <div class="idp-why-lpb">
-                <span>Why LPB?</span>
+                <span>Why LPB</span>
                 <div>
-                  <strong>회피가 만든 새 상태를<br>expert latent와 다시 연결합니다.</strong>
-                  <p>후보 action의 미래 latent를 예측하고, expert reference에 가까워지는 방향으로 denoising을 guide합니다.</p>
+                  <strong>회피 후에는 policy가 보지 못한 상태가 남습니다.</strong>
+                  <p>LPB는 미래 latent를 expert reference와 비교해 task로 돌아갈 action을 guide합니다.</p>
                 </div>
               </div>
             </div>
@@ -145,12 +142,11 @@
             <p>System</p>
           </div>
           <div>
-            <h2 id="idp-system-title">생성·복귀·안전의<br>역할을 분리했습니다</h2>
-            <p class="section-subtitle">Frozen policy · Action‑conditioned dynamics · RMPflow</p>
+            <h2 id="idp-system-title">생성·회피·복귀의<br>역할을 분리했습니다</h2>
+            <p class="section-subtitle">Diffusion Policy · Proximity/RMPflow · LPB guidance</p>
             <p class="section-intro">
-              학습된 정책은 작업을 생성하고, LPB는 후보 행동이 만들 미래 상태를 평가하며,
-              RMPflow는 실행 시점의 근접 위험에 반응합니다. 각 모듈의 책임을 분리해
-              작업 성능과 실시간 안전 제어를 하나의 loop에서 연결했습니다.
+              Policy가 task action을 생성하고, RMPflow가 실행 시점의 근접 위험을 회피하며,
+              LPB가 다음 계획을 expert 분포 쪽으로 유도합니다. 세 역할을 하나의 closed loop로 연결했습니다.
             </p>
           </div>
         </header>
@@ -187,8 +183,8 @@
         </div>
         <div class="idp-role-grid">
           <article><span>Policy</span><h3>Task generation</h3><p>시각 관측과 로봇 상태에서 작업 목적을 담은 action chunk를 생성합니다.</p></article>
-          <article><span>LPB</span><h3>Latent recovery</h3><p>후보 행동 이후의 latent를 예측하고 expert 분포에 가까워지는 방향을 계산합니다.</p></article>
           <article><span>RMPflow</span><h3>Local safety</h3><p>로봇 표면의 근접센서로 카메라 가림과 무관하게 가까운 접근에 반응합니다.</p></article>
+          <article><span>LPB</span><h3>Latent recovery</h3><p>후보 행동 이후의 latent를 예측하고 expert 분포에 가까워지는 방향을 계산합니다.</p></article>
         </div>
       </section>
 
