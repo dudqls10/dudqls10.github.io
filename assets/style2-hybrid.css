@@ -1972,3 +1972,31 @@ html { scroll-padding-top: 88px; }
     content: " · swipe →";
   }
 }
+
+/* Keep Korean and Latin words intact across the IDP case study. */
+.portfolio-v2.project-v2.idp-page .project-page h1,
+.portfolio-v2.project-v2.idp-page .project-page h2,
+.portfolio-v2.project-v2.idp-page .project-page h3,
+.portfolio-v2.project-v2.idp-page .project-page h4,
+.portfolio-v2.project-v2.idp-page .project-page p,
+.portfolio-v2.project-v2.idp-page .project-page dt,
+.portfolio-v2.project-v2.idp-page .project-page dd,
+.portfolio-v2.project-v2.idp-page .project-page strong,
+.portfolio-v2.project-v2.idp-page .project-page span,
+.portfolio-v2.project-v2.idp-page .project-page small,
+.portfolio-v2.project-v2.idp-page .project-page a {
+  overflow-wrap: normal;
+  word-break: keep-all;
+}
+
+.portfolio-v2.project-v2.idp-page .project-page .idp-code-paths span {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+@media (max-width: 420px) {
+  .portfolio-v2.project-v2.idp-page .project-page .project-repo-link {
+    font-size: 11px;
+    white-space: nowrap;
+  }
+}
