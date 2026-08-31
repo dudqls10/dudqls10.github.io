@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#08090b">
-    <meta name="description" content="Diffusion Policy, 근접센서 기반 RMPflow, LPB를 연결해 사람 접근에 반응하고 회피 이후의 작업 복귀를 다루는 송영빈의 실로봇 연구입니다.">
-    <link rel="preload" href="../media/interactive-safety-poster.jpg" as="image">
+    <meta name="description" content="Diffusion Policy, 근접센서 기반 RMPflow, action-conditioned latent dynamics와 LPB guidance를 연결한 송영빈의 RB10 실로봇 연구입니다.">
+    <link rel="preload" href="interactive-diffusion-assets/system-overview.webp" as="image" type="image/webp">
     <link rel="stylesheet" href="../assets/style.css">
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
@@ -21,230 +21,236 @@
         <a class="wordmark" href="../index.html">SONG YOUNGBIN</a>
         <nav class="project-quick-nav" aria-label="페이지 빠른 이동">
           <a href="#idp-problem-title">01 Problem</a>
-          <a href="#idp-framework-title">02 Framework</a>
-          <a href="#idp-lpb-title">05 Guidance</a>
-          <a href="#idp-evidence-title">07 Validation</a>
+          <a href="#idp-system-title">02 System</a>
+          <a href="#idp-demos-title">04 Demos</a>
+          <a href="#idp-code-title">05 Code</a>
         </nav>
       </header>
 
       <section class="project-hero idp-hero">
         <div>
           <a class="back-link" href="../index.html#work">← Portfolio Home</a>
-          <p class="eyebrow">Learning policy × reactive control</p>
+          <p class="eyebrow">Vision policy × proximity safety × latent recovery</p>
           <h1>Interactive<br>Diffusion Policy</h1>
           <p class="project-lead">
-            Diffusion Policy가 작업 행동을 생성하고, 근접센서 기반 RMPflow가
-            사람의 접근에 반응해 로봇 동작을 조정합니다. 회피로 학습 분포를
-            벗어난 이후에는 LPB guidance를 적용해 작업을 다시 이어갈 수 있는
-            행동 생성을 다루었습니다.
+            시각 기반 Diffusion Policy가 작업 action chunk를 생성하고, 근접센서 기반
+            RMPflow가 사람의 접근에 국소적으로 반응합니다. 회피로 학습 분포를 벗어난
+            상태에서는 action-conditioned latent dynamics와 LPB guidance로 작업 복귀
+            방향을 찾는 closed-loop 프레임워크입니다.
           </p>
         </div>
         <dl class="project-overview">
           <div><dt>기간</dt><dd>2026 · 진행 중인 연구</dd></div>
-          <div><dt>담당 범위</dt><dd>RB10 실로봇 통합 · RMPflow 실행 계층 · LPB/OOD 추론 및 비교 실험</dd></div>
-          <div><dt>시스템</dt><dd>RB10 · Wrist/Workspace RGB Camera · Robot-mounted Proximity Sensors</dd></div>
-          <div><dt>현재 근거</dt><dd>사람 접근 회피 통합 · 동일 조건의 Base/Guided paired inference</dd></div>
+          <div><dt>담당 범위</dt><dd>RB10 실로봇 통합 · RMPflow 실행 계층 · LPB/OOD 추론 및 실험 기록</dd></div>
+          <div><dt>관측</dt><dd>Workspace/Wrist RGB · Proprioception · Robot-mounted Proximity Sensors</dd></div>
           <div><dt>기술</dt><dd>Python · PyTorch · ROS 2 · Diffusion Policy · LPB · RMPflow</dd></div>
+          <div>
+            <dt>Source</dt>
+            <dd><a class="project-repo-link" href="https://github.com/Bookjean/Diffusion_policy_for_youngbin" target="_blank" rel="noopener">GitHub repository ↗</a></dd>
+          </div>
         </dl>
       </section>
 
-      <div class="project-cover project-cover-video idp-cover">
-        <video muted loop playsinline controls preload="none" poster="../media/interactive-safety-poster.jpg">
-          <source src="../media/interactive-safety.mp4" type="video/mp4">
-          브라우저에서 MP4 영상을 재생할 수 없습니다.
-        </video>
-      </div>
+      <figure class="idp-system-figure">
+        <a href="interactive-diffusion-assets/system-overview.webp" target="_blank" rel="noopener" aria-label="Interactive Diffusion Policy 전체 시스템 도식 크게 보기">
+          <img src="interactive-diffusion-assets/system-overview.webp" width="2400" height="1315" alt="전문가 시연으로 Diffusion Policy와 latent bank를 구성하고, action-conditioned latent dynamics, LPB guidance, 근접센서 기반 RMPflow를 연결한 학습 및 closed-loop 배포 구조">
+        </a>
+        <figcaption>
+          <span><b>System overview</b> Training pipeline and closed-loop deployment</span>
+          <a href="interactive-diffusion-assets/system-overview.webp" target="_blank" rel="noopener">도식 크게 보기 ↗</a>
+        </figcaption>
+      </figure>
 
-      <section class="idp-principles" aria-label="프레임워크 핵심 흐름">
-        <article><span>01</span><div><strong>Generate</strong><p>작업 행동 생성</p></div></article>
-        <article><span>02</span><div><strong>React</strong><p>사람 접근에 반응</p></div></article>
-        <article><span>03</span><div><strong>Resume</strong><p>회피 이후 작업 복귀</p></div></article>
+      <section class="idp-principles" aria-label="프레임워크 핵심 역할">
+        <article><span>01</span><div><strong>Generate</strong><p>시각·로봇 상태에서 작업 행동 생성</p></div></article>
+        <article><span>02</span><div><strong>React</strong><p>근접센서 기반 실시간 국소 회피</p></div></article>
+        <article><span>03</span><div><strong>Recover</strong><p>회피 이후 latent 분포로 작업 복귀</p></div></article>
       </section>
 
       <section class="idp-section" aria-labelledby="idp-problem-title">
         <div class="idp-section-heading">
           <p><b>01</b><span>Problem</span></p>
-          <h2 id="idp-problem-title">회피 이후에도<br>작업은 계속되어야 합니다.</h2>
+          <h2 id="idp-problem-title">피하는 것만으로는<br>작업이 끝나지 않습니다.</h2>
         </div>
-        <div class="idp-body idp-problem-copy">
+        <div class="idp-body">
           <p>
-            Diffusion Policy는 시연 데이터에서 작업 행동을 학습하지만, 학습 과정에서
-            경험하지 못한 사람의 접근에는 즉시 대응하기 어렵습니다. 정지 방식은 충돌
-            위험을 줄일 수 있지만 작업 흐름을 끊고, 반응형 회피를 적용하더라도 로봇이
-            시연 궤적에서 벗어나면 정책의 예측이 불안정해질 수 있습니다.
+            Diffusion Policy는 전문가 시연 안에서 작업 행동을 잘 생성하지만, 작업 중
+            갑작스러운 사람의 접근은 학습 데이터에 없을 수 있습니다. RMPflow는 이 접근에
+            즉시 반응해 충돌 위험을 낮추지만, 회피 결과는 로봇을 시연 궤적 밖의 자세로
+            이동시킵니다.
           </p>
           <p>
-            따라서 사람의 접근에 반응하는 것뿐 아니라, 회피로 달라진 상태에서 작업을
-            다시 이어갈 수 있는 closed-loop 구조가 필요했습니다.
+            핵심 문제는 회피 자체가 아니라 <b>회피 이후의 상태</b>입니다. 안전 제어로
+            달라진 관측에서 기본 정책만 다시 실행하면 오차가 누적되거나 작업 경로를
+            찾지 못할 수 있어, 안전 반응과 작업 복귀를 하나의 closed loop로 연결했습니다.
           </p>
         </div>
         <div class="idp-situation-flow" aria-label="회피 이후 발생하는 문제">
-          <article><span>01</span><strong>작업 수행</strong><p>시연 분포 안에서 작업 행동 생성</p></article>
+          <article><span>01</span><strong>Task policy</strong><p>전문가 시연 분포 안에서 action chunk 생성</p></article>
           <i aria-hidden="true">→</i>
-          <article><span>02</span><strong>사람 접근</strong><p>RMPflow가 정책 경로를 수정해 회피</p></article>
+          <article><span>02</span><strong>RMP avoidance</strong><p>근접 입력으로 실행 경로를 국소적으로 수정</p></article>
           <i aria-hidden="true">→</i>
-          <article class="is-alert"><span>03</span><strong>분포 밖 상태</strong><p>회피 이후 정책이 경험하지 못한 자세</p></article>
+          <article class="is-alert"><span>03</span><strong>Post-avoidance OOD</strong><p>정책이 경험하지 못한 상태에서 다시 계획</p></article>
         </div>
       </section>
 
-      <section class="idp-section idp-framework-section" aria-labelledby="idp-framework-title">
+      <section class="idp-section idp-framework-section" aria-labelledby="idp-system-title">
         <div class="idp-section-heading">
-          <p><b>02</b><span>Framework</span></p>
-          <h2 id="idp-framework-title">작업 생성·반응형 회피·<br>작업 복귀를 하나의 흐름으로.</h2>
+          <p><b>02</b><span>System</span></p>
+          <h2 id="idp-system-title">학습 정책·복귀 모델·안전 제어의<br>역할을 분리했습니다.</h2>
         </div>
-        <div class="idp-architecture" aria-label="Interactive Diffusion Policy 전체 구조">
-          <div class="idp-lane">
-            <b>Task</b><div><small>Observation</small><strong>RGB 영상 + 로봇 상태</strong></div><i>→</i>
-            <div class="is-primary"><small>Generate</small><strong>Diffusion Policy</strong></div><i>→</i>
-            <div><small>Reference</small><strong>작업 행동</strong></div>
-          </div>
-          <div class="idp-lane">
-            <b>Safety</b><div><small>Local sensing</small><strong>근접센서</strong></div><i>→</i>
-            <div class="is-primary"><small>React</small><strong>RMPflow</strong></div><i>→</i>
-            <div><small>Execution</small><strong>RB10 관절 명령</strong></div>
-          </div>
-          <div class="idp-lane idp-lane-recovery">
-            <b>Recovery</b><div><small>Monitor</small><strong>Latent OOD score</strong></div><i>→</i>
-            <div class="is-accent"><small>Resume</small><strong>LPB guidance</strong></div><i>↗</i>
-            <div><small>Update</small><strong>Diffusion denoising</strong></div>
-          </div>
+        <div class="idp-system-grid">
+          <article>
+            <p>Training</p>
+            <h3>작업 정책과 복귀 dynamics를<br>서로 다른 데이터 역할로 학습</h3>
+            <ul>
+              <li><b>Expert demonstrations E</b><span>기본 Diffusion Policy와 expert latent bank의 기준 분포</span></li>
+              <li><b>Original rollouts R</b><span>정책 실행 중 관측된 실제 상태 전이</span></li>
+              <li><b>RMP recovery transitions T</b><span>회피 이후 작업으로 돌아가는 복귀 상태 전이</span></li>
+              <li><b>Action-conditioned dynamics</b><span>현재 latent와 후보 action으로 미래 latent를 예측</span></li>
+            </ul>
+          </article>
+          <article>
+            <p>Closed-loop deployment</p>
+            <h3>후보 행동을 먼저 평가하고<br>실행 단계에서 근접 안전을 보장</h3>
+            <ul>
+              <li><b>Observe</b><span>Workspace/Wrist RGB와 proprioception을 condition token으로 변환</span></li>
+              <li><b>Denoise</b><span>Diffusion decoder가 horizon action 후보를 반복적으로 정제</span></li>
+              <li><b>Guide</b><span>예측 미래 latent의 expert-bank 거리를 action gradient로 반영</span></li>
+              <li><b>Execute</b><span>근접센서와 RMPflow가 최종 action을 안전하게 실행</span></li>
+            </ul>
+          </article>
         </div>
         <div class="idp-role-grid">
-          <article><span>01</span><h3>작업 행동 생성</h3><p>Diffusion Policy가 카메라 영상과 로봇 상태를 바탕으로 다음 작업 행동을 생성합니다.</p></article>
-          <article><span>02</span><h3>반응형 회피</h3><p>RMPflow가 작업 참조와 근접센서 입력을 결합해 사람 접근에 연속적으로 반응합니다.</p></article>
-          <article><span>03</span><h3>작업 복귀</h3><p>LPB가 OOD 상태를 판단하고 필요한 경우 작업 분포 방향으로 행동 생성을 보정합니다.</p></article>
+          <article><span>Policy</span><h3>Task generation</h3><p>시각 관측과 로봇 상태에서 작업 목적을 담은 action chunk를 생성합니다.</p></article>
+          <article><span>LPB</span><h3>Latent recovery</h3><p>후보 행동 이후의 latent를 예측하고 expert 분포에 가까워지는 방향을 계산합니다.</p></article>
+          <article><span>RMPflow</span><h3>Local safety</h3><p>근접센서 입력을 사용해 실제 실행 경로를 연속적으로 수정합니다.</p></article>
         </div>
       </section>
 
-      <section class="idp-section" aria-labelledby="idp-runtime-title">
+      <section class="idp-section idp-recovery-section" aria-labelledby="idp-lpb-title">
         <div class="idp-section-heading">
-          <p><b>03</b><span>Real-Robot Integration</span></p>
-          <h2 id="idp-runtime-title">정책과 제어기의 역할을<br>실행 계층에서 분리했습니다.</h2>
+          <p><b>03</b><span>LPB Recovery</span></p>
+          <h2 id="idp-lpb-title">미래 상태를 예측해<br>denoising 과정에 복귀 방향을 줍니다.</h2>
         </div>
         <div class="idp-body">
           <p>
-            학습 정책은 작업 목표를 생성하고, 하위 제어기는 RB10의 실제 동작과
-            근접 회피를 담당하도록 구성했습니다. 정책이 생성한 end-effector reference를
-            RMPflow에 전달하고, RMPflow가 근접센서 입력을 반영한 관절 명령을 생성합니다.
-          </p>
-        </div>
-        <div class="idp-runtime-flow" aria-label="실로봇 실행 흐름">
-          <div><small>Policy</small><strong>작업 참조</strong></div><i>→</i>
-          <div><small>Controller</small><strong>RMPflow</strong></div><i>→</i>
-          <div><small>Command</small><strong>관절 명령</strong></div><i>→</i>
-          <div><small>Hardware</small><strong>RB10 + 상태 피드백</strong></div>
-        </div>
-        <ul class="idp-integration-list">
-          <li><strong>Reference interface</strong><span>정책 출력과 하위 제어기의 명령 형식을 분리해 실행 경로를 비교했습니다.</span></li>
-          <li><strong>Command ownership</strong><span>동시에 두 프로세스가 로봇팔을 제어하지 않도록 실행 모드별 제어권을 명시했습니다.</span></li>
-          <li><strong>Paired evidence</strong><span>동일한 관측과 diffusion noise에서 base/guided 행동과 실제 로봇 상태를 함께 기록했습니다.</span></li>
-        </ul>
-      </section>
-
-      <section class="idp-section idp-ood-section" aria-labelledby="idp-ood-title">
-        <div class="idp-section-heading">
-          <p><b>04</b><span>Avoidance-Induced OOD</span></p>
-          <h2 id="idp-ood-title">안전하게 피한 뒤,<br>정책은 낯선 상태에 놓입니다.</h2>
-        </div>
-        <div class="idp-body">
-          <p>
-            RMPflow는 사람의 접근에 반응해 충돌을 피할 수 있지만, 그 과정에서 로봇은
-            시연 데이터에 포함되지 않은 자세로 이동할 수 있습니다. 이 상태에서 기본
-            Diffusion Policy를 그대로 실행하면 오차가 누적되거나 작업 경로로 복귀하지
-            못할 수 있습니다.
-          </p>
-        </div>
-        <div class="idp-ood-flow" aria-label="회피로 발생하는 OOD 과정">
-          <div><span>Expert trajectory</span><strong>시연된 작업 경로</strong></div><i>→</i>
-          <div><span>RMP deflection</span><strong>접근에 따른 경로 수정</strong></div><i>→</i>
-          <div class="is-danger"><span>Off-distribution</span><strong>학습하지 않은 상태</strong></div><i>→</i>
-          <div><span>Resumption risk</span><strong>작업 실패 가능성</strong></div>
-        </div>
-      </section>
-
-      <section class="idp-section" aria-labelledby="idp-lpb-title">
-        <div class="idp-section-heading">
-          <p><b>05</b><span>LPB-Guided Resumption</span></p>
-          <h2 id="idp-lpb-title">필요한 순간에만<br>작업 분포 방향으로 보정합니다.</h2>
-        </div>
-        <div class="idp-body">
-          <p>
-            기본 Diffusion Policy는 고정한 상태에서, 현재 상태가 시연 분포를 벗어난
-            경우에만 LPB guidance가 개입하도록 구성했습니다. 후보 행동이 예측하는 미래
-            상태를 expert latent bank와 비교하고, 작업 분포에 가까워지는 방향으로 diffusion
-            denoising을 보정합니다.
+            현재 관측의 latent와 중간 action chunk를 dynamics model에 넣어 미래 latent를
+            예측합니다. 이 예측값이 expert latent bank에서 멀어질수록 OOD cost가 커지고,
+            cost의 action gradient가 마지막 denoising 단계에 반영됩니다. 기본 정책은
+            고정한 채 필요한 시점의 action sampling만 보정합니다.
           </p>
         </div>
         <ol class="idp-step-grid">
-          <li><span>01</span><h3>상태 표현</h3><p>현재 영상과 로봇 상태를 latent로 변환</p></li>
-          <li><span>02</span><h3>OOD 판단</h3><p>Expert latent bank와의 거리 비교</p></li>
-          <li><span>03</span><h3>미래 예측</h3><p>후보 행동 이후의 latent 상태 예측</p></li>
-          <li><span>04</span><h3>Guidance</h3><p>기준을 넘을 때 마지막 denoising 단계 보정</p></li>
+          <li><span>01</span><h3>Encode</h3><p>RGB 관측과 proprioception을 현재 latent로 변환</p></li>
+          <li><span>02</span><h3>Predict</h3><p>후보 action chunk 이후의 미래 latent를 예측</p></li>
+          <li><span>03</span><h3>Measure</h3><p>Expert latent bank와의 거리로 OOD cost 계산</p></li>
+          <li><span>04</span><h3>Guide</h3><p>Action gradient로 마지막 denoising 단계 보정</p></li>
         </ol>
         <div class="idp-note-row">
-          <p><strong>Frozen policy</strong>기본 작업 정책은 다시 학습하지 않습니다.</p>
-          <p><strong>Threshold gated</strong>OOD 기준을 넘는 경우에만 guidance가 개입합니다.</p>
-          <p><strong>Closed loop</strong>첫 action chunk 실행 후 새 관측으로 다시 계획합니다.</p>
+          <p><strong>Frozen base policy</strong>기본 작업 정책을 다시 학습하지 않고 sampling 단계에서 개입합니다.</p>
+          <p><strong>Action-conditioned</strong>상태만 보는 대신 후보 행동이 만든 미래 상태를 평가합니다.</p>
+          <p><strong>Receding horizon</strong>Action chunk 일부를 실행한 뒤 새 관측으로 다시 계획합니다.</p>
         </div>
+        <p class="idp-source-note">
+          공개 저장소에는 original-style LPB와 explicit bank-based OOD/recovery 경로가 함께 있습니다.
+          이 페이지는 두 구현에 공통인 latent prediction, expert reference, guided denoising과
+          RB10·RMPflow 통합 구조를 중심으로 설명합니다.
+        </p>
       </section>
 
-      <section class="idp-section idp-data-section" aria-labelledby="idp-data-title">
+      <section class="idp-section idp-demo-section" aria-labelledby="idp-demos-title">
         <div class="idp-section-heading">
-          <p><b>06</b><span>Recovery-Aware Data</span></p>
-          <h2 id="idp-data-title">실제 회피 이후의 상태에서<br>작업 복귀 데이터를 수집했습니다.</h2>
+          <p><b>04</b><span>Real-Robot Demos</span></p>
+          <h2 id="idp-demos-title">실로봇 동작과 내부 판단을<br>영상으로 함께 기록했습니다.</h2>
         </div>
-        <div class="idp-body">
-          <p>
-            RMPflow가 생성한 회피 동작 자체는 학습 데이터에 포함하지 않고, 회피가 끝난
-            위치에서 작업을 다시 이어가는 시연을 별도로 기록했습니다. 이를 통해 dynamics
-            model이 실제 회피 과정에서 발생하는 off-path 상태와 작업 복귀 방향을 학습할 수
-            있도록 구성했습니다.
-          </p>
-        </div>
-        <ol class="idp-data-flow">
-          <li><span>01</span><strong>일반 작업 시연</strong><p>정상 조건의 expert demonstration 기록</p></li>
-          <li><span>02</span><strong>사람 접근과 회피</strong><p>RMPflow가 개입한 회피 구간은 기록에서 제외</p></li>
-          <li><span>03</span><strong>Off-path 상태</strong><p>회피가 끝난 현재 위치에서 원격조작 재개</p></li>
-          <li><span>04</span><strong>복귀 구간 기록</strong><p>작업으로 이어지는 recovery sub-trajectory 수집</p></li>
-        </ol>
-      </section>
-
-      <section class="idp-section idp-evidence-section" aria-labelledby="idp-evidence-title">
-        <div class="idp-section-heading">
-          <p><b>07</b><span>Validation Status</span></p>
-          <h2 id="idp-evidence-title">현재 확보한 근거와<br>진행 중인 평가를 구분했습니다.</h2>
-        </div>
-        <div class="idp-evidence-grid">
-          <figure class="idp-evidence-video">
-            <video muted loop playsinline controls preload="none" poster="../media/rmpflow-avoidance-poster.jpg">
-              <source src="../media/rmpflow-dynamic-avoidance.mp4" type="video/mp4">
+        <div class="idp-demo-grid">
+          <figure class="idp-demo-card is-featured">
+            <video muted loop playsinline controls preload="metadata" poster="interactive-diffusion-assets/task-avoidance-poster.jpg">
+              <source src="interactive-diffusion-assets/task-avoidance.mp4" type="video/mp4">
               브라우저에서 MP4 영상을 재생할 수 없습니다.
             </video>
-            <figcaption><strong>실로봇 반응형 회피</strong><span>근접센서 입력을 사용한 RMPflow 동적 접근 대응</span></figcaption>
+            <figcaption>
+              <p>01 · Task-level interaction</p>
+              <h3>작업 동작 중 사람 접근에 대한 closed-loop 반응</h3>
+              <span>작업 sequence와 사람의 접근이 겹치는 조건에서 RB10의 동작 변화를 기록했습니다.</span>
+            </figcaption>
           </figure>
-          <article class="idp-qualitative-card">
-            <header><p>Representative development trial</p><h3>유사한 초기 상태에서 달라진 closed-loop 동작</h3><span>H16 조건 · 각 2회</span></header>
-            <div class="idp-compare-row"><b>Base policy</b><span>OOD score monitoring</span><i>→</i><strong class="is-fail">0 / 2</strong></div>
-            <div class="idp-compare-row is-guided"><b>LPB guidance</b><span>Guidance active</span><i>→</i><strong class="is-pass">2 / 2</strong></div>
-            <p class="idp-caveat">방법의 동작을 보여주는 정성 사례이며, 전체 성능을 대표하는 최종 정량 결과는 아닙니다.</p>
-          </article>
+
+          <figure class="idp-demo-card">
+            <video muted loop playsinline controls preload="metadata" poster="interactive-diffusion-assets/dp-rmp-avoidance-poster.jpg">
+              <source src="interactive-diffusion-assets/dp-rmp-avoidance.mp4" type="video/mp4">
+              브라우저에서 MP4 영상을 재생할 수 없습니다.
+            </video>
+            <figcaption>
+              <p>02 · Proximity response</p>
+              <h3>Diffusion Policy 실행과 RMPflow 국소 회피</h3>
+              <span>정책이 생성한 작업 경로를 실행하면서 근접 접근에 반응하는 실로봇 장면입니다.</span>
+            </figcaption>
+          </figure>
+
+          <figure class="idp-demo-card">
+            <video muted loop playsinline controls preload="metadata" poster="interactive-diffusion-assets/lpb-runtime-diagnostics-poster.jpg">
+              <source src="interactive-diffusion-assets/lpb-runtime-diagnostics.mp4" type="video/mp4">
+              브라우저에서 MP4 영상을 재생할 수 없습니다.
+            </video>
+            <figcaption>
+              <p>03 · LPB diagnostics</p>
+              <h3>Nearest latent·trajectory·OOD cost의 동시 기록</h3>
+              <span>현재 관측과 nearest expert frame, base/guided trajectory, cost threshold를 같은 타임라인에서 확인합니다.</span>
+            </figcaption>
+          </figure>
         </div>
+        <p class="idp-privacy-note">실로봇 영상의 얼굴 영역은 개인정보 보호를 위해 블러 처리했습니다. 영상은 2× 재생 속도로 편집되었습니다.</p>
+      </section>
+
+      <section class="idp-section idp-code-section" aria-labelledby="idp-code-title">
+        <div class="idp-section-heading">
+          <p><b>05</b><span>Implementation</span></p>
+          <h2 id="idp-code-title">실행 코드와 운영 문서를<br>공개 저장소로 연결했습니다.</h2>
+        </div>
+        <article class="idp-code-card">
+          <div class="idp-code-head">
+            <div>
+              <p>Public GitHub repository</p>
+              <h3>Bookjean/<br>Diffusion_policy_for_youngbin</h3>
+            </div>
+            <a href="https://github.com/Bookjean/Diffusion_policy_for_youngbin" target="_blank" rel="noopener">View source ↗</a>
+          </div>
+          <div class="idp-code-paths">
+            <div><b>Policy &amp; LPB</b><span>Diffusion action sampling, original/bank-based LPB planner, OOD monitor</span></div>
+            <div><b>Real-robot runtime</b><span>RB10 inference, observation alignment, paired action and rollout logging</span></div>
+            <div><b>Reactive control</b><span>RMP_Proximity-Sensor package, ROS 2 topic contract, controller ownership modes</span></div>
+            <div><b>Reproducibility</b><span>Project context, environment setup, trial protocol, runtime diagnosis documents</span></div>
+          </div>
+        </article>
+
         <div class="idp-validation-status">
           <article>
-            <span>현재 확보</span><h3>통합 동작과 비교 기록</h3>
-            <ul><li>RB10 작업 실행과 RMPflow 회피 통합</li><li>동일 조건의 Base/Guided paired inference</li><li>OOD score, action horizon, 실제 상태 기록</li></ul>
+            <span>현재 공개 근거</span>
+            <h3>Integration evidence</h3>
+            <ul>
+              <li>RB10 작업 실행과 근접센서 기반 RMPflow 반응 영상</li>
+              <li>LPB guidance 상태와 latent/OOD cost runtime visualization</li>
+              <li>Base/Guided paired inference 및 rollout 기록 경로</li>
+            </ul>
           </article>
           <article>
-            <span>진행 중</span><h3>전체 프레임워크 정량 평가</h3>
-            <ul><li>Vanilla DP · Proximity Stop · DP + RMPflow · Proposed</li><li>Pick-and-place와 Human co-working</li><li>Task success · Collision · Completion-time overhead</li></ul>
+            <span>진행 중인 평가</span>
+            <h3>Full benchmark</h3>
+            <ul>
+              <li>Pure policy · Proximity stop · Policy + RMPflow · Proposed 비교</li>
+              <li>Task success · Collision · Completion-time overhead 측정</li>
+              <li>Recovery transition과 RMP-risk 학습 경로의 정량 ablation</li>
+            </ul>
           </article>
         </div>
       </section>
 
       <section class="idp-summary project-summary" id="project-summary" aria-label="프로젝트 결론">
         <p>Project takeaway</p>
-        <h2>학습 정책과 반응형 안전 제어의 역할을 분리하고,<br>회피 이후의 OOD 상태까지 작업 복귀 과정으로 연결했습니다.</h2>
-        <div><span>Task generation</span><span>Reactive avoidance</span><span>OOD-aware resumption</span></div>
+        <h2>학습 정책이 작업을 만들고, RMPflow가 가까운 위험에 반응하며, LPB가 회피 이후의 낯선 상태를 작업 복귀 문제로 연결합니다.</h2>
+        <div><span>Task generation</span><span>Reactive avoidance</span><span>Latent OOD recovery</span><span>Closed-loop execution</span></div>
       </section>
 
       <a class="next-project" href="undergraduate-projects.html"><span>Next project</span><strong>Undergraduate Projects →</strong></a>
