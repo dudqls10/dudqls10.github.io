@@ -744,30 +744,49 @@ html { scroll-padding-top: 88px; }
 
 .portfolio-v2.project-v2.idp-page .idp-task-reel {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
+  background: var(--line);
 }
 
 .portfolio-v2.project-v2.idp-page .idp-task-reel figure {
   position: relative;
   min-width: 0;
   margin: 0;
-  border-left: 1px solid rgba(255, 255, 255, .22);
   background: #111827;
   overflow: hidden;
 }
 
 .portfolio-v2.project-v2.idp-page .idp-task-reel figure:first-child {
-  border-left: 0;
+  grid-column: 1 / -1;
 }
 
 .portfolio-v2.project-v2.idp-page .idp-task-reel figure::after {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 42%, rgba(7, 12, 24, .82) 100%);
+  background: linear-gradient(180deg, transparent 64%, rgba(7, 12, 24, .74) 100%);
   content: "";
   pointer-events: none;
+}
+
+.portfolio-v2.project-v2.idp-page .idp-task-reel figure::before {
+  position: absolute;
+  z-index: 2;
+  top: 16px;
+  right: 16px;
+  padding: 6px 9px;
+  border: 1px solid rgba(255, 255, 255, .34);
+  border-radius: 999px;
+  background: rgba(7, 12, 24, .52);
+  color: #fff;
+  content: "AUTO · LOOP";
+  font-family: var(--font-mono);
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  backdrop-filter: blur(8px);
 }
 
 .portfolio-v2.project-v2.idp-page .idp-task-reel img,
@@ -778,6 +797,11 @@ html { scroll-padding-top: 88px; }
   object-fit: cover;
   filter: saturate(.88) contrast(1.02);
   transition: filter .3s ease, transform .45s ease;
+}
+
+.portfolio-v2.project-v2.idp-page .idp-task-reel figure:first-child video {
+  max-height: 520px;
+  aspect-ratio: 2.15 / 1;
 }
 
 .portfolio-v2.project-v2.idp-page .idp-task-reel figure:hover img,
@@ -951,19 +975,17 @@ html { scroll-padding-top: 88px; }
   }
 
   .portfolio-v2.project-v2.idp-page .idp-task-reel {
-    grid-template-columns: repeat(3, minmax(252px, 82vw));
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: thin;
+    grid-template-columns: 1fr;
+    overflow: visible;
   }
 
   .portfolio-v2.project-v2.idp-page .idp-task-reel figure {
-    border-left: 1px solid rgba(255, 255, 255, .22);
-    scroll-snap-align: start;
+    grid-column: auto;
   }
 
-  .portfolio-v2.project-v2.idp-page .idp-task-reel figure:first-child {
-    border-left: 0;
+  .portfolio-v2.project-v2.idp-page .idp-task-reel figure:first-child video {
+    max-height: none;
+    aspect-ratio: 16 / 9;
   }
 
   .portfolio-v2.project-v2.idp-page .idp-reference-note {
@@ -1971,7 +1993,7 @@ html { scroll-padding-top: 88px; }
     word-break: keep-all;
   }
   .portfolio-v2.project-v2.idp-page .idp-task-showcase > header > span::after {
-    content: " · swipe →";
+    content: " · autoplay";
   }
 }
 
