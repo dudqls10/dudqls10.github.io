@@ -11,7 +11,7 @@
     <meta name="author" content="Young Bin Song">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ko_KR">
-    <meta property="og:title" content="송영빈 | Robot Systems &amp; Safety Researcher">
+    <meta property="og:title" content="송영빈 | Robotics Sensing &amp; Control Engineer">
     <meta
       property="og:description"
       content="Proximity sensing, reactive motion control, and learning-based robot manipulation—validated on real hardware."
@@ -24,40 +24,25 @@
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
     <link rel="stylesheet" href="assets/style2-hybrid.css">
+    <link rel="stylesheet" href="assets/main-tabs.css">
     <link rel="icon" href="favicon.svg">
     <script src="assets/site.js" defer></script>
-    <title>송영빈 | Robot Systems &amp; Safety Researcher</title>
+    <title>송영빈 | Robotics Sensing &amp; Control Engineer</title>
   </head>
-  <body class="home-page index2-preview portfolio-v2">
+  <body class="home-page index2-preview portfolio-v2 tabbed-home">
     <a class="skip-link" href="#content">본문으로 건너뛰기</a>
-
-    <header class="site-header shell">
-      <a class="wordmark" href="#top" aria-label="송영빈 포트폴리오 첫 화면">
-        <span>SYB</span>
-        <strong>Song Youngbin</strong>
-      </a>
-      <nav aria-label="주요 메뉴">
-        <a href="#work">Research</a>
-        <a href="#experience">Experience</a>
-        <a href="#skills">Tools</a>
-        <a href="#undergraduate"><span class="nav-full">Earlier Projects</span><span class="nav-short">Earlier</span></a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
 
     <main id="content">
       <section class="hero shell" id="top">
         <div class="hero-copy">
           <p class="eyebrow">Proximity Sensing · Reactive Control · Physical AI</p>
           <h1>Young Bin Song</h1>
-          <h2 class="hero-role">Robot Systems &amp; Safety Researcher</h2>
-          <p class="hero-subrole">M.S. Candidate in Mechanical Engineering · Robotory Lab, Sungkyunkwan University</p>
-          <p class="hero-line">
-            Robot-mounted sensing에서 시작해 reactive safety control과 learning-based manipulation까지 연결하고,
-            실제 로봇 시스템에서 <span class="nowrap">구현·검증합니다.</span>
+          <h2 class="hero-role">Robotics Sensing &amp; Control Engineer</h2>
+          <p class="hero-subrole">
+            <span>M.S. Candidate in Mechanical Engineering</span><span class="hero-affiliation">Robotory Lab · Sungkyunkwan University</span>
           </p>
           <div class="hero-profile-links" aria-label="연락처와 이력서">
-            <button class="contact-trigger" type="button">Email <span aria-hidden="true">↗</span></button>
+            <button class="contact-trigger" type="button">Contact <span aria-hidden="true">↗</span></button>
             <a href="Young_Bin_Song_CV.pdf" target="_blank" rel="noopener">CV <span aria-hidden="true">↗</span></a>
             <a href="https://github.com/dudqls10" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
           </div>
@@ -68,25 +53,51 @@
         </div>
       </section>
 
-      <section class="section shell" id="work">
+      <nav class="home-view-nav shell" aria-label="포트폴리오 메뉴" role="tablist" data-home-tabs>
+        <button class="home-view-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="work" data-home-tab="work">
+          <span>01</span><strong>Research Projects</strong>
+        </button>
+        <button class="home-view-tab" type="button" role="tab" aria-selected="false" aria-controls="experience" data-home-tab="experience">
+          <span>02</span><strong>Experience &amp; Education</strong>
+        </button>
+        <button class="home-view-tab" type="button" role="tab" aria-selected="false" aria-controls="publications" data-home-tab="publications">
+          <span>03</span><strong>Publications &amp; Awards</strong>
+        </button>
+        <button class="home-view-tab" type="button" role="tab" aria-selected="false" aria-controls="skills" data-home-tab="skills">
+          <span>04</span><strong>Tools</strong>
+        </button>
+        <button class="home-view-tab" type="button" role="tab" aria-selected="false" aria-controls="undergraduate" data-home-tab="undergraduate">
+          <span>05</span><strong>Earlier Projects</strong>
+        </button>
+      </nav>
+
+      <section class="section shell home-view-panel is-active" id="work" role="tabpanel" data-home-panel>
         <div class="section-heading section-heading-simple">
           <span class="section-index">01</span>
           <div>
             <h2>Research Projects</h2>
-            <p class="section-deck">From sensor hardware to learning-based robot manipulation</p>
+            <p class="section-deck">Sensor Hardware → Robot Control → Physical AI</p>
             <p class="section-period">2024—2026</p>
           </div>
         </div>
 
-        <div class="pipeline" aria-label="개발 파이프라인">
-          <span>Sensor Hardware</span><b>01</b>
-          <span>Signal Processing</span><b>02</b>
-          <span>Reactive Motion Control</span><b>03</b>
-          <span>Learning-Based Manipulation</span><b>04</b>
+        <div class="research-tabs" aria-label="연구 프로젝트 선택" role="tablist" data-research-tabs>
+          <button class="research-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="research-sensor" data-research-tab="research-sensor">
+            <span>Proximity Sensing System</span><b>01</b>
+          </button>
+          <button class="research-tab" type="button" role="tab" aria-selected="false" aria-controls="research-signal" data-research-tab="research-signal">
+            <span>Robot Motion Compensation</span><b>02</b>
+          </button>
+          <button class="research-tab" type="button" role="tab" aria-selected="false" aria-controls="research-control" data-research-tab="research-control">
+            <span>Reactive Motion Control</span><b>03</b>
+          </button>
+          <button class="research-tab" type="button" role="tab" aria-selected="false" aria-controls="research-learning" data-research-tab="research-learning">
+            <span>Interactive Diffusion Policy</span><b>04</b>
+          </button>
         </div>
 
         <div class="case-list">
-          <article class="case">
+          <article class="case research-panel is-active" id="research-sensor" role="tabpanel" data-research-panel>
             <a
               class="case-image"
               href="projects/proximity-sensor-platform.html"
@@ -126,7 +137,7 @@
             </div>
           </article>
 
-          <article class="case">
+          <article class="case research-panel" id="research-signal" role="tabpanel" data-research-panel hidden>
             <a class="case-image case-self-video" href="projects/self-detection-compensation.html" aria-label="Self-Detection Compensation 프로젝트 상세 보기">
               <span class="self-video-preview" aria-hidden="true">
                 <video autoplay muted loop playsinline preload="none">
@@ -168,7 +179,7 @@
             </div>
           </article>
 
-          <article class="case">
+          <article class="case research-panel" id="research-control" role="tabpanel" data-research-panel hidden>
             <a class="case-image case-video" href="projects/rmpflow-safety-control.html" aria-label="Proximity-Based Reactive Motion Control 프로젝트 상세 보기">
               <video autoplay muted loop playsinline preload="none" poster="media/rmpflow-avoidance-poster.jpg" aria-hidden="true">
                 <source src="media/rmpflow-dynamic-avoidance.mp4" type="video/mp4">
@@ -202,7 +213,7 @@
             </div>
           </article>
 
-          <article class="case case-featured">
+          <article class="case case-featured research-panel" id="research-learning" role="tabpanel" data-research-panel hidden>
             <a class="case-image case-video" href="projects/interactive-diffusion-policy.html" aria-label="Interactive Diffusion Policy 프로젝트 상세 보기">
               <video autoplay muted loop playsinline preload="none" poster="media/interactive-safety-poster.jpg" aria-hidden="true">
                 <source src="media/interactive-safety.mp4" type="video/mp4">
@@ -239,11 +250,98 @@
         </div>
       </section>
 
-      <section class="section shell experience-section" id="experience">
+      <section class="section shell home-view-panel publications-section" id="publications" role="tabpanel" data-home-panel hidden>
+        <div class="section-heading section-heading-simple">
+          <span class="section-index">03</span>
+          <div>
+            <h2>Publications &amp; Awards</h2>
+            <p class="section-deck">Published research and engineering recognition</p>
+          </div>
+        </div>
+
+        <div class="publication-awards-layout">
+          <article class="publication-feature">
+            <a
+              class="publication-preview"
+              href="media/publications/kroc-2026-proximity-sensor-platform.pdf"
+              target="_blank"
+              rel="noopener"
+              aria-label="KRoC 2026 근접센서 플랫폼 논문 PDF 열기"
+            >
+              <img
+                src="media/publications/kroc-2026-paper-preview.png"
+                alt="정전용량 기반 비접촉식 근접센서 플랫폼 논문 첫 페이지"
+                width="992"
+                height="1403"
+                loading="lazy"
+                decoding="async"
+              >
+              <span class="publication-type">Conference Paper</span>
+              <span class="publication-open" aria-hidden="true">↗</span>
+            </a>
+
+            <div class="publication-copy">
+              <p class="publication-meta">KRoC 2026 · 2026.02.04</p>
+              <h3>
+                <a href="media/publications/kroc-2026-proximity-sensor-platform.pdf" target="_blank" rel="noopener">
+                  안전한 인간-로봇 상호작용(HRI)을 위한 정전용량 기반의 비접촉식 근접센서 플랫폼 개발
+                </a>
+              </h3>
+              <p class="publication-authors">
+                Y. B. Song et al.
+              </p>
+              <p class="publication-summary">
+                모듈형 정전용량 근접센서와 환경 드리프트 보상 구조를 제안하고, UR10 기반 거리 측정과 비상정지 연동으로 검증했습니다.
+              </p>
+              <div class="publication-metrics" aria-label="논문 주요 결과">
+                <span>Signal variation 98.87% ↓</span>
+                <span>Detection within 20 cm</span>
+                <span>Stop threshold 10 cm</span>
+              </div>
+              <a class="publication-link" href="media/publications/kroc-2026-proximity-sensor-platform.pdf" target="_blank" rel="noopener">
+                논문 PDF 보기 <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </article>
+
+          <div class="awards-column">
+            <div class="awards-heading">
+              <span>Awards</span>
+              <b>02</b>
+            </div>
+
+            <article class="award-card">
+              <div class="award-topline">
+                <time datetime="2023-09">2023.09</time>
+                <span>Award 01</span>
+              </div>
+              <h3>Top Excellence Award <small>최우수상</small></h3>
+              <p class="award-event">부산대학교 총장배 창의비행체 경진대회</p>
+              <dl>
+                <div><dt>참가 부문</dt><dd>회전익·멀티콥터 임무 부문</dd></div>
+              </dl>
+            </article>
+
+            <article class="award-card">
+              <div class="award-topline">
+                <time datetime="2022-09">2022.09</time>
+                <span>Award 02</span>
+              </div>
+              <h3>Top Excellence Award <small>최우수상</small></h3>
+              <p class="award-event">세종대학교 공과대학 학술제</p>
+              <dl>
+                <div><dt>참가 분야</dt><dd>우주 엘리베이터 타당성 연구</dd></div>
+              </dl>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section shell experience-section home-view-panel" id="experience" role="tabpanel" data-home-panel hidden>
         <div class="section-heading section-heading-simple">
           <span class="section-index">02</span>
           <div>
-            <h2>Experience &amp; Education</h2>
+            <h2>Experience <span class="heading-tail">&amp; Education</span></h2>
           </div>
         </div>
 
@@ -254,27 +352,35 @@
               <b>01</b>
             </div>
 
-            <article class="experience-item">
-              <time datetime="2025-03">2025.03—Present</time>
-              <div>
+            <article class="experience-item experience-card experience-card-robotory">
+              <a
+                class="experience-mark experience-mark-dark"
+                href="https://swb.skku.edu/roboticsinnovatory/index.do"
+                target="_blank"
+                rel="noopener"
+                aria-label="Robotory Lab 공식 홈페이지 열기"
+              >
+                <img src="media/experience/robotory-logo.png" alt="Robotics Innovatory 로고" width="1300" height="486" loading="lazy" decoding="async">
+              </a>
+              <div class="experience-card-copy">
+                <time datetime="2025-03">2025.03—Present</time>
                 <p class="experience-role">Graduate Researcher</p>
-                <h3>Robotory Lab · Sungkyunkwan University</h3>
-                <p>
-                  로봇 장착형 근접센서 하드웨어부터 신호처리, reactive motion control,
-                  learning-based manipulation까지 실제 로봇 시스템으로 구현하고 검증했습니다.
-                </p>
+                <h3>
+                  <a href="https://swb.skku.edu/roboticsinnovatory/index.do" target="_blank" rel="noopener">
+                    Robotory Lab · Sungkyunkwan University <span aria-hidden="true">↗</span>
+                  </a>
+                </h3>
               </div>
             </article>
 
-            <article class="experience-item">
-              <time datetime="2025-03">2025.03—2026.12</time>
-              <div>
+            <article class="experience-item experience-card experience-card-government">
+              <figure class="experience-mark">
+                <img src="media/experience/government-rnd-mark.webp" alt="정부 연구개발 과제 기관 상징" loading="lazy" decoding="async">
+              </figure>
+              <div class="experience-card-copy">
+                <time datetime="2025-03">2025.03—Present</time>
                 <p class="experience-role">Government-Funded R&amp;D Project · Project Contributor</p>
                 <h3>산업통상자원부 · 실시간 로봇 충돌 감지·회피 지능 통합 SoC 플랫폼</h3>
-                <p>
-                  근접센서 모듈과 임베디드 하드웨어, 충돌 대응 알고리즘을 개발하고
-                  로봇 시스템 수준의 적용과 검증을 수행했습니다.
-                </p>
               </div>
             </article>
           </div>
@@ -285,18 +391,24 @@
               <b>02</b>
             </div>
 
-            <article class="experience-item">
-              <time datetime="2025-03">2025.03—2027.02</time>
-              <div>
+            <article class="experience-item experience-card experience-card-skku">
+              <figure class="experience-mark">
+                <img src="media/experience/skku-emblem.jpg" alt="성균관대학교 교표" width="602" height="602" loading="lazy" decoding="async">
+              </figure>
+              <div class="experience-card-copy">
+                <time datetime="2025-03">2025.03—2027.02</time>
                 <p class="experience-role">M.S. in Mechanical Engineering</p>
                 <h3>Sungkyunkwan University</h3>
                 <p>Robotory Lab · Advisor: Prof. Hyuk-Ryeol Choi · GPA 4.0/4.5</p>
               </div>
             </article>
 
-            <article class="experience-item">
-              <time datetime="2019-03">2019.03—2025.02</time>
-              <div>
+            <article class="experience-item experience-card experience-card-sejong">
+              <figure class="experience-mark experience-mark-sejong">
+                <img src="media/experience/sejong-authority-mark.jpg" alt="세종대학교 교표" width="2480" height="2480" loading="lazy" decoding="async">
+              </figure>
+              <div class="experience-card-copy">
+                <time datetime="2019-03">2019.03—2025.02</time>
                 <p class="experience-role">B.S. in Mechanical Engineering</p>
                 <h3>Sejong University</h3>
                 <p>GPA 3.93/4.5 · Major GPA 4.05/4.5</p>
@@ -306,9 +418,9 @@
         </div>
       </section>
 
-      <section class="section shell" id="skills">
+      <section class="section shell home-view-panel" id="skills" role="tabpanel" data-home-panel hidden>
         <div class="section-heading section-heading-simple">
-          <span class="section-index">03</span>
+          <span class="section-index">04</span>
           <div>
             <h2>Tools &amp; Technologies</h2>
           </div>
@@ -347,9 +459,9 @@
         </div>
       </section>
 
-      <section class="section shell undergrad-section" id="undergraduate">
+      <section class="section shell undergrad-section home-view-panel" id="undergraduate" role="tabpanel" data-home-panel hidden>
         <div class="section-heading section-heading-simple">
-          <span class="section-index">04</span>
+          <span class="section-index">05</span>
           <div>
             <h2>Earlier Engineering Projects</h2>
             <p class="section-period">2023—2024 · Hardware · AI · System Prototyping</p>
@@ -404,27 +516,6 @@
         </div>
       </section>
 
-      <section class="contact" id="contact">
-        <div class="shell contact-grid">
-          <div>
-            <p class="eyebrow">Let’s build safer robots</p>
-            <h2>로봇이 사람 가까이에서<br>더 안전하게 일하도록.</h2>
-          </div>
-          <div>
-            <p>사람 곁에서 안전하게 작동하는 로봇 시스템을 함께 만들 기회를 찾고 있습니다.</p>
-            <div class="contact-actions">
-              <a class="contact-email-link" href="mailto:dudqls1028@naver.com">
-                <span><small>Email</small><strong>dudqls1028@naver.com</strong></span>
-                <b aria-hidden="true">↗</b>
-              </a>
-              <a class="contact-github-link" href="https://github.com/dudqls10" target="_blank" rel="noopener">
-                <span><small>Selected work</small><strong>GitHub</strong></span>
-                <b aria-hidden="true">↗</b>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
 
     <footer class="shell">
@@ -448,10 +539,6 @@
           <div>
             <dt>Phone</dt>
             <dd>010-4006-9259</dd>
-          </div>
-          <div>
-            <dt>GitHub</dt>
-            <dd><a href="https://github.com/dudqls10" target="_blank" rel="noopener">github.com/dudqls10 ↗</a></dd>
           </div>
         </dl>
       </div>

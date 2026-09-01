@@ -81,3 +81,97 @@ if ("IntersectionObserver" in window) {
 }
 
 reducedMotion.addEventListener?.("change", syncAmbientVideos);
+
+function syncPanelVideos() {
+  ambientVideos.forEach((video) => {
+    if (video.closest("[hidden]") || reducedMotion.matches) {
+      video.pause();
+      return;
+    }
+
+    if (video.dataset.visible === "true") {
+      video.play().catch(() => {});
+    }
+  });
+}
+
+function setupTabSet({ root, buttonSelector, panelSelector, dataKey, updateHash = false }) {
+  if (!root) return;
+
+  const buttons = Array.from(root.querySelectorAll(buttonSelector));
+  const panels = Array.from(document.querySelectorAll(panelSelector));
+  if (!buttons.length || !panels.length) return;
+
+  const activate = (targetId, { focus = false, scroll = false, writeHash = updateHash } = {}) => {
+    const activeButton = buttons.find((button) => button.dataset[dataKey] === targetId);
+    const activePanel = panels.find((panel) => panel.id === targetId);
+    if (!activeButton || !activePanel) return;
+
+    buttons.forEach((button) => {
+      const selected = button === activeButton;
+      button.classList.toggle("is-active", selected);
+      button.setAttribute("aria-selected", String(selected));
+      button.tabIndex = selected ? 0 : -1;
+    });
+
+    panels.forEach((panel) => {
+      const selected = panel === activePanel;
+      panel.hidden = !selected;
+      panel.classList.toggle("is-active", selected);
+    });
+
+    if (writeHash) {
+      history.replaceState(null, "", `#${targetId}`);
+    }
+
+    if (focus) activeButton.focus();
+    if (scroll) {
+      root.scrollIntoView({
+        behavior: reducedMotion.matches ? "auto" : "smooth",
+        block: "start",
+      });
+    }
+
+    window.requestAnimationFrame(syncPanelVideos);
+  };
+
+  buttons.forEach((button, index) => {
+    button.addEventListener("click", () => {
+      activate(button.dataset[dataKey], { scroll: updateHash });
+    });
+
+    button.addEventListener("keydown", (event) => {
+      let nextIndex = null;
+      if (event.key === "ArrowRight" || event.key === "ArrowDown") nextIndex = (index + 1) % buttons.length;
+      if (event.key === "ArrowLeft" || event.key === "ArrowUp") nextIndex = (index - 1 + buttons.length) % buttons.length;
+      if (event.key === "Home") nextIndex = 0;
+      if (event.key === "End") nextIndex = buttons.length - 1;
+      if (nextIndex === null) return;
+
+      event.preventDefault();
+      activate(buttons[nextIndex].dataset[dataKey], { focus: true, scroll: false });
+    });
+  });
+
+  const hashTarget = updateHash ? window.location.hash.slice(1) : "";
+  const initialTarget = buttons.some((button) => button.dataset[dataKey] === hashTarget)
+    ? hashTarget
+    : buttons.find((button) => button.classList.contains("is-active"))?.dataset[dataKey];
+
+  if (initialTarget) activate(initialTarget, { writeHash: false });
+}
+
+setupTabSet({
+  root: document.querySelector("[data-home-tabs]"),
+  buttonSelector: "[data-home-tab]",
+  panelSelector: "[data-home-panel]",
+  dataKey: "homeTab",
+  updateHash: true,
+});
+
+setupTabSet({
+  root: document.querySelector("[data-research-tabs]"),
+  buttonSelector: "[data-research-tab]",
+  panelSelector: "[data-research-panel]",
+  dataKey: "researchTab",
+});
