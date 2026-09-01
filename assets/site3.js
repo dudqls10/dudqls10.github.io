@@ -98,8 +98,18 @@
     revealables.forEach((el) => revealer.observe(el));
   }
 
-  /* --- 5. 화면에 보일 때만 재생하는 배경 영상 ------------------------------ */
-  const videos = document.querySelectorAll("video[autoplay]");
+  /* --- 5. 모든 영상을 화면에 보일 때 자동 재생 ------------------------------- */
+  const videos = document.querySelectorAll("video");
+
+  videos.forEach((video) => {
+    video.autoplay = true;
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.setAttribute("autoplay", "");
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
+  });
 
   function stopAll() {
     videos.forEach((video) => {

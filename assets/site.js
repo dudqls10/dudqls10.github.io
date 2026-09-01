@@ -1,5 +1,15 @@
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-const ambientVideos = document.querySelectorAll("video[autoplay]");
+const ambientVideos = document.querySelectorAll("video");
+
+ambientVideos.forEach((video) => {
+  video.autoplay = true;
+  video.muted = true;
+  video.defaultMuted = true;
+  video.playsInline = true;
+  video.setAttribute("autoplay", "");
+  video.setAttribute("muted", "");
+  video.setAttribute("playsinline", "");
+});
 
 const previewName = new URLSearchParams(window.location.search).get("preview");
 const isPreview = previewName === "index2" || previewName === "index3";
