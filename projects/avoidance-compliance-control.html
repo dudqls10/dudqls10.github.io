@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="../assets/style2-hybrid.css">
+  <link rel="stylesheet" href="../assets/avoidance-compliance.css">
+  <link rel="preload" href="avoidance-compliance-assets/robot-mounted-sensor-system.png" as="image">
+  <script src="../assets/site.js" defer></script>
+  <title>Proximity-Guided Avoidance–Compliance Control | 송영빈</title>
+  <meta
+    name="description"
+    content="근접센서 기반 비접촉 회피와 F/T 센서 기반 순응 제어를 RMPflow에서 연결하는 진행 중인 연구 프로젝트입니다."
+  >
+  <link rel="shortcut icon" href="../favicon.svg">
+  <link rel="icon" href="../favicon.svg">
+</head>
+<body class="sensor-detail index2-preview portfolio-v2 project-v2 ac-page">
+  <a class="skip-link" href="#main-content">본문으로 바로가기</a>
+
+  <main id="main-content" class="project-page sensor-page">
+    <header class="site-header">
+      <a class="wordmark" href="../index.html">SONG YOUNGBIN</a>
+      <nav class="project-quick-nav" aria-label="페이지 빠른 이동">
+        <a href="#overview-title">01 Overview</a>
+        <a href="#system-title">02 System</a>
+        <a href="#progress-title">03 Progress</a>
+        <a href="#next-title">04 Next</a>
+      </nav>
+    </header>
+
+    <section class="sensor-hero" aria-labelledby="project-title">
+      <div class="sensor-hero-copy">
+        <a class="back-link" href="../index.html#work">← Portfolio Home</a>
+        <p class="eyebrow">ONGOING RESEARCH · 2026—PRESENT</p>
+        <h1 id="project-title">Proximity-Guided<br>Avoidance–<span class="ac-mobile-title-break"><br></span>Compliance<br>Control</h1>
+        <p class="sensor-hero-tagline">
+          Proximity Sensing · RMPflow · Compliance Control
+        </p>
+        <p class="project-lead">
+          닿기 전에는 근접센서로 안전거리를 확보하고, 접촉이 발생하면
+          F/T 센서를 통해 부드럽게 순응하는 제어를 연구하고 있습니다.
+          두 반응을 RMPflow 안에서 자연스럽게 전환하는 것이 목표입니다.
+        </p>
+      </div>
+
+      <aside class="sensor-hero-overview" aria-labelledby="scope-title">
+        <p id="scope-title" class="overview-eyebrow">프로젝트 범위</p>
+        <dl class="project-overview">
+          <div>
+            <dt>연구 상태</dt>
+            <dd>2026 · Ongoing Research</dd>
+          </div>
+          <div>
+            <dt>연구 목표</dt>
+            <dd>비접촉 회피와 접촉 순응을 하나의 안전 제어 흐름으로 연결</dd>
+          </div>
+          <div>
+            <dt>센싱</dt>
+            <dd>Robot-Mounted Proximity Sensor · F/T Sensor</dd>
+          </div>
+          <div>
+            <dt>제어 구성</dt>
+            <dd>Target RMP · Collision RMP · Contact RMP</dd>
+          </div>
+          <div>
+            <dt>현재 단계</dt>
+            <dd>센서 모듈 통합 · 신호 특성 확인 · 전환 제어 개발 중</dd>
+          </div>
+        </dl>
+      </aside>
+    </section>
+
+    <figure class="sensor-hero-visual ac-hero-visual">
+      <img
+        src="avoidance-compliance-assets/robot-mounted-sensor-system.png"
+        alt="근접센서와 힘 토크 센서 통합 모듈을 장착한 실험용 로봇"
+      >
+      <figcaption>
+        <span>근접·접촉 센싱 모듈을 장착한 로봇 구성</span>
+        <span>Prototype integration</span>
+      </figcaption>
+    </figure>
+
+    <section class="sensor-section" aria-labelledby="overview-title">
+      <header class="sensor-section-head">
+        <div class="section-index">
+          <span>01</span>
+          <p>Project at a Glance</p>
+        </div>
+        <div>
+          <h2 id="overview-title">닿기 전과 닿은 후를<br>하나의 제어로 연결합니다.</h2>
+          <p class="section-intro">
+            인간과 가까이 작업하는 로봇에는 접촉 전 회피와 접촉 후 순응이
+            모두 필요합니다. 현재는 두 상태를 하나의 RMPflow 제어기에서 연결하고 있습니다.
+          </p>
+        </div>
+      </header>
+
+      <div class="ac-glance-grid">
+        <article>
+          <span>Problem</span>
+          <h3>상황에 따라 달라지는 안전 반응</h3>
+          <p>접촉 전에는 피하고, 접촉한 뒤에는 힘을 받아들이는 서로 다른 제어가 필요합니다.</p>
+        </article>
+        <article>
+          <span>Approach</span>
+          <h3>근접거리와 접촉력의 역할 분리</h3>
+          <p>Proximity는 Collision RMP에, F/T 신호는 Contact RMP에 연결해 각 상태에 필요한 반응을 만듭니다.</p>
+        </article>
+        <article>
+          <span>Status</span>
+          <h3>통합 제어를 개발하는 단계</h3>
+          <p>센서 모듈 구성과 신호 특성을 확인하며, 회피에서 순응으로 이어지는 전환 로직을 개발하고 있습니다.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="sensor-section" aria-labelledby="system-title">
+      <header class="sensor-section-head">
+        <div class="section-index">
+          <span>02</span>
+          <p>Control System</p>
+        </div>
+        <div>
+          <h2 id="system-title">세 가지 정책이<br>하나의 motion을 만듭니다.</h2>
+          <p class="section-intro">
+            목표를 향한 진행, 접촉 전 회피, 접촉 후 순응을 각각의 RMP로 구성하고,
+            RMPflow가 현재 상태에 맞는 로봇 동작으로 결합하도록 설계하고 있습니다.
+          </p>
+        </div>
+      </header>
+
+      <div class="ac-control-map" aria-label="회피와 순응 제어 구성">
+        <div class="ac-policy-grid">
+          <article>
+            <span>Goal</span>
+            <h3>Target RMP</h3>
+            <p>작업 목표를 향한 진행</p>
+          </article>
+          <article>
+            <span>Proximity Sensor</span>
+            <h3>Collision RMP</h3>
+            <p>접촉 전 비접촉 회피</p>
+          </article>
+          <article>
+            <span>F/T Sensor</span>
+            <h3>Contact RMP</h3>
+            <p>접촉 후 힘에 따른 순응</p>
+          </article>
+        </div>
+        <div class="ac-resolve">
+          <span>Policy Resolution</span>
+          <strong>RMPflow</strong>
+          <i aria-hidden="true">→</i>
+          <b>Unified Robot Motion</b>
+        </div>
+      </div>
+
+      <div class="ac-state-rail" aria-label="상호작용 상태 흐름">
+        <div><span>01</span><strong>Approach</strong><p>사람·장애물 접근</p></div>
+        <div><span>02</span><strong>Avoidance</strong><p>근접거리 기반 회피</p></div>
+        <div><span>03</span><strong>Contact</strong><p>접촉력 감지</p></div>
+        <div><span>04</span><strong>Compliance</strong><p>접촉 방향으로 순응</p></div>
+      </div>
+    </section>
+
+    <section class="sensor-section" aria-labelledby="progress-title">
+      <header class="sensor-section-head">
+        <div class="section-index">
+          <span>03</span>
+          <p>Current Progress</p>
+        </div>
+        <div>
+          <h2 id="progress-title">센서 통합부터<br>제어 입력까지 확인합니다.</h2>
+          <p class="section-intro">
+            로봇에 근접센서와 F/T 센서를 통합한 모듈을 구성하고,
+            접근과 접촉 과정에서 각 신호가 어떻게 변하는지 확인하고 있습니다.
+          </p>
+        </div>
+      </header>
+
+      <div class="ac-progress-grid">
+        <figure>
+          <div class="ac-image-stage ac-layout-image">
+            <img
+              src="avoidance-compliance-assets/robot-sensor-layout.png"
+              alt="로봇 말단에 배치된 근접센서 구성 렌더링"
+              loading="lazy"
+            >
+          </div>
+          <figcaption>
+            <span>모듈 배치</span>
+            <strong>Robot-mounted proximity sensing layout</strong>
+          </figcaption>
+        </figure>
+
+        <figure>
+          <div class="ac-image-stage ac-signal-image">
+            <img
+              src="avoidance-compliance-assets/force-proximity-signals.png"
+              alt="힘, 토크, 근접센서 신호를 동시에 기록한 그래프"
+              loading="lazy"
+            >
+          </div>
+          <figcaption>
+            <span>예비 센싱 기록</span>
+            <strong>Force / torque / proximity signal characteristics</strong>
+          </figcaption>
+        </figure>
+      </div>
+
+      <p class="ac-progress-note">
+        위 신호는 센서 특성과 통합 조건을 확인하기 위한 예비 기록입니다.
+        회피–순응 전환 제어의 최종 성능 결과를 의미하지 않습니다.
+      </p>
+    </section>
+
+    <section class="sensor-section" aria-labelledby="next-title">
+      <header class="sensor-section-head">
+        <div class="section-index">
+          <span>04</span>
+          <p>Next Steps</p>
+        </div>
+        <div>
+          <h2 id="next-title">안정적인 전환을 위한<br>다음 개발 단계</h2>
+          <p class="section-intro">
+            센서 신호의 재현성을 먼저 높이고, 근접거리와 접촉력을 RMPflow에
+            함께 연결해 회피와 순응 사이의 전환을 구현할 계획입니다.
+          </p>
+        </div>
+      </header>
+
+      <div class="ac-next-grid">
+        <article>
+          <span>01</span>
+          <h3>Proximity Signal</h3>
+          <p>하부 GND 영향과 접촉 후 baseline 복귀 특성을 확인해 신호 안정성을 높입니다.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Contact Estimation</h3>
+          <p>접촉력 검출의 안정성과 접촉점 추정 정확도를 개선합니다.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>RMPflow Transition</h3>
+          <p>Proximity와 F/T 정보를 통합해 비접촉 회피에서 접촉 순응으로 이어지는 전환을 구현합니다.</p>
+        </article>
+      </div>
+
+      <div class="ac-takeaway project-summary">
+        <p>Ongoing research direction</p>
+        <h2>닿기 전에는 피하고, 접촉한 뒤에는 부드럽게 반응하는 하나의 로봇 제어를 개발하고 있습니다.</h2>
+        <div>
+          <span>Non-contact Avoidance</span>
+          <span>Compliance Control</span>
+          <span>Proximity + F/T Sensing</span>
+          <span>RMPflow Integration</span>
+        </div>
+      </div>
+    </section>
+
+    <a class="next-project" href="../index.html#work">
+      <span>Research projects</span>
+      <strong>Back to selected work →</strong>
+    </a>
+
+    <footer class="project-footer">
+      <span>© 2026 Song Youngbin</span>
+      <a href="../index.html">Home ↑</a>
+    </footer>
+  </main>
+</body>
+</html>

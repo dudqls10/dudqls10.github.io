@@ -113,7 +113,7 @@
 
 .research-tabs {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   margin-bottom: 48px;
   overflow: hidden;
   border: 1px solid var(--line);
@@ -198,6 +198,11 @@
 
 .tabbed-home .research-panel .case-copy h3 {
   font-size: clamp(38px, 4vw, 54px);
+}
+
+#research-compliance .media-badge i {
+  background: var(--blue);
+  box-shadow: 0 0 0 4px rgba(47, 92, 229, .16);
 }
 
 .publication-awards-layout {
@@ -757,6 +762,10 @@
 
   .research-tab:nth-child(n + 3) {
     border-top: 1px solid var(--line);
+  }
+
+  .research-tab:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
   }
 
   .research-tab span {

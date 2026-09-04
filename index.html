@@ -94,6 +94,9 @@
           <button class="research-tab" type="button" role="tab" aria-selected="false" aria-controls="research-learning" data-research-tab="research-learning">
             <span>Interactive Diffusion Policy</span><b>04</b>
           </button>
+          <button class="research-tab" type="button" role="tab" aria-selected="false" aria-controls="research-compliance" data-research-tab="research-compliance">
+            <span>Avoidance–Compliance Control</span><b>05</b>
+          </button>
         </div>
 
         <div class="case-list">
@@ -244,6 +247,51 @@
               </dl>
               <a class="detail-link" href="projects/interactive-diffusion-policy.html">
                 시스템 도식·실험 영상·코드 보기 <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="case research-panel" id="research-compliance" role="tabpanel" data-research-panel hidden>
+            <a
+              class="case-image"
+              href="projects/avoidance-compliance-control.html"
+              aria-label="Proximity-Guided Avoidance–Compliance Control 프로젝트 상세 보기"
+            >
+              <img
+                src="projects/avoidance-compliance-assets/robot-mounted-sensor-system.png"
+                alt="근접센서와 힘 토크 센서 통합 모듈을 장착한 로봇"
+                loading="lazy"
+              >
+              <span class="media-badge"><i></i> Ongoing Research</span>
+              <span class="case-tech" aria-hidden="true">
+                <span>RMPflow</span><span>Proximity</span><span>F/T</span><span>Admittance</span>
+              </span>
+              <span class="case-arrow" aria-hidden="true">↗</span>
+            </a>
+            <div class="case-copy">
+              <p class="case-category">05 · Compliance Control · Sensor Integration</p>
+              <h3>
+                <a href="projects/avoidance-compliance-control.html">
+                  Proximity-Guided<br>Avoidance–Compliance Control
+                </a>
+              </h3>
+              <p>
+                접촉 전에는 근접센서 기반 Collision RMP로 회피하고, 접촉이 발생하면
+                F/T 센서 기반 Contact RMP로 순응하도록 Target·Collision·Contact
+                정책을 RMPflow에서 결합하고 있습니다.
+              </p>
+              <dl class="case-facts">
+                <div>
+                  <dt>연구 구성</dt>
+                  <dd>Target RMP · Collision RMP · Contact RMP</dd>
+                </div>
+                <div>
+                  <dt>진행 상황</dt>
+                  <dd>센서 모듈 통합 · 신호 특성 확인 · 전환 제어 개발 중</dd>
+                </div>
+              </dl>
+              <a class="detail-link" href="projects/avoidance-compliance-control.html">
+                진행 중인 시스템 보기 <span aria-hidden="true">→</span>
               </a>
             </div>
           </article>
