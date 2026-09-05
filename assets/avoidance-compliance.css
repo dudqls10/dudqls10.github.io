@@ -290,10 +290,6 @@
   letter-spacing: -.02em;
 }
 
-.ac-takeaway {
-  margin-top: 72px;
-}
-
 @media (max-width: 900px) {
   .portfolio-v2.project-v2.ac-page .sensor-hero h1 {
     font-size: clamp(45px, 8vw, 68px);
