@@ -76,26 +76,41 @@
           <span class="section-index">01</span>
           <div>
             <h2>Research Projects</h2>
-            <p class="section-deck">Sensor Hardware → Robot Control → Physical AI</p>
+            <p class="section-deck">Sensing &amp; Estimation · Motion &amp; Interaction Control · Learning-Based Manipulation</p>
           </div>
         </div>
 
         <div class="research-tabs" aria-label="연구 프로젝트 선택" role="tablist" data-research-tabs>
-          <button class="research-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="research-sensor" data-research-tab="research-sensor">
-            <span>Proximity Sensing</span><b>01</b>
-          </button>
-          <button class="research-tab" type="button" role="tab" aria-selected="false" aria-controls="research-signal" data-research-tab="research-signal">
-            <span>Motion Compensation</span><b>02</b>
-          </button>
-          <button class="research-tab" type="button" role="tab" aria-selected="false" aria-controls="research-control" data-research-tab="research-control">
-            <span>Reactive Control</span><b>03</b>
-          </button>
-          <button class="research-tab" type="button" role="tab" aria-selected="false" aria-controls="research-learning" data-research-tab="research-learning">
-            <span>Diffusion Policy</span><b>04</b>
-          </button>
-          <button class="research-tab" type="button" role="tab" aria-selected="false" aria-controls="research-compliance" data-research-tab="research-compliance">
-            <span>REACT</span><b>05</b>
-          </button>
+          <div class="research-group" role="presentation">
+            <p class="research-group-label" id="research-group-sensing">Sensing &amp; Estimation</p>
+            <div class="research-group-tabs" role="presentation">
+              <button class="research-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="research-sensor" aria-describedby="research-group-sensing" data-research-tab="research-sensor">
+                <span>Proximity Sensing</span><b>01</b>
+              </button>
+              <button class="research-tab" type="button" role="tab" aria-selected="false" aria-controls="research-signal" aria-describedby="research-group-sensing" data-research-tab="research-signal">
+                <span>Motion Compensation</span><b>02</b>
+              </button>
+            </div>
+          </div>
+          <div class="research-group" role="presentation">
+            <p class="research-group-label" id="research-group-control">Motion &amp; Interaction Control</p>
+            <div class="research-group-tabs" role="presentation">
+              <button class="research-tab" type="button" role="tab" aria-selected="false" aria-controls="research-control" aria-describedby="research-group-control" data-research-tab="research-control">
+                <span>Reactive Control</span><b>03</b>
+              </button>
+              <button class="research-tab" type="button" role="tab" aria-selected="false" aria-controls="research-compliance" aria-describedby="research-group-control" data-research-tab="research-compliance">
+                <span>REACT</span><b>04</b>
+              </button>
+            </div>
+          </div>
+          <div class="research-group research-group-single" role="presentation">
+            <p class="research-group-label" id="research-group-learning">Learning-Based Manipulation</p>
+            <div class="research-group-tabs" role="presentation">
+              <button class="research-tab" type="button" role="tab" aria-selected="false" aria-controls="research-learning" aria-describedby="research-group-learning" data-research-tab="research-learning">
+                <span>Diffusion Policy</span><b>05</b>
+              </button>
+            </div>
+          </div>
         </div>
 
         <div class="case-list">
@@ -215,40 +230,6 @@
             </div>
           </article>
 
-          <article class="case case-featured research-panel" id="research-learning" role="tabpanel" data-research-panel hidden>
-            <a class="case-image case-video" href="projects/interactive-diffusion-policy.html" aria-label="Interactive Diffusion Policy 프로젝트 상세 보기">
-              <video autoplay muted loop playsinline preload="none" poster="media/interactive-safety-poster.jpg" aria-hidden="true">
-                <source src="media/interactive-safety.mp4" type="video/mp4">
-              </video>
-              <span class="case-tech" aria-hidden="true">
-                <span>Python</span><span>PyTorch</span><span>ROS 2</span><span>C++</span>
-              </span>
-              <span class="case-arrow" aria-hidden="true">↗</span>
-            </a>
-            <div class="case-copy">
-              <p class="case-category">04 · Learning-Based Manipulation · Safe Control</p>
-              <h3><a href="projects/interactive-diffusion-policy.html">Interactive<br>Diffusion Policy</a></h3>
-              <p>
-                Diffusion Policy의 작업 행동, 근접센서 기반 RMPflow의 국소 회피,
-                latent dynamics와 LPB guidance의 회피 이후 복귀를 하나의
-                closed loop로 연결했습니다.
-              </p>
-              <dl class="case-facts">
-                <div>
-                  <dt>구현</dt>
-                  <dd>Diffusion Policy · RB10/RMPflow · LPB/OOD runtime</dd>
-                </div>
-                <div>
-                  <dt>적용 및 검증</dt>
-                  <dd>사람 접근 시 RMPflow 회피 · LPB 기반 작업 복귀</dd>
-                </div>
-              </dl>
-              <a class="detail-link" href="projects/interactive-diffusion-policy.html">
-                시스템 도식·실험 영상·코드 보기 <span aria-hidden="true">→</span>
-              </a>
-            </div>
-          </article>
-
           <article class="case research-panel" id="research-compliance" role="tabpanel" data-research-panel hidden>
             <a
               class="case-image"
@@ -269,7 +250,7 @@
               <span class="case-arrow" aria-hidden="true">↗</span>
             </a>
             <div class="case-copy">
-              <p class="case-category">05 · Intrinsic Contact Sensing · Reactive Avoidance</p>
+              <p class="case-category">04 · Intrinsic Contact Sensing · Reactive Avoidance</p>
               <h3>
                 <a href="projects/avoidance-compliance-control.html">
                   REACT
@@ -297,6 +278,40 @@
               </dl>
               <a class="detail-link" href="projects/avoidance-compliance-control.html">
                 진행 중인 시스템 보기 <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="case case-featured research-panel" id="research-learning" role="tabpanel" data-research-panel hidden>
+            <a class="case-image case-video" href="projects/interactive-diffusion-policy.html" aria-label="Interactive Diffusion Policy 프로젝트 상세 보기">
+              <video autoplay muted loop playsinline preload="none" poster="media/interactive-safety-poster.jpg" aria-hidden="true">
+                <source src="media/interactive-safety.mp4" type="video/mp4">
+              </video>
+              <span class="case-tech" aria-hidden="true">
+                <span>Python</span><span>PyTorch</span><span>ROS 2</span><span>C++</span>
+              </span>
+              <span class="case-arrow" aria-hidden="true">↗</span>
+            </a>
+            <div class="case-copy">
+              <p class="case-category">05 · Learning-Based Manipulation · Safe Control</p>
+              <h3><a href="projects/interactive-diffusion-policy.html">Interactive<br>Diffusion Policy</a></h3>
+              <p>
+                Diffusion Policy의 작업 행동, 근접센서 기반 RMPflow의 국소 회피,
+                latent dynamics와 LPB guidance의 회피 이후 복귀를 하나의
+                closed loop로 연결했습니다.
+              </p>
+              <dl class="case-facts">
+                <div>
+                  <dt>구현</dt>
+                  <dd>Diffusion Policy · RB10/RMPflow · LPB/OOD runtime</dd>
+                </div>
+                <div>
+                  <dt>적용 및 검증</dt>
+                  <dd>사람 접근 시 RMPflow 회피 · LPB 기반 작업 복귀</dd>
+                </div>
+              </dl>
+              <a class="detail-link" href="projects/interactive-diffusion-policy.html">
+                시스템 도식·실험 영상·코드 보기 <span aria-hidden="true">→</span>
               </a>
             </div>
           </article>

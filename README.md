@@ -5,7 +5,7 @@
 
 송영빈의 로봇 센싱·제어 포트폴리오입니다. 센서 PCB와 기구 설계부터 STM32 펌웨어, 신호 보상, RMPflow 기반 반응형 모션 제어, 학습 기반 조작 정책의 실로봇 통합까지 정리했습니다. 진행 중인 회피–순응 제어 연구도 함께 소개합니다.
 
-**Sensor Hardware → Robot Control → Physical AI**
+**Sensing & Estimation · Motion & Interaction Control · Learning-Based Manipulation**
 
 **Live portfolio:** [https://dudqls10.github.io](https://dudqls10.github.io/)
 
@@ -16,8 +16,8 @@
 | Robot-Mounted Proximity Sensing System | Modular sensor hardware, STM32 firmware, capacitive/ToF distance fusion | [Case study](https://dudqls10.github.io/projects/proximity-sensor-platform.html) | [`STM32-embedded-Algorithm`](https://github.com/dudqls10/STM32-embedded-Algorithm) |
 | Self-Detection Compensation | Joint-state-conditioned baseline prediction, residual inference | [Case study](https://dudqls10.github.io/projects/self-detection-compensation.html) | [`self_detection_raw`](https://github.com/dudqls10/self_detection_raw) |
 | Proximity-Based Reactive Motion Control | RMPflow, TG-RMP, RB10 obstacle avoidance | [Case study](https://dudqls10.github.io/projects/rmpflow-safety-control.html) | [`RMP_prox`](https://github.com/dudqls10/RMP_prox) |
-| Interactive Diffusion Policy | RB10 closed-loop integration, proximity/RMPflow execution, LPB/OOD runtime | [Case study](https://dudqls10.github.io/projects/interactive-diffusion-policy.html) | [Project code](https://github.com/Bookjean/Diffusion_policy_for_youngbin) |
 | REACT: Reactive Environment-Aware Safety Framework for Avoidance-Compliance Transition Using RMPflow-Based Control | RMPflow integration of F/T-based intrinsic contact sensing and proximity-sensor-based avoidance (ongoing) | [Case study](https://dudqls10.github.io/projects/avoidance-compliance-control.html) | Ongoing research |
+| Interactive Diffusion Policy | RB10 closed-loop integration, proximity/RMPflow execution, LPB/OOD runtime | [Case study](https://dudqls10.github.io/projects/interactive-diffusion-policy.html) | [Project code](https://github.com/Bookjean/Diffusion_policy_for_youngbin) |
 
 ## Stack
 
