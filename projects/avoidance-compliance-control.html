@@ -8,12 +8,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="../assets/style2-hybrid.css">
   <link rel="stylesheet" href="../assets/avoidance-compliance.css">
-  <link rel="preload" href="avoidance-compliance-assets/robot-mounted-sensor-system.png" as="image">
+  <link rel="preload" href="avoidance-compliance-assets/react-framework.png" as="image">
   <script src="../assets/site.js" defer></script>
-  <title>Proximity-Guided Avoidance–Compliance Control | 송영빈</title>
+  <title>REACT: Reactive Environment-Aware Safety Framework for Avoidance-Compliance Transition Using RMPflow-Based Control | 송영빈</title>
   <meta
     name="description"
-    content="근접센서 기반 비접촉 회피와 F/T 센서 기반 순응 제어를 RMPflow에서 연결하는 진행 중인 연구 프로젝트입니다."
+    content="REACT: Reactive Environment-Aware Safety Framework for Avoidance-Compliance Transition Using RMPflow-Based Control. Intrinsic 적용 실험과 접촉·비접촉 센싱을 바탕으로 회피–순응 전환을 연구합니다."
   >
   <link rel="shortcut icon" href="../favicon.svg">
   <link rel="icon" href="../favicon.svg">
@@ -26,8 +26,8 @@
       <a class="wordmark" href="../index.html">SONG YOUNGBIN</a>
       <nav class="project-quick-nav" aria-label="페이지 빠른 이동">
         <a href="#overview-title">01 Overview</a>
-        <a href="#system-title">02 System</a>
-        <a href="#progress-title">03 Progress</a>
+        <a href="#system-title">02 Framework</a>
+        <a href="#progress-title">03 Experiments</a>
         <a href="#next-title">04 Next</a>
       </nav>
     </header>
@@ -36,9 +36,9 @@
       <div class="sensor-hero-copy">
         <a class="back-link" href="../index.html#work">← Portfolio Home</a>
         <p class="eyebrow">ONGOING RESEARCH · 2026—PRESENT</p>
-        <h1 id="project-title">Proximity-Guided<br>Avoidance–<span class="ac-mobile-title-break"><br></span>Compliance<br>Control</h1>
-        <p class="sensor-hero-tagline">
-          Proximity Sensing · RMPflow · Compliance Control
+        <h1 id="project-title">REACT</h1>
+        <p class="sensor-hero-tagline ac-project-name">
+          Reactive Environment-Aware Safety Framework for Avoidance-Compliance Transition Using RMPflow-Based Control
         </p>
         <p class="project-lead">
           닿기 전에는 근접센서로 안전거리를 확보하고, 접촉이 발생하면
@@ -68,22 +68,11 @@
           </div>
           <div>
             <dt>현재 단계</dt>
-            <dd>센서 모듈 통합 · 신호 특성 확인 · 전환 제어 개발 중</dd>
+            <dd>Intrinsic 적용 실험 · 접촉·비접촉 센서 결과 확인 · 전환 제어 개발 중</dd>
           </div>
         </dl>
       </aside>
     </section>
-
-    <figure class="sensor-hero-visual ac-hero-visual">
-      <img
-        src="avoidance-compliance-assets/robot-mounted-sensor-system.png"
-        alt="근접센서와 힘 토크 센서 통합 모듈을 장착한 실험용 로봇"
-      >
-      <figcaption>
-        <span>근접·접촉 센싱 모듈을 장착한 로봇 구성</span>
-        <span>Prototype integration</span>
-      </figcaption>
-    </figure>
 
     <section class="sensor-section" aria-labelledby="overview-title">
       <header class="sensor-section-head">
@@ -113,8 +102,8 @@
         </article>
         <article>
           <span>Status</span>
-          <h3>통합 제어를 개발하는 단계</h3>
-          <p>센서 모듈 구성과 신호 특성을 확인하며, 회피에서 순응으로 이어지는 전환 로직을 개발하고 있습니다.</p>
+          <h3>Intrinsic 적용과 센싱 실험</h3>
+          <p>Intrinsic 적용 실험과 접촉·비접촉 센서 결과를 바탕으로, 회피에서 순응으로 이어지는 전환 제어를 개발하고 있습니다.</p>
         </article>
       </div>
     </section>
@@ -123,7 +112,7 @@
       <header class="sensor-section-head">
         <div class="section-index">
           <span>02</span>
-          <p>Control System</p>
+          <p>REACT Framework</p>
         </div>
         <div>
           <h2 id="system-title">세 가지 정책이<br>하나의 motion을 만듭니다.</h2>
@@ -134,31 +123,15 @@
         </div>
       </header>
 
-      <div class="ac-control-map" aria-label="회피와 순응 제어 구성">
-        <div class="ac-policy-grid">
-          <article>
-            <span>Goal</span>
-            <h3>Target RMP</h3>
-            <p>작업 목표를 향한 진행</p>
-          </article>
-          <article>
-            <span>Proximity Sensor</span>
-            <h3>Collision RMP</h3>
-            <p>접촉 전 비접촉 회피</p>
-          </article>
-          <article>
-            <span>F/T Sensor</span>
-            <h3>Contact RMP</h3>
-            <p>접촉 후 힘에 따른 순응</p>
-          </article>
-        </div>
-        <div class="ac-resolve">
-          <span>Policy Resolution</span>
-          <strong>RMPflow</strong>
-          <i aria-hidden="true">→</i>
-          <b>Unified Robot Motion</b>
-        </div>
-      </div>
+      <figure class="ac-media-figure ac-framework-figure">
+        <a class="ac-figure-link" href="avoidance-compliance-assets/react-framework.png" target="_blank" rel="noopener" aria-label="REACT 프레임워크 원본 크게 보기">
+          <img src="avoidance-compliance-assets/react-framework.png" width="3997" height="2183" alt="근접·접촉 센싱을 Target RMP, Collision RMP, Contact RMP와 결합하는 REACT 프레임워크" loading="lazy">
+        </a>
+        <figcaption>
+          <div><span>REACT Framework</span><strong>Target RMP · Collision RMP · Contact RMP</strong></div>
+          <a href="avoidance-compliance-assets/react-framework.png" target="_blank" rel="noopener">프레임워크 크게 보기 ↗</a>
+        </figcaption>
+      </figure>
 
       <div class="ac-state-rail" aria-label="상호작용 상태 흐름">
         <div><span>01</span><strong>Approach</strong><p>사람·장애물 접근</p></div>
@@ -172,51 +145,36 @@
       <header class="sensor-section-head">
         <div class="section-index">
           <span>03</span>
-          <p>Current Progress</p>
+          <p>Current Experiments</p>
         </div>
         <div>
-          <h2 id="progress-title">센서 통합부터<br>제어 입력까지 확인합니다.</h2>
+          <h2 id="progress-title">Intrinsic 적용과<br>접촉·비접촉 센싱 결과</h2>
           <p class="section-intro">
-            로봇에 근접센서와 F/T 센서를 통합한 모듈을 구성하고,
-            접근과 접촉 과정에서 각 신호가 어떻게 변하는지 확인하고 있습니다.
+            현재 진행 중인 intrinsic 적용 영상과 센서 측정 결과입니다.
+            접근·접촉 구간에서 힘, 토크, 근접거리 신호의 변화를 확인합니다.
           </p>
         </div>
       </header>
 
-      <div class="ac-progress-grid">
-        <figure>
-          <div class="ac-image-stage ac-layout-image">
-            <img
-              src="avoidance-compliance-assets/robot-sensor-layout.png"
-              alt="로봇 말단에 배치된 근접센서 구성 렌더링"
-              loading="lazy"
-            >
-          </div>
-          <figcaption>
-            <span>모듈 배치</span>
-            <strong>Robot-mounted proximity sensing layout</strong>
-          </figcaption>
-        </figure>
+      <figure class="ac-media-figure ac-intrinsic-video">
+        <video controls muted playsinline preload="metadata" width="1920" height="1080" poster="avoidance-compliance-assets/react-intrinsic-poster.jpg" aria-label="진행 중인 intrinsic 적용 실험 영상">
+          <source src="avoidance-compliance-assets/react-intrinsic-demo.mp4" type="video/mp4">
+          <a href="avoidance-compliance-assets/react-intrinsic-demo.mp4">Intrinsic 적용 영상 열기</a>
+        </video>
+        <figcaption>
+          <div><span>Ongoing Research</span><strong>Intrinsic 적용 실험</strong><p>로봇에 장착한 모듈에서 진행 중인 intrinsic 적용 과정입니다.</p></div>
+        </figcaption>
+      </figure>
 
-        <figure>
-          <div class="ac-image-stage ac-signal-image">
-            <img
-              src="avoidance-compliance-assets/force-proximity-signals.png"
-              alt="힘, 토크, 근접센서 신호를 동시에 기록한 그래프"
-              loading="lazy"
-            >
-          </div>
-          <figcaption>
-            <span>예비 센싱 기록</span>
-            <strong>Force / torque / proximity signal characteristics</strong>
-          </figcaption>
-        </figure>
-      </div>
-
-      <p class="ac-progress-note">
-        위 신호는 센서 특성과 통합 조건을 확인하기 위한 예비 기록입니다.
-        회피–순응 전환 제어의 최종 성능 결과를 의미하지 않습니다.
-      </p>
+      <figure class="ac-media-figure ac-sensing-results">
+        <a class="ac-figure-link" href="avoidance-compliance-assets/react-contact-proximity-results.png" target="_blank" rel="noopener" aria-label="접촉·비접촉 센서 결과 원본 크게 보기">
+          <img src="avoidance-compliance-assets/react-contact-proximity-results.png" width="2788" height="2079" alt="Approach와 Contact 구간에서 측정한 X·Y·Z축 힘과 토크, 두 근접센서 채널의 거리 그래프" loading="lazy">
+        </a>
+        <figcaption>
+          <div><span>Contact &amp; Non-contact Sensing</span><strong>Force · Torque · Proximity</strong><p>노란색은 Approach, 초록색은 Contact 구간입니다. 위에서부터 힘, 토크, 근접거리를 보여줍니다.</p></div>
+          <a href="avoidance-compliance-assets/react-contact-proximity-results.png" target="_blank" rel="noopener">결과 크게 보기 ↗</a>
+        </figcaption>
+      </figure>
     </section>
 
     <section class="sensor-section" aria-labelledby="next-title">

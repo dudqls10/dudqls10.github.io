@@ -17,7 +17,7 @@
 | Self-Detection Compensation | Joint-state-conditioned baseline prediction, residual inference | [Case study](https://dudqls10.github.io/projects/self-detection-compensation.html) | [`self_detection_raw`](https://github.com/dudqls10/self_detection_raw) |
 | Proximity-Based Reactive Motion Control | RMPflow, TG-RMP, RB10 obstacle avoidance | [Case study](https://dudqls10.github.io/projects/rmpflow-safety-control.html) | [`RMP_prox`](https://github.com/dudqls10/RMP_prox) |
 | Interactive Diffusion Policy | RB10 closed-loop integration, proximity/RMPflow execution, LPB/OOD runtime | [Case study](https://dudqls10.github.io/projects/interactive-diffusion-policy.html) | [Project code](https://github.com/Bookjean/Diffusion_policy_for_youngbin) |
-| Proximity-Guided Avoidance–Compliance Control | Proximity and F/T integration; Target, Collision, and Contact RMPs (ongoing) | [Case study](https://dudqls10.github.io/projects/avoidance-compliance-control.html) | Ongoing research |
+| REACT: Reactive Environment-Aware Safety Framework for Avoidance-Compliance Transition Using RMPflow-Based Control | Intrinsic application experiments, contact/non-contact sensing, and RMPflow-based transition control (ongoing) | [Case study](https://dudqls10.github.io/projects/avoidance-compliance-control.html) | Ongoing research |
 
 ## Stack
 
