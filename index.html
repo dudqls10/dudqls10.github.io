@@ -76,244 +76,109 @@
           <span class="section-index">01</span>
           <div>
             <h2>Research Projects</h2>
-            <p class="section-deck">Sensing &amp; Estimation · Motion &amp; Interaction Control · Learning-Based Manipulation</p>
           </div>
         </div>
 
-        <div class="research-tabs" aria-label="연구 프로젝트 선택" role="tablist" data-research-tabs>
-          <div class="research-group" role="presentation">
-            <p class="research-group-label" id="research-group-sensing">Sensing &amp; Estimation</p>
-            <div class="research-group-tabs" role="presentation">
-              <button class="research-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="research-sensor" aria-describedby="research-group-sensing" data-research-tab="research-sensor">
-                <span>Proximity Sensing</span><b>01</b>
-              </button>
-              <button class="research-tab" type="button" role="tab" aria-selected="false" aria-controls="research-signal" aria-describedby="research-group-sensing" data-research-tab="research-signal">
-                <span>Motion Compensation</span><b>02</b>
-              </button>
-            </div>
-          </div>
-          <div class="research-group" role="presentation">
-            <p class="research-group-label" id="research-group-control">Motion &amp; Interaction Control</p>
-            <div class="research-group-tabs" role="presentation">
-              <button class="research-tab" type="button" role="tab" aria-selected="false" aria-controls="research-control" aria-describedby="research-group-control" data-research-tab="research-control">
-                <span>Reactive Control</span><b>03</b>
-              </button>
-              <button class="research-tab" type="button" role="tab" aria-selected="false" aria-controls="research-compliance" aria-describedby="research-group-control" data-research-tab="research-compliance">
-                <span>REACT</span><b>04</b>
-              </button>
-            </div>
-          </div>
-          <div class="research-group research-group-single" role="presentation">
-            <p class="research-group-label" id="research-group-learning">Learning-Based Manipulation</p>
-            <div class="research-group-tabs" role="presentation">
-              <button class="research-tab" type="button" role="tab" aria-selected="false" aria-controls="research-learning" aria-describedby="research-group-learning" data-research-tab="research-learning">
-                <span>Diffusion Policy</span><b>05</b>
-              </button>
-            </div>
+        <div class="research-tabs" aria-label="연구 분야 선택" role="tablist" data-research-tabs>
+          <button class="research-tab is-active" id="research-tab-sensing" type="button" role="tab" aria-selected="true" aria-controls="research-sensing" data-research-tab="research-sensing">
+            Sensing <span>&amp; Estimation</span>
+          </button>
+          <button class="research-tab" id="research-tab-interaction" type="button" role="tab" aria-selected="false" aria-controls="research-interaction" data-research-tab="research-interaction" tabindex="-1">
+            Motion <span>&amp; Interaction</span>
+          </button>
+          <button class="research-tab" id="research-tab-learning" type="button" role="tab" aria-selected="false" aria-controls="research-robot-learning" data-research-tab="research-robot-learning" tabindex="-1">
+            Robot <span>Learning</span>
+          </button>
+        </div>
+
+        <div class="research-panel is-active" id="research-sensing" role="tabpanel" aria-labelledby="research-tab-sensing" data-research-panel>
+          <div class="research-card-grid">
+            <article id="research-sensor">
+              <a class="research-card" href="projects/proximity-sensor-platform.html" aria-labelledby="research-sensor-title" aria-describedby="research-sensor-summary">
+                <div class="research-card-media research-card-media-sensor">
+                  <img src="projects/module-design.png" alt="센서 모듈과 로봇별 지지부로 구성된 모듈형 근접센서 시스템" loading="lazy" decoding="async">
+                </div>
+                <div class="research-card-body">
+                  <h3 id="research-sensor-title">Proximity Sensing</h3>
+                  <p id="research-sensor-summary">정전용량·ToF 센서를 통합한 로봇 장착형 근접센서 시스템.</p>
+                  <span class="research-card-link">프로젝트 보기 <span aria-hidden="true">↗</span></span>
+                </div>
+              </a>
+            </article>
+            <article id="research-signal">
+              <a class="research-card" href="projects/self-detection-compensation.html" aria-labelledby="research-signal-title" aria-describedby="research-signal-summary">
+                <div class="research-card-media">
+                  <div class="research-video-grid" aria-hidden="true">
+                    <video autoplay muted loop playsinline preload="metadata">
+                      <source src="projects/self-detection-assets/demo-1.mp4" type="video/mp4">
+                    </video>
+                    <video autoplay muted loop playsinline preload="metadata">
+                      <source src="projects/self-detection-assets/demo-2.mp4" type="video/mp4">
+                    </video>
+                    <video autoplay muted loop playsinline preload="metadata">
+                      <source src="projects/self-detection-assets/demo-3.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <img class="research-motion-fallback" src="projects/self-detection-assets/capacitive-compensation-result.png" alt="로봇 동작에 따른 정전용량 센서 자체 감지 응답의 보상 결과" loading="lazy" decoding="async">
+                </div>
+                <div class="research-card-body">
+                  <h3 id="research-signal-title">Self-Detection Compensation</h3>
+                  <p id="research-signal-summary">로봇 동작에 따른 센서 자체 감지 응답을 학습하고 보상.</p>
+                  <span class="research-card-link">프로젝트 보기 <span aria-hidden="true">↗</span></span>
+                </div>
+              </a>
+            </article>
           </div>
         </div>
 
-        <div class="case-list">
-          <article class="case research-panel is-active" id="research-sensor" role="tabpanel" data-research-panel>
-            <a
-              class="case-image"
-              href="projects/proximity-sensor-platform.html"
-              aria-label="Robot-Mounted Proximity Sensing System 프로젝트 상세 보기"
-            >
-              <img
-                src="projects/module-design.png"
-                alt="센서 모듈과 교체 가능한 로봇별 지지부로 구성된 모듈형 근접센서 시스템"
-                loading="lazy"
-              >
-              <span class="case-tech" aria-hidden="true">
-                <span>Altium</span><span>STM32</span><span>Inventor</span><span>C++</span>
-              </span>
-              <span class="case-arrow" aria-hidden="true">↗</span>
-            </a>
-            <div class="case-copy">
-              <p class="case-category">01 · Sensor Hardware · Distance Fusion</p>
-              <h3><a href="projects/proximity-sensor-platform.html">Robot-Mounted Proximity<br>Sensing System</a></h3>
-              <p>
-                정전용량 센서와 ToF 센서를 하나의 모듈에 통합하고, 로봇별 지지부만
-                교체해 Indy7·UR10·RB10에 적용했습니다. 온도 영향 보상과 Adaptive EMA,
-                불확실성 기반 융합으로 근접 거리를 추정했습니다.
-              </p>
-              <dl class="case-facts">
-                <div>
-                  <dt>구현</dt>
-                  <dd>센서 PCB · 모듈형 장착 구조 · 신호 처리 및 거리 융합</dd>
+        <div class="research-panel" id="research-interaction" role="tabpanel" aria-labelledby="research-tab-interaction" data-research-panel hidden>
+          <div class="research-card-grid">
+            <article id="research-control">
+              <a class="research-card" href="projects/rmpflow-safety-control.html" aria-labelledby="research-control-title" aria-describedby="research-control-summary">
+                <div class="research-card-media">
+                  <video autoplay muted loop playsinline preload="none" poster="media/rmpflow-avoidance-poster.jpg" aria-label="RB10 로봇의 근접센서 기반 장애물 회피 실험">
+                    <source src="media/rmpflow-dynamic-avoidance.mp4" type="video/mp4">
+                  </video>
                 </div>
-                <div>
-                  <dt>적용 및 검증</dt>
-                  <dd>Indy7·UR10·RB10 적용 · 20–300 mm 거리 평가</dd>
+                <div class="research-card-body">
+                  <h3 id="research-control-title">Reactive Control</h3>
+                  <p id="research-control-summary">근접센서와 RMPflow를 연결한 반응형 장애물 회피 제어.</p>
+                  <span class="research-card-link">프로젝트 보기 <span aria-hidden="true">↗</span></span>
                 </div>
-              </dl>
-              <a class="detail-link" href="projects/proximity-sensor-platform.html">
-                시스템 구성과 결과 보기 <span aria-hidden="true">→</span>
               </a>
-            </div>
-          </article>
+            </article>
+            <article id="research-compliance">
+              <a class="research-card" href="projects/avoidance-compliance-control.html" aria-labelledby="research-compliance-title" aria-describedby="research-compliance-summary research-compliance-status">
+                <div class="research-card-media research-card-media-framework">
+                  <img src="projects/avoidance-compliance-assets/react-framework.png" alt="F/T 기반 Intrinsic Contact Sensing과 Proximity Sensor 기반 Avoidance를 RMPflow로 통합하는 REACT 프레임워크" width="3997" height="2183" loading="lazy" decoding="async">
+                </div>
+                <div class="research-card-body">
+                  <div class="research-card-heading">
+                    <h3 id="research-compliance-title">REACT</h3>
+                    <span class="research-status" id="research-compliance-status"><i aria-hidden="true"></i>Ongoing Research</span>
+                  </div>
+                  <p id="research-compliance-summary">F/T 기반 Intrinsic과 근접센서 기반 Avoidance를 RMPflow로 통합하는 회피–순응 전환 연구.</p>
+                  <span class="research-card-link">프로젝트 보기 <span aria-hidden="true">↗</span></span>
+                </div>
+              </a>
+            </article>
+          </div>
+        </div>
 
-          <article class="case research-panel" id="research-signal" role="tabpanel" data-research-panel hidden>
-            <a class="case-image case-self-video" href="projects/self-detection-compensation.html" aria-label="Self-Detection Compensation 프로젝트 상세 보기">
-              <span class="self-video-preview" aria-hidden="true">
-                <video autoplay muted loop playsinline preload="none">
-                  <source src="projects/self-detection-assets/demo-1.mp4" type="video/mp4">
+        <div class="research-panel" id="research-robot-learning" role="tabpanel" aria-labelledby="research-tab-learning" data-research-panel hidden>
+          <article id="research-learning">
+            <a class="research-card research-card-featured" href="projects/interactive-diffusion-policy.html" aria-labelledby="research-learning-title" aria-describedby="research-learning-summary">
+              <div class="research-card-media">
+                <video autoplay muted loop playsinline preload="none" poster="media/interactive-safety-poster.jpg" aria-label="Diffusion Policy와 RMPflow를 통합한 로봇 조작 및 회피 실험">
+                  <source src="media/interactive-safety.mp4" type="video/mp4">
                 </video>
-                <video autoplay muted loop playsinline preload="none">
-                  <source src="projects/self-detection-assets/demo-2.mp4" type="video/mp4">
-                </video>
-                <video autoplay muted loop playsinline preload="none">
-                  <source src="projects/self-detection-assets/demo-3.mp4" type="video/mp4">
-                </video>
-              </span>
-              <span class="case-tech" aria-hidden="true">
-                <span>Python</span><span>TensorFlow</span><span>MLP</span>
-              </span>
-              <span class="case-arrow" aria-hidden="true">↗</span>
+              </div>
+              <div class="research-card-body">
+                <h3 id="research-learning-title">Interactive Diffusion Policy</h3>
+                <p id="research-learning-summary">Diffusion Policy의 작업 수행, RMPflow의 회피, LPB의 작업 복귀를 연결한 실로봇 조작 시스템.</p>
+                <span class="research-card-link">프로젝트 보기 <span aria-hidden="true">↗</span></span>
+              </div>
             </a>
-            <div class="case-copy">
-              <p class="case-category">02 · Signal Processing · MLP Compensation</p>
-              <h3><a href="projects/self-detection-compensation.html">Self-Detection<br>Compensation</a></h3>
-              <p>
-                관절 위치와 속도로 로봇 동작에 따른 정전용량 센서의 자체 감지 응답을
-                예측하고, 채널별 측정값에서 제거해 외부 물체에 의한 잔차 신호를
-                분리했습니다.
-              </p>
-              <dl class="case-facts">
-                <div>
-                  <dt>구현</dt>
-                  <dd>관절 상태 데이터 수집 · MLP 기반 채널별 예측 · 잔차 보정</dd>
-                </div>
-                <div>
-                  <dt>적용 및 검증</dt>
-                  <dd>RMSE 최대 96.12% 감소 · 분산 최대 99.85% 감소 · 8채널 보상</dd>
-                </div>
-              </dl>
-              <a class="detail-link" href="projects/self-detection-compensation.html">
-                보상 모델과 결과 보기 <span aria-hidden="true">→</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="case research-panel" id="research-control" role="tabpanel" data-research-panel hidden>
-            <a class="case-image case-video" href="projects/rmpflow-safety-control.html" aria-label="Proximity-Based Reactive Motion Control 프로젝트 상세 보기">
-              <video autoplay muted loop playsinline preload="none" poster="media/rmpflow-avoidance-poster.jpg" aria-hidden="true">
-                <source src="media/rmpflow-dynamic-avoidance.mp4" type="video/mp4">
-              </video>
-              <span class="case-tech" aria-hidden="true">
-                <span>C++</span><span>ROS 2</span><span>RViz</span><span>PREEMPT_RT</span>
-              </span>
-              <span class="case-arrow" aria-hidden="true">↗</span>
-            </a>
-            <div class="case-copy">
-              <p class="case-category">03 · Reactive Motion Control · RMPflow</p>
-              <h3><a href="projects/rmpflow-safety-control.html">Proximity-Based<br>Reactive Motion Control</a></h3>
-              <p>
-                근접센서의 거리값을 RMPflow 제어기에 연결해 RB10이 주변 장애물에
-                반응하도록 구현했습니다. 기본 제어기에서 나타난 local minimum은
-                TG-RMP 접선 정책으로 완화했습니다.
-              </p>
-              <dl class="case-facts">
-                <div>
-                  <dt>구현</dt>
-                  <dd>근접센서 기반 Reactive Motion Controller · TG-RMP 접선 정책 추가</dd>
-                </div>
-                <div>
-                  <dt>적용 및 검증</dt>
-                  <dd>RB10 근접 장애물 회피 · local minimum 완화</dd>
-                </div>
-              </dl>
-              <a class="detail-link" href="projects/rmpflow-safety-control.html">
-                제어 구조와 적용 결과 보기 <span aria-hidden="true">→</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="case research-panel" id="research-compliance" role="tabpanel" data-research-panel hidden>
-            <a
-              class="case-image"
-              href="projects/avoidance-compliance-control.html"
-              aria-label="REACT 회피–순응 전환 프레임워크 프로젝트 상세 보기"
-            >
-              <img
-                src="projects/avoidance-compliance-assets/react-framework.png"
-                alt="F/T 기반 Intrinsic Contact Sensing과 Proximity Sensor 기반 Avoidance를 RMPflow로 통합하는 REACT 프레임워크"
-                width="3997"
-                height="2183"
-                loading="lazy"
-              >
-              <span class="media-badge"><i></i> Ongoing Research</span>
-              <span class="case-tech" aria-hidden="true">
-                <span>C++</span><span>ROS 2</span><span>RViz</span>
-              </span>
-              <span class="case-arrow" aria-hidden="true">↗</span>
-            </a>
-            <div class="case-copy">
-              <p class="case-category">04 · Intrinsic Contact Sensing · Reactive Avoidance</p>
-              <h3>
-                <a href="projects/avoidance-compliance-control.html">
-                  REACT
-                </a>
-              </h3>
-              <p class="react-project-name">Reactive Environment-Aware Safety Framework for Avoidance-Compliance Transition Using RMPflow-Based Control</p>
-              <p>
-                F/T 센서 기반 Intrinsic Contact Sensing과 Proximity Sensor 기반
-                Avoidance를 RMPflow로 통합하고 있습니다. 접촉 정보와 근접거리 정보를
-                함께 활용해 회피와 순응 사이의 전환을 연구합니다.
-              </p>
-              <dl class="case-facts">
-                <div>
-                  <dt>연구 구성</dt>
-                  <dd>F/T 기반 Intrinsic + Proximity 기반 Avoidance</dd>
-                </div>
-                <div>
-                  <dt>통합 프레임워크</dt>
-                  <dd>RMPflow</dd>
-                </div>
-                <div>
-                  <dt>진행 상황</dt>
-                  <dd>Intrinsic 적용 실험 · 접촉·비접촉 센서 결과 · 전환 제어 개발 중</dd>
-                </div>
-              </dl>
-              <a class="detail-link" href="projects/avoidance-compliance-control.html">
-                진행 중인 시스템 보기 <span aria-hidden="true">→</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="case case-featured research-panel" id="research-learning" role="tabpanel" data-research-panel hidden>
-            <a class="case-image case-video" href="projects/interactive-diffusion-policy.html" aria-label="Interactive Diffusion Policy 프로젝트 상세 보기">
-              <video autoplay muted loop playsinline preload="none" poster="media/interactive-safety-poster.jpg" aria-hidden="true">
-                <source src="media/interactive-safety.mp4" type="video/mp4">
-              </video>
-              <span class="case-tech" aria-hidden="true">
-                <span>Python</span><span>PyTorch</span><span>ROS 2</span><span>C++</span>
-              </span>
-              <span class="case-arrow" aria-hidden="true">↗</span>
-            </a>
-            <div class="case-copy">
-              <p class="case-category">05 · Learning-Based Manipulation · Safe Control</p>
-              <h3><a href="projects/interactive-diffusion-policy.html">Interactive<br>Diffusion Policy</a></h3>
-              <p>
-                Diffusion Policy의 작업 행동, 근접센서 기반 RMPflow의 국소 회피,
-                latent dynamics와 LPB guidance의 회피 이후 복귀를 하나의
-                closed loop로 연결했습니다.
-              </p>
-              <dl class="case-facts">
-                <div>
-                  <dt>구현</dt>
-                  <dd>Diffusion Policy · RB10/RMPflow · LPB/OOD runtime</dd>
-                </div>
-                <div>
-                  <dt>적용 및 검증</dt>
-                  <dd>사람 접근 시 RMPflow 회피 · LPB 기반 작업 복귀</dd>
-                </div>
-              </dl>
-              <a class="detail-link" href="projects/interactive-diffusion-policy.html">
-                시스템 도식·실험 영상·코드 보기 <span aria-hidden="true">→</span>
-              </a>
-            </div>
           </article>
         </div>
       </section>
