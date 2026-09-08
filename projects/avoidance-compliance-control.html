@@ -13,7 +13,7 @@
   <title>REACT: Reactive Environment-Aware Safety Framework for Avoidance-Compliance Transition Using RMPflow-Based Control | 송영빈</title>
   <meta
     name="description"
-    content="REACT: Reactive Environment-Aware Safety Framework for Avoidance-Compliance Transition Using RMPflow-Based Control. Intrinsic 적용 실험과 접촉·비접촉 센싱을 바탕으로 회피–순응 전환을 연구합니다."
+    content="REACT: Reactive Environment-Aware Safety Framework for Avoidance-Compliance Transition Using RMPflow-Based Control. F/T 기반 Intrinsic Contact Sensing과 Proximity Sensor 기반 Avoidance를 RMPflow로 통합하는 연구입니다."
   >
   <link rel="shortcut icon" href="../favicon.svg">
   <link rel="icon" href="../favicon.svg">
@@ -41,9 +41,9 @@
           Reactive Environment-Aware Safety Framework for Avoidance-Compliance Transition Using RMPflow-Based Control
         </p>
         <p class="project-lead">
-          닿기 전에는 근접센서로 안전거리를 확보하고, 접촉이 발생하면
-          F/T 센서를 통해 부드럽게 순응하는 제어를 연구하고 있습니다.
-          두 반응을 RMPflow 안에서 자연스럽게 전환하는 것이 목표입니다.
+          F/T 센서 기반 Intrinsic Contact Sensing과 Proximity Sensor 기반
+          Avoidance를 RMPflow로 통합하는 연구입니다. 접촉 정보와 근접거리 정보를
+          함께 활용해 회피와 순응 사이의 전환을 구성하고 있습니다.
         </p>
       </div>
 
@@ -59,12 +59,12 @@
             <dd>비접촉 회피와 접촉 순응을 하나의 안전 제어 흐름으로 연결</dd>
           </div>
           <div>
-            <dt>센싱</dt>
-            <dd>Robot-Mounted Proximity Sensor · F/T Sensor</dd>
+            <dt>연구 구성</dt>
+            <dd>F/T 기반 Intrinsic Contact Sensing<br>Proximity Sensor 기반 Avoidance</dd>
           </div>
           <div>
-            <dt>제어 구성</dt>
-            <dd>Target RMP · Collision RMP · Contact RMP</dd>
+            <dt>통합 프레임워크</dt>
+            <dd>RMPflow</dd>
           </div>
           <div>
             <dt>현재 단계</dt>
@@ -83,8 +83,9 @@
         <div>
           <h2 id="overview-title">닿기 전과 닿은 후를<br>하나의 제어로 연결합니다.</h2>
           <p class="section-intro">
-            인간과 가까이 작업하는 로봇에는 접촉 전 회피와 접촉 후 순응이
-            모두 필요합니다. 현재는 두 상태를 하나의 RMPflow 제어기에서 연결하고 있습니다.
+            F/T 기반 Intrinsic Contact Sensing으로 접촉 정보를 얻고,
+            Proximity Sensor 기반 Avoidance로 비접촉 접근에 대응합니다.
+            두 구성을 RMPflow 안에서 통합해 회피와 순응을 연결합니다.
           </p>
         </div>
       </header>
@@ -97,8 +98,8 @@
         </article>
         <article>
           <span>Approach</span>
-          <h3>근접거리와 접촉력의 역할 분리</h3>
-          <p>Proximity는 Collision RMP에, F/T 신호는 Contact RMP에 연결해 각 상태에 필요한 반응을 만듭니다.</p>
+          <h3>Intrinsic과 Avoidance의 통합</h3>
+          <p>F/T 기반 Intrinsic Contact Sensing과 Proximity Sensor 기반 Avoidance를 RMPflow로 결합합니다.</p>
         </article>
         <article>
           <span>Status</span>
@@ -115,29 +116,31 @@
           <p>REACT Framework</p>
         </div>
         <div>
-          <h2 id="system-title">세 가지 정책이<br>하나의 motion을 만듭니다.</h2>
+          <h2 id="system-title">F/T 기반 Intrinsic과<br>Proximity 기반 Avoidance를<br>RMPflow로 통합합니다.</h2>
           <p class="section-intro">
-            목표를 향한 진행, 접촉 전 회피, 접촉 후 순응을 각각의 RMP로 구성하고,
-            RMPflow가 현재 상태에 맞는 로봇 동작으로 결합하도록 설계하고 있습니다.
+            연구는 F/T 센서를 활용하는 Intrinsic Contact Sensing과
+            Proximity Sensor를 활용하는 Avoidance로 구성됩니다.
+            RMPflow는 두 구성을 통합하는 제어 프레임워크입니다.
           </p>
         </div>
       </header>
 
       <figure class="ac-media-figure ac-framework-figure">
         <a class="ac-figure-link" href="avoidance-compliance-assets/react-framework.png" target="_blank" rel="noopener" aria-label="REACT 프레임워크 원본 크게 보기">
-          <img src="avoidance-compliance-assets/react-framework.png" width="3997" height="2183" alt="근접·접촉 센싱을 Target RMP, Collision RMP, Contact RMP와 결합하는 REACT 프레임워크" loading="lazy">
+          <img src="avoidance-compliance-assets/react-framework.png" width="3997" height="2183" alt="F/T 기반 Intrinsic Contact Sensing과 Proximity Sensor 기반 Avoidance를 RMPflow에서 통합하는 REACT 프레임워크" loading="lazy">
         </a>
         <figcaption>
-          <div><span>REACT Framework</span><strong>Target RMP · Collision RMP · Contact RMP</strong></div>
+          <div><span>REACT Framework</span><strong>F/T-based Intrinsic + Proximity-based Avoidance → RMPflow</strong></div>
           <a href="avoidance-compliance-assets/react-framework.png" target="_blank" rel="noopener">프레임워크 크게 보기 ↗</a>
         </figcaption>
       </figure>
 
-      <div class="ac-state-rail" aria-label="상호작용 상태 흐름">
-        <div><span>01</span><strong>Approach</strong><p>사람·장애물 접근</p></div>
-        <div><span>02</span><strong>Avoidance</strong><p>근접거리 기반 회피</p></div>
-        <div><span>03</span><strong>Contact</strong><p>접촉력 감지</p></div>
-        <div><span>04</span><strong>Compliance</strong><p>접촉 방향으로 순응</p></div>
+      <div class="ac-integration" aria-label="Intrinsic과 Avoidance를 RMPflow로 통합하는 연구 구성">
+        <div class="ac-integration-inputs">
+          <article><span>F/T Sensor</span><strong>Intrinsic Contact Sensing</strong><p>F/T 기반 접촉 정보</p></article>
+          <article><span>Proximity Sensor</span><strong>Avoidance</strong><p>근접거리 기반 비접촉 회피</p></article>
+        </div>
+        <div class="ac-integration-output"><span aria-hidden="true">↓</span><strong>RMPflow</strong><p>Intrinsic과 Avoidance를 통합하는 제어 프레임워크</p></div>
       </div>
     </section>
 
@@ -162,7 +165,7 @@
           <a href="avoidance-compliance-assets/react-intrinsic-demo.mp4">Intrinsic 적용 영상 열기</a>
         </video>
         <figcaption>
-          <div><span>Ongoing Research</span><strong>Intrinsic 적용 실험</strong><p>로봇에 장착한 모듈에서 진행 중인 intrinsic 적용 과정입니다.</p></div>
+          <div><span>Ongoing Research</span><strong>F/T 기반 Intrinsic 적용 실험</strong><p>로봇에 장착한 F/T 센서를 활용해 진행 중인 Intrinsic Contact Sensing 적용 과정입니다.</p></div>
         </figcaption>
       </figure>
 
@@ -186,8 +189,8 @@
         <div>
           <h2 id="next-title">안정적인 전환을 위한<br>다음 개발 단계</h2>
           <p class="section-intro">
-            센서 신호의 재현성을 먼저 높이고, 근접거리와 접촉력을 RMPflow에
-            함께 연결해 회피와 순응 사이의 전환을 구현할 계획입니다.
+            F/T 기반 Intrinsic과 Proximity 기반 Avoidance의 동작을 확인하고,
+            RMPflow 통합 과정에서 회피와 순응 사이의 전환을 다듬을 계획입니다.
           </p>
         </div>
       </header>
@@ -200,13 +203,13 @@
         </article>
         <article>
           <span>02</span>
-          <h3>Contact Estimation</h3>
+          <h3>F/T-based Intrinsic</h3>
           <p>접촉력 검출의 안정성과 접촉점 추정 정확도를 개선합니다.</p>
         </article>
         <article>
           <span>03</span>
           <h3>RMPflow Transition</h3>
-          <p>Proximity와 F/T 정보를 통합해 비접촉 회피에서 접촉 순응으로 이어지는 전환을 구현합니다.</p>
+          <p>F/T 기반 Intrinsic과 Proximity 기반 Avoidance를 RMPflow로 통합해 회피–순응 전환을 구현합니다.</p>
         </article>
       </div>
 

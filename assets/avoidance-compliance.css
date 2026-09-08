@@ -94,6 +94,64 @@
   text-decoration: underline;
 }
 
+.ac-integration {
+  margin-top: 24px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #fff;
+}
+
+.ac-integration-inputs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ac-integration-inputs article {
+  min-width: 0;
+  padding: 24px;
+}
+
+.ac-integration-inputs article + article {
+  border-left: 1px solid var(--line);
+}
+
+.ac-integration-inputs span {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.ac-integration strong {
+  font-family: var(--font-display);
+  font-size: clamp(17px, 2vw, 24px);
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.ac-integration p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.ac-integration-output {
+  padding: 18px 24px 24px;
+  border-top: 1px solid var(--line);
+  background: var(--ac-blue-pale);
+  text-align: center;
+}
+
+.ac-integration-output > span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--blue);
+  font-size: 24px;
+}
+
 .ac-hero-visual {
   min-height: clamp(470px, 54vw, 680px);
   background: #eef1f6;
@@ -431,6 +489,10 @@
 }
 
 @media (max-width: 620px) {
+  .ac-integration-inputs article {
+    padding: 18px 12px;
+  }
+
   .portfolio-v2.project-v2.ac-page .sensor-hero h1 {
     font-size: clamp(52px, 14vw, 68px);
     line-height: 1.02;
