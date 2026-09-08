@@ -2,11 +2,14 @@
 
 .portfolio-v2.home-page.tabbed-home .hero {
   min-height: 0;
+  grid-template-columns: minmax(0, 660px) minmax(0, 380px);
+  gap: clamp(36px, 4vw, 64px);
+  justify-content: center;
   padding-block: 32px 38px;
 }
 
 .portfolio-v2.home-page.tabbed-home .hero-copy h1 {
-  font-size: clamp(44px, 4.8vw, 68px);
+  font-size: clamp(46px, 5.2vw, 76px);
 }
 
 .portfolio-v2.home-page.tabbed-home .hero-profile-links {
@@ -18,13 +21,13 @@
 }
 
 .portfolio-v2.home-page.tabbed-home .hero-stage {
-  width: min(100%, 340px);
-  min-height: 350px;
+  width: min(100%, 380px);
+  min-height: 380px;
   justify-self: end;
 }
 
 .portfolio-v2.home-page.tabbed-home .hero-stage > img {
-  width: min(82%, 240px);
+  width: min(82%, 270px);
 }
 
 .home-view-nav {
@@ -121,10 +124,23 @@
   margin-bottom: 38px;
 }
 
+.portfolio-v2.home-page.tabbed-home #work {
+  padding-block: 36px 64px;
+}
+
+.portfolio-v2.home-page.tabbed-home #work .section-heading-simple {
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+}
+
+.portfolio-v2.home-page.tabbed-home #work .section-heading-simple h2 {
+  font-size: clamp(32px, 3.3vw, 44px);
+}
+
 .research-tabs {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  margin-bottom: 48px;
+  margin-bottom: 28px;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 15px;
@@ -621,6 +637,7 @@
 @media (max-width: 900px) {
   .portfolio-v2.home-page.tabbed-home .hero {
     min-height: 0;
+    grid-template-columns: 1fr;
     padding-block: 32px 36px;
   }
 
@@ -707,7 +724,7 @@
   }
 
   .portfolio-v2.home-page.tabbed-home .hero-copy h1 {
-    font-size: clamp(36px, 9vw, 44px);
+    font-size: clamp(38px, 10vw, 46px);
   }
 
   .portfolio-v2.home-page.tabbed-home .hero-profile-links {
@@ -715,13 +732,13 @@
   }
 
   .portfolio-v2.home-page.tabbed-home .hero-stage {
-    width: min(100%, 240px);
+    width: min(100%, 260px);
     min-height: 0;
     padding: 16px;
   }
 
   .portfolio-v2.home-page.tabbed-home .hero-stage > img {
-    width: min(82%, 160px);
+    width: min(82%, 180px);
   }
 
   .portfolio-v2.home-page.tabbed-home .hero-copy {
@@ -745,6 +762,15 @@
 
   .tabbed-home .home-view-panel.section {
     padding-block: 54px 66px;
+  }
+
+  .portfolio-v2.home-page.tabbed-home #work {
+    padding-block: 30px 48px;
+  }
+
+  .portfolio-v2.home-page.tabbed-home #work .section-heading-simple {
+    margin-bottom: 20px;
+    padding-bottom: 16px;
   }
 
   .tabbed-home .home-view-panel.contact {
@@ -772,7 +798,7 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-auto-columns: auto;
     grid-auto-flow: row;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
     overflow: hidden;
   }
 
