@@ -1,8 +1,12 @@
 /* Main page only: compact, selectable portfolio views. */
 
 .portfolio-v2.home-page.tabbed-home .hero {
-  min-height: 590px;
-  padding-block: 54px 62px;
+  min-height: 0;
+  padding-block: 32px 38px;
+}
+
+.portfolio-v2.home-page.tabbed-home .hero-copy h1 {
+  font-size: clamp(44px, 4.8vw, 68px);
 }
 
 .portfolio-v2.home-page.tabbed-home .hero-profile-links {
@@ -14,7 +18,13 @@
 }
 
 .portfolio-v2.home-page.tabbed-home .hero-stage {
-  min-height: 460px;
+  width: min(100%, 340px);
+  min-height: 350px;
+  justify-self: end;
+}
+
+.portfolio-v2.home-page.tabbed-home .hero-stage > img {
+  width: min(82%, 240px);
 }
 
 .home-view-nav {
@@ -144,11 +154,11 @@
 
 .research-tab span {
   min-width: 0;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: .07em;
+  letter-spacing: .01em;
   line-height: 1.35;
-  text-transform: uppercase;
+  text-transform: none;
   white-space: normal;
   overflow-wrap: anywhere;
 }
@@ -611,11 +621,13 @@
 @media (max-width: 900px) {
   .portfolio-v2.home-page.tabbed-home .hero {
     min-height: 0;
-    padding-block: 52px 58px;
+    padding-block: 32px 36px;
   }
 
   .portfolio-v2.home-page.tabbed-home .hero-stage {
-    min-height: 420px;
+    width: min(100%, 300px);
+    min-height: 300px;
+    justify-self: center;
   }
 
   .home-view-nav {
@@ -690,8 +702,12 @@
 
 @media (max-width: 620px) {
   .portfolio-v2.home-page.tabbed-home .hero {
-    gap: 36px;
-    padding-block: 42px 46px;
+    gap: 24px;
+    padding-block: 28px 30px;
+  }
+
+  .portfolio-v2.home-page.tabbed-home .hero-copy h1 {
+    font-size: clamp(36px, 9vw, 44px);
   }
 
   .portfolio-v2.home-page.tabbed-home .hero-profile-links {
@@ -699,11 +715,13 @@
   }
 
   .portfolio-v2.home-page.tabbed-home .hero-stage {
-    min-height: 350px;
+    width: min(100%, 240px);
+    min-height: 0;
+    padding: 16px;
   }
 
   .portfolio-v2.home-page.tabbed-home .hero-stage > img {
-    width: min(78%, 280px);
+    width: min(82%, 160px);
   }
 
   .portfolio-v2.home-page.tabbed-home .hero-copy {
@@ -781,7 +799,7 @@
   }
 
   .research-tab span {
-    font-size: 8px;
+    font-size: 11px;
   }
 
   .publication-feature {
