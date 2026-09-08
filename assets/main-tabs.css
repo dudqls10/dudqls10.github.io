@@ -133,8 +133,9 @@
   padding-bottom: 18px;
 }
 
-.portfolio-v2.home-page.tabbed-home #work .section-heading-simple h2 {
+.portfolio-v2.home-page.tabbed-home .home-view-panel .section-heading-simple h2 {
   font-size: clamp(32px, 3.3vw, 44px);
+  line-height: 1.15;
 }
 
 .research-tabs {
@@ -809,10 +810,6 @@
 
   .tabbed-home .section-heading-simple {
     margin-bottom: 30px;
-  }
-
-  .tabbed-home .section-heading-simple h2 {
-    font-size: clamp(29px, 8.1vw, 34px);
   }
 
   .tabbed-home #experience .heading-tail {
