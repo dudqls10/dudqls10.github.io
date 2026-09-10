@@ -176,10 +176,3 @@ setupTabSet({
   panelSelector: "[data-research-panel]",
   dataKey: "researchTab",
 });
-
-setupTabSet({
-  root: document.querySelector("[data-compensation-tabs]"),
-  buttonSelector: "[data-compensation-tab]",
-  panelSelector: "[data-compensation-panel]",
-  dataKey: "compensationTab",
-});

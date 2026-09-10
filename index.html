@@ -24,9 +24,9 @@
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
     <link rel="stylesheet" href="assets/style2-hybrid.css">
-    <link rel="stylesheet" href="assets/main-tabs.css?v=20260910-compensation-compare">
+    <link rel="stylesheet" href="assets/main-tabs.css?v=20260910-compensation-wide">
     <link rel="icon" href="favicon.svg">
-    <script src="assets/site.js?v=20260910-compensation-compare" defer></script>
+    <script src="assets/site.js?v=20260910-compensation-wide" defer></script>
     <title>송영빈 | Robotics Sensing &amp; Control Engineer</title>
   </head>
   <body class="home-page index2-preview portfolio-v2 tabbed-home">
@@ -94,7 +94,7 @@
         <div class="research-panel is-active" id="research-sensing" role="tabpanel" aria-labelledby="research-tab-sensing" data-research-panel>
           <div class="research-card-grid">
             <article id="research-sensor">
-              <a class="research-card" href="projects/proximity-sensor-platform.html" aria-labelledby="research-sensor-title" aria-describedby="research-sensor-summary">
+              <a class="research-card research-card-featured" href="projects/proximity-sensor-platform.html" aria-labelledby="research-sensor-title" aria-describedby="research-sensor-summary">
                 <div class="research-card-media research-card-media-sensor">
                   <img src="projects/module-design.png" alt="센서 모듈과 로봇별 지지부로 구성된 모듈형 근접센서 시스템" loading="lazy" decoding="async">
                 </div>
@@ -107,23 +107,23 @@
             </article>
             <article id="research-signal">
               <div class="research-card">
-                <div class="research-card-media compensation-media">
+                <div class="compensation-media">
                   <div class="compensation-toolbar">
-                    <div class="compensation-tabs" role="tablist" aria-label="보상 실험 미리보기" data-compensation-tabs>
-                      <button class="is-active" id="compensation-compare-tab" type="button" role="tab" aria-selected="true" aria-controls="compensation-compare" data-compensation-tab="compensation-compare">보상 전·후</button>
-                      <button id="compensation-motion-tab" type="button" role="tab" aria-selected="false" aria-controls="compensation-motion" data-compensation-tab="compensation-motion" tabindex="-1">로봇 동작</button>
-                    </div>
+                    <span>로봇 동작과 센서 응답 비교</span>
                     <a href="projects/self-detection-compensation.html#result-title" class="compensation-open">크게 보기 <span aria-hidden="true">↗</span></a>
                   </div>
-                  <div class="compensation-preview is-active" id="compensation-compare" role="tabpanel" aria-labelledby="compensation-compare-tab" data-compensation-panel>
-                    <a class="compensation-plots" href="projects/self-detection-compensation.html#result-title" aria-label="보상 전후 그래프를 상세 페이지에서 크게 보기">
-                      <figure><figcaption>보상 전 <span>BEFORE</span></figcaption><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="projects/self-detection-assets/demo-2.mp4" type="video/mp4"></video></figure>
-                      <figure><figcaption>보상 후 <span>AFTER</span></figcaption><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="projects/self-detection-assets/demo-3.mp4" type="video/mp4"></video></figure>
-                    </a>
-                    <a class="compensation-static" href="projects/self-detection-compensation.html#result-title"><img src="projects/self-detection-assets/capacitive-compensation-result.png" alt="정전용량 센서의 자체 감지 응답 보상 결과 크게 보기" loading="lazy" decoding="async"></a>
-                  </div>
-                  <div class="compensation-preview" id="compensation-motion" role="tabpanel" aria-labelledby="compensation-motion-tab" data-compensation-panel hidden>
-                    <video autoplay muted loop playsinline preload="metadata" aria-label="로봇 관절 동작 중 센서 자체 감지 응답을 측정하는 실험"><source src="projects/self-detection-assets/demo-1.mp4" type="video/mp4"></video>
+                  <div class="compensation-stage">
+                    <figure class="compensation-motion">
+                      <figcaption>로봇 동작 <span>ROBOT MOTION</span></figcaption>
+                      <video autoplay muted loop playsinline preload="metadata" aria-label="로봇 관절 동작 중 센서 자체 감지 응답을 측정하는 실험"><source src="projects/self-detection-assets/demo-1.mp4" type="video/mp4"></video>
+                    </figure>
+                    <div class="compensation-results">
+                      <a class="compensation-plots" href="projects/self-detection-compensation.html#result-title" aria-label="보상 전후 그래프를 상세 페이지에서 크게 보기">
+                        <figure><figcaption>보상 전 <span>BEFORE</span></figcaption><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="projects/self-detection-assets/demo-2.mp4" type="video/mp4"></video></figure>
+                        <figure><figcaption>보상 후 <span>AFTER</span></figcaption><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="projects/self-detection-assets/demo-3.mp4" type="video/mp4"></video></figure>
+                      </a>
+                      <a class="compensation-static" href="projects/self-detection-compensation.html#result-title"><img src="projects/self-detection-assets/capacitive-compensation-result.png" alt="정전용량 센서의 자체 감지 응답 보상 결과 크게 보기" loading="lazy" decoding="async"></a>
+                    </div>
                   </div>
                 </div>
                 <a class="research-card-body" href="projects/self-detection-compensation.html" aria-labelledby="research-signal-title" aria-describedby="research-signal-summary">
@@ -131,6 +131,7 @@
                   <p id="research-signal-summary">로봇 동작에 따른 센서 자체 감지 응답을 학습하고 보상.</p>
                   <span class="research-card-link">프로젝트 보기 <span aria-hidden="true">↗</span></span>
                 </a>
+              </div>
             </article>
           </div>
         </div>
