@@ -270,7 +270,8 @@
   position: absolute;
   inset: 0;
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  /* Match each square plot's height: half the 4:3 frame, minus caption and dividers. */
+  grid-template-columns: minmax(0, 1fr) calc(37.5% - 25px);
   grid-template-rows: minmax(0, 1fr);
   gap: 1px;
   background: var(--line);
@@ -299,11 +300,14 @@
   background: #fff;
 }
 .compensation-motion video { height: 0; flex: 1; background: #f3f5f7; }
-.compensation-results { min-width: 0; min-height: 0; background: #fff; }
+.compensation-results { min-width: 0; min-height: 0; container-type: inline-size; background: #fff; }
 .compensation-plots { display: grid; height: 100%; grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--line); }
 .compensation-plots figure { display: grid; grid-template-rows: 24px minmax(0, 1fr); }
 .compensation-plots video { height: 100%; }
 .compensation-plots figure:last-child figcaption { background: var(--blue-soft); color: var(--blue-dark); }
+@container (max-width: 110px) {
+  .compensation-plots figcaption span { display: none; }
+}
 .compensation-static { display: none; height: 100%; }
 .compensation-static img { height: 100%; }
 #research-signal > .research-card:hover { transform: none; }
