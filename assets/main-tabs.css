@@ -255,34 +255,74 @@
   background: #fff;
 }
 
-.research-video-grid {
+.compensation-media { background: #fff; }
+.compensation-toolbar {
   position: absolute;
-  inset: 0;
-  display: grid;
-  /* In a 16:9 thumbnail, the right 9/32 holds two square result videos. */
-  grid-template-columns: minmax(0, 23fr) minmax(0, 9fr);
-  grid-template-rows: repeat(2, minmax(0, 1fr));
-  gap: 1px;
-  background: var(--line);
+  inset: 0 0 auto;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--line);
+  background: #f7f8fb;
 }
-
-.research-video-grid video {
+.compensation-tabs { display: flex; gap: 4px; }
+.compensation-tabs button {
+  min-height: 30px;
+  padding: 5px 10px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font: 600 11px/1.4 var(--font-body);
+  cursor: pointer;
+}
+.compensation-tabs button.is-active {
+  border-color: rgba(47, 92, 229, .18);
+  background: #fff;
+  color: var(--blue-dark);
+  box-shadow: 0 1px 4px rgba(30, 48, 90, .06);
+}
+.compensation-open { color: var(--muted); font-size: 11px; white-space: nowrap; }
+.compensation-open:hover { color: var(--blue); }
+.compensation-preview { position: absolute; inset: 42px 0 0; }
+.compensation-preview[hidden] { display: none !important; }
+.compensation-plots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); height: 100%; }
+.compensation-plots figure { display: grid; grid-template-rows: 26px minmax(0, 1fr); min-width: 0; min-height: 0; margin: 0; }
+.compensation-plots figure + figure { border-left: 1px solid var(--line); }
+.compensation-plots figcaption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 12px;
+  background: #f3f4f6;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+}
+.compensation-plots figure:last-child figcaption { background: var(--blue-soft); color: var(--blue-dark); }
+.compensation-plots figcaption span { font: 9px var(--font-mono); letter-spacing: .05em; }
+.compensation-preview video, .compensation-static img {
   display: block;
   width: 100%;
   height: 100%;
   min-width: 0;
   min-height: 0;
   object-fit: contain;
-  background: #f3f5f7;
+  background: #fff;
 }
+.compensation-static { display: none; height: 100%; }
+#research-signal > .research-card:hover { transform: none; }
+#research-signal .research-card-body { color: var(--ink); text-decoration: none; }
 
-.research-video-grid video:first-child {
-  grid-column: 1;
-  grid-row: 1 / -1;
-}
-
-.research-card-media > .research-motion-fallback {
-  display: none;
+@media (max-width: 900px) {
+  /* Stack sensing projects earlier so the comparison stays readable on tablets. */
+  #research-sensing .research-card-grid { grid-template-columns: minmax(0, 1fr); }
+  .compensation-media { aspect-ratio: 3 / 2; }
+  .compensation-toolbar { padding-inline: 8px; }
+  .compensation-tabs button { padding-inline: 8px; }
 }
 
 .research-card-body {
@@ -1067,11 +1107,11 @@
     transform: none;
   }
 
-  .research-video-grid {
+  .compensation-plots {
     display: none;
   }
 
-  .research-card-media > .research-motion-fallback {
+  .compensation-static {
     display: block;
   }
 }

@@ -52,7 +52,7 @@ if (isPreview) {
 
 function syncAmbientVideos() {
   ambientVideos.forEach((video) => {
-    if (reducedMotion.matches) {
+    if (reducedMotion.matches || video.closest("[hidden]")) {
       video.pause();
       video.removeAttribute("autoplay");
     } else if (video.dataset.visible === "true") {
@@ -67,7 +67,7 @@ if ("IntersectionObserver" in window) {
       entries.forEach((entry) => {
         const video = entry.target;
         video.dataset.visible = String(entry.isIntersecting);
-        if (entry.isIntersecting && !reducedMotion.matches) {
+        if (entry.isIntersecting && !reducedMotion.matches && !video.closest("[hidden]")) {
           video.play().catch(() => {});
         } else {
           video.pause();
@@ -132,6 +132,7 @@ function setupTabSet({ root, buttonSelector, panelSelector, dataKey, updateHash 
       });
     }
 
+    syncPanelVideos();
     window.requestAnimationFrame(syncPanelVideos);
   };
 
@@ -174,4 +175,11 @@ setupTabSet({
   buttonSelector: "[data-research-tab]",
   panelSelector: "[data-research-panel]",
   dataKey: "researchTab",
+});
+
+setupTabSet({
+  root: document.querySelector("[data-compensation-tabs]"),
+  buttonSelector: "[data-compensation-tab]",
+  panelSelector: "[data-compensation-panel]",
+  dataKey: "compensationTab",
 });
