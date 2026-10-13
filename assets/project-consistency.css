@@ -136,12 +136,68 @@
   gap: var(--project-media-gap);
 }
 
-/* Retain all navigation links at the shared tablet breakpoint. */
-.portfolio-v2.project-v2 .project-quick-nav a:nth-child(2) {
+/* Override legacy selectors that hid individual mobile navigation links. */
+body.portfolio-v2.project-v2 .project-quick-nav a {
   display: block;
 }
 
+.portfolio-v2.project-v2 .project-nav-wrap { display: contents; }
+.portfolio-v2.project-v2 .project-scroll-hint {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  color: #52647d;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0;
+  word-break: keep-all;
+}
+.portfolio-v2.project-v2 .project-scroll-hint[hidden] { display: none; }
+.portfolio-v2.project-v2 .project-nav-hint { display: none; }
+.portfolio-v2.project-v2 .project-figure-hint {
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--line);
+  background: #f7f8fb;
+}
+.portfolio-v2.project-v2 .technical-image-scroll:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: -3px;
+}
+
 @media (max-width: 760px) {
+  .portfolio-v2.project-v2 .project-nav-wrap {
+    display: block;
+    min-width: 0;
+    max-width: calc(100% - 56px);
+    margin-left: auto;
+  }
+
+  .portfolio-v2.project-v2 .project-nav-wrap .project-quick-nav {
+    max-width: 100%;
+    margin: 0;
+    gap: 16px;
+    padding-inline: 3px;
+  }
+
+  body.portfolio-v2.project-v2 .project-quick-nav a,
+  body.portfolio-v2.project-v2 .project-quick-nav a:nth-child(2) {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding-block: 8px;
+    font-size: 12px;
+  }
+
+  .portfolio-v2.project-v2 .project-nav-hint:not([hidden]) {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
   .portfolio-v2.project-v2 {
     --project-caption-padding: 14px 16px;
     --project-media-gap: 16px;
