@@ -1,0 +1,167 @@
+/* Shared presentation for the production case studies.
+   Load last. Preserve each project's media sizing, grids and scientific figures. */
+.portfolio-v2.project-v2 {
+  --project-media-radius: 18px;
+  --project-card-radius: 12px;
+  --project-caption-size: 13px;
+  --project-caption-padding: 16px 20px;
+  --project-media-gap: 20px;
+}
+
+.portfolio-v2.project-v2 :is(.sensor-hero-visual, .self-demo-grid) {
+  box-shadow: none;
+}
+
+/* Large standalone figures and smaller cards use two consistent frame sizes. */
+.portfolio-v2.project-v2 :is(
+  .figure-panel, .rmp-hero-demo, .rmp-failure-demo, .ac-media-figure,
+  .temperature-pair-card, .fusion-framework-panel, .fusion-results-panel,
+  .live-output-card, .ema-comparison-card, .ema-method-card,
+  .idp-feature-video, .idp-detour-video,
+  .study-video-figure, .study-setup-figure
+) {
+  border: 1px solid var(--line);
+  border-radius: var(--project-media-radius);
+  overflow: hidden;
+  box-shadow: none;
+}
+
+.portfolio-v2.project-v2 :is(
+  .self-motion-grid > figure, .rmp-video-pair > figure,
+  .rmp-dynamic-grid > figure, .ug-panel, .idp-compare-card
+) {
+  border: 1px solid var(--line);
+  border-radius: var(--project-card-radius);
+  overflow: hidden;
+  box-shadow: none;
+}
+
+/* Only bottom captions are included; photographic overlays retain their layout.
+   Keep caption display rules and scientific-diagram scroll hints intact. */
+.portfolio-v2.project-v2 :is(
+  .figure-panel, .rmp-hero-demo, .rmp-failure-demo,
+  .rmp-video-pair > figure, .rmp-dynamic-grid > figure,
+  .self-motion-grid > figure, .ac-media-figure,
+  .temperature-pair-card, .fusion-framework-panel, .live-output-card,
+  .idp-feature-video, .idp-detour-video,
+  .study-video-figure, .study-setup-figure
+) > figcaption,
+.portfolio-v2.project-v2 .ug-panel > p {
+  padding: var(--project-caption-padding);
+  border-top: 1px solid var(--line);
+  background: #fff;
+  color: var(--muted);
+  font-family: var(--font-display);
+  font-size: var(--project-caption-size);
+  line-height: 1.7;
+  letter-spacing: 0;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.portfolio-v2.project-v2 :is(
+  .rmp-dynamic-grid, .self-motion-grid, .ac-media-figure,
+  .live-output-card, .idp-feature-video, .idp-detour-video
+) figcaption strong {
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.portfolio-v2.project-v2 :is(
+  .rmp-dynamic-grid, .self-motion-grid, .ac-media-figure,
+  .idp-feature-video, .idp-detour-video
+) figcaption p {
+  font-size: var(--project-caption-size);
+  line-height: 1.7;
+}
+
+.portfolio-v2.project-v2 :is(
+  .rmp-dynamic-grid, .self-motion-grid, .ac-media-figure,
+  .pcb-document-card
+) figcaption > span,
+.portfolio-v2.project-v2 .ac-media-figure figcaption > div > span {
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.portfolio-v2.project-v2 :is(
+  .live-output-card figcaption span,
+  .pcb-document-card figcaption > strong,
+  .fusion-result-gallery figcaption
+) {
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* Technical panel headings share the light surfaces used throughout the site. */
+.portfolio-v2.project-v2 .ema-card-head {
+  border-bottom: 1px solid var(--line);
+  background: #f7f8fb;
+  color: var(--ink);
+}
+
+.portfolio-v2.project-v2 .ema-card-head > span {
+  color: var(--blue);
+  background: var(--blue-soft);
+}
+
+/* Match headings by role, without flattening section or project titles. */
+.portfolio-v2.project-v2 :is(
+  .chapter-head h3, .rmp-subsection-head h3
+) {
+  font-size: clamp(24px, 2.6vw, 32px);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -.035em;
+  word-break: keep-all;
+}
+
+.portfolio-v2.project-v2 :is(
+  .ug-panel > header h3, .rmp-escape-case > header h3,
+  .runtime-heading h3, .sequence-top h3
+) {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -.025em;
+  word-break: keep-all;
+}
+
+.portfolio-v2.project-v2 :is(
+  .rmp-video-pair, .rmp-dynamic-grid, .self-motion-grid,
+  .ug-result-grid, .sequence-grid
+) {
+  gap: var(--project-media-gap);
+}
+
+/* Retain all navigation links at the shared tablet breakpoint. */
+.portfolio-v2.project-v2 .project-quick-nav a:nth-child(2) {
+  display: block;
+}
+
+@media (max-width: 760px) {
+  .portfolio-v2.project-v2 {
+    --project-caption-padding: 14px 16px;
+    --project-media-gap: 16px;
+  }
+
+  .portfolio-v2.project-v2 :is(
+    .ug-panel > header h3, .rmp-escape-case > header h3,
+    .runtime-heading h3, .sequence-top h3
+  ) {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  /* Stacked undergraduate images must not remain in a fixed-height grid row. */
+  .portfolio-v2.project-v2 .ug-panel {
+    grid-template-rows: auto auto auto;
+  }
+
+  .portfolio-v2.project-v2 .ug-panel-media {
+    min-height: 0;
+  }
+}
