@@ -48,7 +48,7 @@
 
 /* Results are read before the full video. */
 .study-evaluation { display:grid; grid-template-columns:1fr 1.15fr; gap:78px; align-items:start; }
-.evaluation-intro h3 { font-size:27px; font-weight:590; line-height:1.45; letter-spacing:-.035em; margin:13px 0 0; }
+.evaluation-intro h3 { font-size:27px; font-weight:590; line-height:1.45; letter-spacing:-.035em; margin:13px 0 0; word-break:keep-all; overflow-wrap:normal; }
 .evaluation-intro p { margin:14px 0 0; color:var(--muted); font-size:16px; line-height:1.9; }
 .evaluation-intro .evaluation-setup { margin-top:22px; font-size:14px; }
 .evaluation-setup strong { display:block; color:var(--ink); font-size:14px; margin-bottom:4px; }
@@ -150,7 +150,7 @@
   .idp-study .sensor-hero h1 { overflow-wrap:normal; }
   .study-evaluation { grid-template-columns:1fr; gap:30px; }
   .evaluation-intro h3 { font-size:24px; }
-  .evaluation-intro h3 br { display:none; }
+  .evaluation-intro h3 br { display:initial; }
   .evaluation-intro p { font-size:15px; }
   .study-resources { grid-template-columns:1fr; gap:28px; }
   .sequence-grid { grid-template-columns:1fr; gap:28px; }
@@ -160,16 +160,16 @@
   .study-reference { font-size:12px; }
 }
 @media (max-width:760px) {
-  .study-runtime { padding:24px 22px 0; }
+  .study-runtime { padding:24px 18px 0; }
   .runtime-heading { align-items:flex-start; flex-direction:column; gap:5px; margin-bottom:38px; }
   .runtime-heading h3 { font-size:18px; }
-  .runtime-feedback { margin:26px 0 16px; font-size:11px; }
-  .study-runtime figcaption { margin-inline:-22px; padding:15px 18px; font-size:12px; }
-  .idp-map-card .study-label { font-size:9px; }
-  .idp-map-card p, .idp-lpb p, .idp-sensor p { font-size:11px; }
-  .idp-shared-badge { font-size:9px; padding-inline:4px; }
-  .idp-zone>span { font-size:10px; }
-  .study-team-note { font-size:12px; }
+  .runtime-feedback { margin:26px 0 16px; font-size:12px; }
+  .study-runtime figcaption { margin-inline:-18px; padding:14px 16px; font-size:13px; }
+  .idp-map-card .study-label { font-size:10px; }
+  .idp-map-card p, .idp-lpb p, .idp-sensor p { font-size:12px; color:#596374; word-break:keep-all; }
+  .idp-shared-badge { font-size:11px; padding-inline:7px; color:#634c79; }
+  .idp-zone>span { font-size:12px; }
+  .study-team-note { font-size:13px; }
   .study-results-table tbody th { font-size:14px; padding-right:12px; }
   .submission-chapters>span { width:100%; }
   .submission-chapters button { justify-content:flex-start; font-size:13px; }
